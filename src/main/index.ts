@@ -5,6 +5,7 @@ import icon from '../../resources/icon.png?asset'
 import { registerSearchIpc } from './ipc/search'
 import { registerProjectsIpc } from './ipc/projects'
 import { registerSettingsIpc } from './ipc/settings'
+import { registerScanIpc } from './ipc/scan'
 
 function createWindow(): void {
   // Create the browser window.
@@ -57,6 +58,7 @@ app.whenReady().then(() => {
   registerSearchIpc()
   registerProjectsIpc()
   registerSettingsIpc()
+  registerScanIpc()
 
   createWindow()
 

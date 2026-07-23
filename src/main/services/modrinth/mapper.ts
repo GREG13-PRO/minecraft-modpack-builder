@@ -1,5 +1,5 @@
 import type { ModLoader, ModRef, ModVersionRef } from '@shared/types'
-import type { ModrinthSearchHit, ModrinthVersion } from './client'
+import type { ModrinthProject, ModrinthSearchHit, ModrinthVersion } from './client'
 
 const KNOWN_LOADERS: ModLoader[] = ['forge', 'fabric', 'neoforge', 'quilt']
 
@@ -11,6 +11,17 @@ export function toModRef(hit: ModrinthSearchHit): ModRef {
     name: hit.title,
     iconUrl: hit.icon_url ?? undefined,
     summary: hit.description
+  }
+}
+
+export function projectToModRef(project: ModrinthProject): ModRef {
+  return {
+    source: 'modrinth',
+    projectId: project.id,
+    slug: project.slug,
+    name: project.title,
+    iconUrl: project.icon_url ?? undefined,
+    summary: project.description
   }
 }
 

@@ -99,3 +99,16 @@ export function getVersionsByHashes(hashes: string[], algorithm: 'sha1' | 'sha51
     return res.json()
   })
 }
+
+export interface ModrinthProject {
+  id: string
+  slug: string
+  title: string
+  description: string
+  icon_url: string | null
+}
+
+export function getProjectsByIds(ids: string[]): Promise<ModrinthProject[]> {
+  if (ids.length === 0) return Promise.resolve([])
+  return request<ModrinthProject[]>('/projects', { ids: JSON.stringify(ids) })
+}

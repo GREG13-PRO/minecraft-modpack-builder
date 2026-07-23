@@ -42,6 +42,23 @@ async function request<T>(path: string, params?: Record<string, string>): Promis
   return (await response.json()) as T
 }
 
+async function requestPost<T>(path: string, body: unknown): Promise<T> {
+  const apiKey = await getCurseForgeApiKey()
+  if (!apiKey) throw new MissingApiKeyError()
+
+  const response = await fetch(BASE_URL + path, {
+    method: 'POST',
+    headers: { 'x-api-key': apiKey, Accept: 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  })
+
+  if (!response.ok) {
+    throw new Error(`CurseForge API error ${response.status}: ${await response.text()}`)
+  }
+
+  return (await response.json()) as T
+}
+
 export interface CurseForgeModLogo {
   thumbnailUrl: string
   url: string
@@ -115,6 +132,29 @@ export function listFiles(modId: string, mcVersion: string, loader: ModLoader): 
 
 export function getMod(modId: string): Promise<{ data: CurseForgeMod }> {
   return request<{ data: CurseForgeMod }>(`/mods/${modId}`)
+}
+
+export interface CurseForgeFingerprintMatch {
+  id: number
+  file: CurseForgeFile
+}
+
+export interface CurseForgeFingerprintResponse {
+  data: {
+    exactMatches: CurseForgeFingerprintMatch[]
+    unmatchedFingerprints: number[]
+  }
+}
+
+// Identifies installed jars by their CurseForge murmur2 fingerprint — the
+// same mechanism the official CurseForge app uses to recognize local files.
+export function matchFingerprints(fingerprints: number[]): Promise<CurseForgeFingerprintResponse> {
+  return requestPost<CurseForgeFingerprintResponse>('/fingerprints', { fingerprints })
+}
+
+export function getModsByIds(modIds: number[]): Promise<{ data: CurseForgeMod[] }> {
+  if (modIds.length === 0) return Promise.resolve({ data: [] })
+  return requestPost<{ data: CurseForgeMod[] }>('/mods', { modIds })
 }
 
 // Verifies a key against a minimal, parameter-free endpoint so a bad/wrong-type

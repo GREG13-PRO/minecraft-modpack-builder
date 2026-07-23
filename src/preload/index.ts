@@ -1,6 +1,13 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
-import type { ApiKeyTestResult, ModLoader, ModpackProject, ModRef, ModSearchParams } from '@shared/types'
+import type {
+  ApiKeyTestResult,
+  InstalledModScanResult,
+  ModLoader,
+  ModpackProject,
+  ModRef,
+  ModSearchParams
+} from '@shared/types'
 
 const api = {
   search: {
@@ -20,6 +27,11 @@ const api = {
     clearCurseForgeApiKey: () => ipcRenderer.invoke('settings:clearCurseForgeApiKey') as Promise<void>,
     testCurseForgeApiKey: (key: string) =>
       ipcRenderer.invoke('settings:testCurseForgeApiKey', key) as Promise<ApiKeyTestResult>
+  },
+  scan: {
+    pickFolder: () => ipcRenderer.invoke('scan:pickFolder') as Promise<string | undefined>,
+    run: (folderPath: string, mcVersion: string, loader: ModLoader) =>
+      ipcRenderer.invoke('scan:run', folderPath, mcVersion, loader) as Promise<InstalledModScanResult[]>
   }
 }
 
