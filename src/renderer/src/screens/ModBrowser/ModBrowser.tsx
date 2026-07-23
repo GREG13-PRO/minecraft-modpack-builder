@@ -1,16 +1,17 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
+import { Puzzle, Image, Sparkles, Search, Package, Plus, Check, X, type LucideIcon } from 'lucide-react'
 import type { ContentType, ModRef, ModSource } from '@shared/types'
 import { useProjectStore } from '../../state/projectStore'
 import './ModBrowser.css'
 
 type SourceFilter = ModSource | 'both'
 
-const CONTENT_TYPES: { id: ContentType; icon: string; field: 'mods' | 'resourcePacks' | 'shaders' }[] = [
-  { id: 'mod', icon: '🧩', field: 'mods' },
-  { id: 'resourcepack', icon: '🖼️', field: 'resourcePacks' },
-  { id: 'shader', icon: '✨', field: 'shaders' }
+const CONTENT_TYPES: { id: ContentType; icon: LucideIcon; field: 'mods' | 'resourcePacks' | 'shaders' }[] = [
+  { id: 'mod', icon: Puzzle, field: 'mods' },
+  { id: 'resourcepack', icon: Image, field: 'resourcePacks' },
+  { id: 'shader', icon: Sparkles, field: 'shaders' }
 ]
 
 function ModBrowser(): React.JSX.Element {
@@ -61,7 +62,7 @@ function ModBrowser(): React.JSX.Element {
             className={contentType === c.id ? 'ct-tab active' : 'ct-tab'}
             onClick={() => setContentType(c.id)}
           >
-            <span>{c.icon}</span> {t(`modBrowser.contentType.${c.id}`)}
+            <c.icon size={15} /> {t(`modBrowser.contentType.${c.id}`)}
             <span className="ct-tab-count">{project[c.field].length}</span>
           </button>
         ))}
@@ -69,7 +70,7 @@ function ModBrowser(): React.JSX.Element {
 
       <div className="mb-toolbar">
         <div className="mb-search">
-          <span className="mb-search-icon">🔍</span>
+          <Search className="mb-search-icon" size={15} />
           <input
             className="input"
             placeholder={t(`modBrowser.searchPlaceholder.${contentType}`)}
@@ -106,7 +107,7 @@ function ModBrowser(): React.JSX.Element {
             return (
               <article className="mod-card" key={key}>
                 <div className="mod-icon">
-                  {ref.iconUrl ? <img src={ref.iconUrl} alt="" /> : <span>📦</span>}
+                  {ref.iconUrl ? <img src={ref.iconUrl} alt="" /> : <Package size={20} />}
                 </div>
                 <div className="mod-info">
                   <div className="mod-title">
@@ -120,6 +121,7 @@ function ModBrowser(): React.JSX.Element {
                   disabled={added}
                   onClick={() => handleAdd(ref)}
                 >
+                  {added ? <Check size={14} /> : <Plus size={14} />}
                   {added ? t('modBrowser.added') : t('modBrowser.add')}
                 </button>
               </article>
@@ -144,7 +146,7 @@ function ModBrowser(): React.JSX.Element {
                   title={t('modBrowser.remove')}
                   onClick={() => removeItem(contentType, m.ref.projectId, m.ref.source)}
                 >
-                  ✕
+                  <X size={13} />
                 </button>
               </div>
             ))}

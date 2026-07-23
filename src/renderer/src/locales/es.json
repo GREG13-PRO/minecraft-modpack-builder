@@ -9,9 +9,9 @@
     },
     "sidebar": {
       "activeProject": "Proyecto activo",
-      "newProject": "+ Nuevo proyecto",
+      "newProject": "Nuevo proyecto",
       "counts": "{{mods}} mods · {{resourcePacks}} paquetes de recursos · {{shaders}} shaders",
-      "launch": "▶ Iniciar juego",
+      "launch": "Iniciar juego",
       "launching": "Iniciando...",
       "launchError": "No se pudo iniciar: {{message}}"
     }
@@ -56,14 +56,14 @@
     },
     "searching": "Buscando...",
     "noResults": "Sin resultados.",
-    "added": "✓ Añadido",
-    "add": "+ Añadir",
+    "added": "Añadido",
+    "add": "Añadir",
     "remove": "Quitar",
     "empty": "Todavía no hay nada seleccionado."
   },
   "installedScan": {
     "noProject": "Primero crea un proyecto.",
-    "pickFolder": "📁 Elegir carpeta de mods",
+    "pickFolder": "Elegir carpeta de mods",
     "noFolder": "Ninguna carpeta seleccionada",
     "scanning": "Escaneando...",
     "startScan": "Iniciar escaneo",
@@ -82,8 +82,8 @@
       "not-on-target-mc-version": "No verificable"
     },
     "update": "Actualizar ({{version}})",
-    "addToProject": "+ Añadir al proyecto",
-    "added": "✓ Añadido"
+    "addToProject": "Añadir al proyecto",
+    "added": "Añadido"
   },
   "settings": {
     "title": "Ajustes",
@@ -91,13 +91,13 @@
     "curseforgeApiKey": "Clave de API de CurseForge",
     "hintPrefix": "Consigue una clave de Core API en",
     "hintSuffix": ". La clave se guarda cifrada en este equipo y nunca se incluye en los archivos del proyecto.",
-    "keyStatusOk": "✓ Clave de API configurada",
+    "keyStatusOk": "Clave de API configurada",
     "keyStatusMissing": "No hay clave de API configurada — la búsqueda en CurseForge no funcionará",
     "placeholder": "Pega tu clave de API de CurseForge",
     "save": "Guardar",
     "checking": "Comprobando...",
     "clear": "Borrar",
-    "keyValid": "✓ Guardada y verificada — la clave es válida y funciona.",
+    "keyValid": "Guardada y verificada — la clave es válida y funciona.",
     "keyInvalid": "⚠ Guardada, pero: CurseForge rechazó la clave ({{status}}). Asegúrate de usar una clave de Core API, no un token de acceso personal de Studio.",
     "keyError": "Error: {{message}}",
     "launcher": {
@@ -130,14 +130,14 @@
         "description": "Formato de modpack de CurseForge (manifest.json + overrides) — se puede importar en la app de CurseForge."
       }
     },
-    "pickFolder": "📁 Elegir carpeta de destino",
-    "pickFile": "💾 Elegir archivo de destino",
+    "pickFolder": "Elegir carpeta de destino",
+    "pickFile": "Elegir archivo de destino",
     "noDestination": "Ningún destino seleccionado",
     "exporting": "Exportando...",
     "startExport": "Iniciar exportación",
     "nothingSelected": "No hay mods, paquetes de recursos ni shaders seleccionados.",
     "exportError": "Error al exportar: {{message}}",
-    "exportDone": "✓ Exportación completa: {{path}}",
+    "exportDone": "Exportación completa: {{path}}",
     "warningsCount": "{{count}} advertencia(s):",
     "warningReason": {
       "distribution-disabled": "{{name}}: el autor deshabilitó la distribución directa — instálalo manualmente",

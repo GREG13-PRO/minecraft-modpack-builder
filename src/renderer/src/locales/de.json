@@ -9,9 +9,9 @@
     },
     "sidebar": {
       "activeProject": "Aktives Projekt",
-      "newProject": "+ Neues Projekt",
+      "newProject": "Neues Projekt",
       "counts": "{{mods}} Mods · {{resourcePacks}} Resource Packs · {{shaders}} Shader",
-      "launch": "▶ Spiel starten",
+      "launch": "Spiel starten",
       "launching": "Wird gestartet...",
       "launchError": "Konnte nicht gestartet werden: {{message}}"
     }
@@ -56,14 +56,14 @@
     },
     "searching": "Suche läuft...",
     "noResults": "Keine Ergebnisse.",
-    "added": "✓ Hinzugefügt",
-    "add": "+ Hinzufügen",
+    "added": "Hinzugefügt",
+    "add": "Hinzufügen",
     "remove": "Entfernen",
     "empty": "Noch nichts ausgewählt."
   },
   "installedScan": {
     "noProject": "Erstelle zuerst ein Projekt.",
-    "pickFolder": "📁 Mods-Ordner auswählen",
+    "pickFolder": "Mods-Ordner auswählen",
     "noFolder": "Kein Ordner ausgewählt",
     "scanning": "Scan läuft...",
     "startScan": "Scan starten",
@@ -82,8 +82,8 @@
       "not-on-target-mc-version": "Nicht überprüfbar"
     },
     "update": "Aktualisieren ({{version}})",
-    "addToProject": "+ Zum Projekt hinzufügen",
-    "added": "✓ Hinzugefügt"
+    "addToProject": "Zum Projekt hinzufügen",
+    "added": "Hinzugefügt"
   },
   "settings": {
     "title": "Einstellungen",
@@ -91,13 +91,13 @@
     "curseforgeApiKey": "CurseForge-API-Schlüssel",
     "hintPrefix": "Hol dir einen Core-API-Schlüssel unter",
     "hintSuffix": ". Der Schlüssel wird verschlüsselt auf diesem Gerät gespeichert und gelangt nie in die Projektdateien.",
-    "keyStatusOk": "✓ API-Schlüssel konfiguriert",
+    "keyStatusOk": "API-Schlüssel konfiguriert",
     "keyStatusMissing": "Kein API-Schlüssel konfiguriert — die CurseForge-Suche funktioniert nicht",
     "placeholder": "CurseForge-API-Schlüssel einfügen",
     "save": "Speichern",
     "checking": "Wird geprüft...",
     "clear": "Löschen",
-    "keyValid": "✓ Gespeichert und überprüft — der Schlüssel ist gültig und funktioniert.",
+    "keyValid": "Gespeichert und überprüft — der Schlüssel ist gültig und funktioniert.",
     "keyInvalid": "⚠ Gespeichert, aber: CurseForge hat den Schlüssel abgelehnt ({{status}}). Stelle sicher, dass du einen Core-API-Schlüssel verwendet hast, kein Studio-Personal-Access-Token.",
     "keyError": "Fehler: {{message}}",
     "launcher": {
@@ -130,14 +130,14 @@
         "description": "CurseForge-Modpack-Format (manifest.json + overrides) — importierbar in die CurseForge-App."
       }
     },
-    "pickFolder": "📁 Zielordner auswählen",
-    "pickFile": "💾 Zieldatei auswählen",
+    "pickFolder": "Zielordner auswählen",
+    "pickFile": "Zieldatei auswählen",
     "noDestination": "Kein Ziel ausgewählt",
     "exporting": "Export läuft...",
     "startExport": "Export starten",
     "nothingSelected": "Keine Mods, Resource Packs oder Shader ausgewählt.",
     "exportError": "Fehler beim Export: {{message}}",
-    "exportDone": "✓ Export abgeschlossen: {{path}}",
+    "exportDone": "Export abgeschlossen: {{path}}",
     "warningsCount": "{{count}} Warnung(en):",
     "warningReason": {
       "distribution-disabled": "{{name}}: der Autor hat die direkte Verteilung deaktiviert — manuell installieren",

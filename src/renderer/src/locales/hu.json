@@ -9,9 +9,9 @@
     },
     "sidebar": {
       "activeProject": "Aktív projekt",
-      "newProject": "+ Új projekt",
+      "newProject": "Új projekt",
       "counts": "{{mods}} mod · {{resourcePacks}} resource pack · {{shaders}} shader",
-      "launch": "▶ Játék indítása",
+      "launch": "Játék indítása",
       "launching": "Indítás...",
       "launchError": "Nem sikerült elindítani: {{message}}"
     }
@@ -56,14 +56,14 @@
     },
     "searching": "Keresés...",
     "noResults": "Nincs találat.",
-    "added": "✓ Hozzáadva",
-    "add": "+ Hozzáadás",
+    "added": "Hozzáadva",
+    "add": "Hozzáadás",
     "remove": "Eltávolítás",
     "empty": "Még nincs kiválasztva."
   },
   "installedScan": {
     "noProject": "Előbb hozz létre egy projektet.",
-    "pickFolder": "📁 Mods mappa kiválasztása",
+    "pickFolder": "Mods mappa kiválasztása",
     "noFolder": "Nincs mappa kiválasztva",
     "scanning": "Beolvasás...",
     "startScan": "Beolvasás indítása",
@@ -82,8 +82,8 @@
       "not-on-target-mc-version": "Nem ellenőrizhető"
     },
     "update": "Frissítés ({{version}})",
-    "addToProject": "+ Projekthez adás",
-    "added": "✓ Hozzáadva"
+    "addToProject": "Projekthez adás",
+    "added": "Hozzáadva"
   },
   "settings": {
     "title": "Beállítások",
@@ -91,13 +91,13 @@
     "curseforgeApiKey": "CurseForge API kulcs",
     "hintPrefix": "A Core API kulcsot itt igényelheted:",
     "hintSuffix": ". A kulcs titkosítva kerül tárolásra ezen a gépen, soha nem kerül a projekt fájljaiba.",
-    "keyStatusOk": "✓ API kulcs be van állítva",
+    "keyStatusOk": "API kulcs be van állítva",
     "keyStatusMissing": "Nincs beállítva API kulcs — a CurseForge keresés nem fog működni",
     "placeholder": "Illeszd be a CurseForge API kulcsot",
     "save": "Mentés",
     "checking": "Ellenőrzés...",
     "clear": "Törlés",
-    "keyValid": "✓ Elmentve és ellenőrizve — a kulcs érvényes és működik.",
+    "keyValid": "Elmentve és ellenőrizve — a kulcs érvényes és működik.",
     "keyInvalid": "⚠ Elmentve, de: a CurseForge elutasította a kulcsot ({{status}}). Ellenőrizd, hogy Core API kulcsot adtál-e meg, ne Studio personal access tokent.",
     "keyError": "Hiba történt: {{message}}",
     "launcher": {
@@ -130,14 +130,14 @@
         "description": "CurseForge modpack formátum (manifest.json + overrides) — importálható a CurseForge appba."
       }
     },
-    "pickFolder": "📁 Cél mappa kiválasztása",
-    "pickFile": "💾 Fájl helyének kiválasztása",
+    "pickFolder": "Cél mappa kiválasztása",
+    "pickFile": "Fájl helyének kiválasztása",
     "noDestination": "Nincs cél kiválasztva",
     "exporting": "Exportálás...",
     "startExport": "Export indítása",
     "nothingSelected": "Nincs kiválasztott mod, resource pack vagy shader.",
     "exportError": "Hiba az export során: {{message}}",
-    "exportDone": "✓ Export kész: {{path}}",
+    "exportDone": "Export kész: {{path}}",
     "warningsCount": "{{count}} figyelmeztetés:",
     "warningReason": {
       "distribution-disabled": "{{name}}: a szerző letiltotta a közvetlen letöltést — kézzel kell telepíteni",

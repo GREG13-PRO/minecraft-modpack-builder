@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
+import { Globe, Gamepad2, KeyRound, FolderOpen } from 'lucide-react'
 import type { LauncherType } from '@shared/types'
 import { SUPPORTED_LANGUAGES } from '../../i18n'
 import './Settings.css'
@@ -78,7 +79,9 @@ function Settings(): React.JSX.Element {
       <h2 className="settings-title">{t('settings.title')}</h2>
 
       <section className="settings-card">
-        <h3 className="settings-card-title">{t('settings.language')}</h3>
+        <h3 className="settings-card-title">
+          <Globe size={16} /> {t('settings.language')}
+        </h3>
         <select className="input" value={i18n.language} onChange={(e) => i18n.changeLanguage(e.target.value)}>
           {SUPPORTED_LANGUAGES.map((lang) => (
             <option key={lang.code} value={lang.code}>
@@ -89,7 +92,9 @@ function Settings(): React.JSX.Element {
       </section>
 
       <section className="settings-card">
-        <h3 className="settings-card-title">{t('settings.launcher.title')}</h3>
+        <h3 className="settings-card-title">
+          <Gamepad2 size={16} /> {t('settings.launcher.title')}
+        </h3>
         <p className="settings-field-label">{t('settings.launcher.which')}</p>
         <div className="launcher-grid">
           <button
@@ -116,7 +121,7 @@ function Settings(): React.JSX.Element {
 
         <div className="key-form">
           <button className="btn btn-ghost" onClick={handleBrowseLauncher}>
-            {t('settings.launcher.browse')}
+            <FolderOpen size={15} /> {t('settings.launcher.browse')}
           </button>
         </div>
 
@@ -124,7 +129,9 @@ function Settings(): React.JSX.Element {
       </section>
 
       <section className="settings-card">
-        <h3 className="settings-card-title">{t('settings.curseforgeApiKey')}</h3>
+        <h3 className="settings-card-title">
+          <KeyRound size={16} /> {t('settings.curseforgeApiKey')}
+        </h3>
         <p className="hint">
           {t('settings.hintPrefix')}{' '}
           <a href="https://console.curseforge.com/" target="_blank" rel="noreferrer">

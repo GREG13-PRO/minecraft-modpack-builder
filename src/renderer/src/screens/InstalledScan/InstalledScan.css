@@ -68,6 +68,14 @@
   border-radius: var(--radius);
   background: var(--surface);
   border: 1px solid var(--border);
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.scan-row:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-2);
 }
 
 .scan-row-info {

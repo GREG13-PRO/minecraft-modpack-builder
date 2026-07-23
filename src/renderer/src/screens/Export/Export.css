@@ -37,12 +37,16 @@
   cursor: pointer;
   transition:
     border-color 0.15s ease,
-    background 0.15s ease;
+    background 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .format-card:hover {
   border-color: var(--border-strong);
   background: var(--surface-2);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-soft);
 }
 
 .format-card.active {
@@ -51,7 +55,19 @@
 }
 
 .format-icon {
-  font-size: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: var(--surface-3);
+  color: var(--text-dim);
+}
+
+.format-card.active .format-icon {
+  background: rgba(62, 207, 107, 0.18);
+  color: var(--accent);
 }
 
 .format-title {
@@ -109,6 +125,9 @@
 }
 
 .notice.ok {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   background: var(--accent-soft);
   border: 1px solid rgba(62, 207, 107, 0.3);
   color: var(--accent);

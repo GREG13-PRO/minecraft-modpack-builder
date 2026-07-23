@@ -25,9 +25,15 @@
 }
 
 .setup-mark {
-  font-size: 34px;
-  display: block;
-  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 14px;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--accent);
 }
 
 .setup-head h1 {

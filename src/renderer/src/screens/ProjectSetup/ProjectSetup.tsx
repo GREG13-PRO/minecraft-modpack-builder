@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
+import { Pickaxe } from 'lucide-react'
 import type { ModLoader } from '@shared/types'
 import { useProjectStore } from '../../state/projectStore'
 import './ProjectSetup.css'
@@ -30,7 +31,9 @@ function ProjectSetup(): React.JSX.Element {
     <div className="project-setup">
       <div className="setup-card">
         <div className="setup-head">
-          <span className="setup-mark">⛏</span>
+          <span className="setup-mark">
+            <Pickaxe size={26} strokeWidth={2} />
+          </span>
           <h1>{t('projectSetup.title')}</h1>
           <p className="setup-sub">{t('projectSetup.subtitle')}</p>
         </div>

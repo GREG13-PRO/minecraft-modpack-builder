@@ -9,9 +9,9 @@
     },
     "sidebar": {
       "activeProject": "Active Project",
-      "newProject": "+ New Project",
+      "newProject": "New Project",
       "counts": "{{mods}} mods · {{resourcePacks}} resource packs · {{shaders}} shaders",
-      "launch": "▶ Launch Game",
+      "launch": "Launch Game",
       "launching": "Launching...",
       "launchError": "Couldn't launch: {{message}}"
     }
@@ -56,14 +56,14 @@
     },
     "searching": "Searching...",
     "noResults": "No results.",
-    "added": "✓ Added",
-    "add": "+ Add",
+    "added": "Added",
+    "add": "Add",
     "remove": "Remove",
     "empty": "Nothing selected yet."
   },
   "installedScan": {
     "noProject": "Create a project first.",
-    "pickFolder": "📁 Choose mods folder",
+    "pickFolder": "Choose mods folder",
     "noFolder": "No folder selected",
     "scanning": "Scanning...",
     "startScan": "Start scan",
@@ -82,8 +82,8 @@
       "not-on-target-mc-version": "Unverifiable"
     },
     "update": "Update ({{version}})",
-    "addToProject": "+ Add to project",
-    "added": "✓ Added"
+    "addToProject": "Add to project",
+    "added": "Added"
   },
   "settings": {
     "title": "Settings",
@@ -91,13 +91,13 @@
     "curseforgeApiKey": "CurseForge API Key",
     "hintPrefix": "Get a Core API key at",
     "hintSuffix": ". The key is stored encrypted on this machine and never enters the project files.",
-    "keyStatusOk": "✓ API key configured",
+    "keyStatusOk": "API key configured",
     "keyStatusMissing": "No API key configured — CurseForge search won't work",
     "placeholder": "Paste your CurseForge API key",
     "save": "Save",
     "checking": "Checking...",
     "clear": "Clear",
-    "keyValid": "✓ Saved and verified — the key is valid and working.",
+    "keyValid": "Saved and verified — the key is valid and working.",
     "keyInvalid": "⚠ Saved, but: CurseForge rejected the key ({{status}}). Make sure you used a Core API key, not a Studio personal access token.",
     "keyError": "Error: {{message}}",
     "launcher": {
@@ -130,14 +130,14 @@
         "description": "CurseForge modpack format (manifest.json + overrides) — importable into the CurseForge app."
       }
     },
-    "pickFolder": "📁 Choose destination folder",
-    "pickFile": "💾 Choose destination file",
+    "pickFolder": "Choose destination folder",
+    "pickFile": "Choose destination file",
     "noDestination": "No destination selected",
     "exporting": "Exporting...",
     "startExport": "Start export",
     "nothingSelected": "No mods, resource packs, or shaders selected.",
     "exportError": "Export error: {{message}}",
-    "exportDone": "✓ Export complete: {{path}}",
+    "exportDone": "Export complete: {{path}}",
     "warningsCount": "{{count}} warning(s):",
     "warningReason": {
       "distribution-disabled": "{{name}}: the author disabled direct distribution — install manually",

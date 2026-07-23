@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { FolderOpen, Check, Plus, RefreshCw } from 'lucide-react'
 import type { InstalledModScanResult } from '@shared/types'
 import { useProjectStore } from '../../state/projectStore'
 import './InstalledScan.css'
@@ -60,7 +61,7 @@ function InstalledScan(): React.JSX.Element {
     <div className="installed-scan">
       <div className="scan-toolbar">
         <button className="btn btn-ghost" onClick={handlePickFolder}>
-          {t('installedScan.pickFolder')}
+          <FolderOpen size={15} /> {t('installedScan.pickFolder')}
         </button>
         <span className="scan-folder-path">{folder ?? t('installedScan.noFolder')}</span>
         <button className="btn" onClick={handleScan} disabled={!folder || scanning}>
@@ -109,6 +110,7 @@ function InstalledScan(): React.JSX.Element {
                 <span className={`status-label ${r.status}`}>{t(`installedScan.status.${r.status}`)}</span>
                 {r.status === 'outdated' && r.latestCompatibleVersion && (
                   <button className="btn" disabled={added} onClick={() => handleAdd(r, true)}>
+                    {added ? <Check size={14} /> : <RefreshCw size={14} />}
                     {added
                       ? t('installedScan.added')
                       : t('installedScan.update', { version: r.latestCompatibleVersion.displayName })}
@@ -116,6 +118,7 @@ function InstalledScan(): React.JSX.Element {
                 )}
                 {r.status === 'up-to-date' && (
                   <button className="btn btn-ghost" disabled={added} onClick={() => handleAdd(r, false)}>
+                    {added ? <Check size={14} /> : <Plus size={14} />}
                     {added ? t('installedScan.added') : t('installedScan.addToProject')}
                   </button>
                 )}

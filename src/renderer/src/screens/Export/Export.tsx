@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Folder, Package, Archive, FolderOpen, Save, Check, type LucideIcon } from 'lucide-react'
 import type { ExportFormat, ExportResult } from '@shared/types'
 import { useProjectStore } from '../../state/projectStore'
 import './Export.css'
 
 const FORMAT_IDS: ExportFormat[] = ['folder', 'mrpack', 'curseforge-zip']
-const FORMAT_ICON: Record<ExportFormat, string> = { folder: '📁', mrpack: '📦', 'curseforge-zip': '🗜️' }
+const FORMAT_ICON: Record<ExportFormat, LucideIcon> = { folder: Folder, mrpack: Package, 'curseforge-zip': Archive }
 
 type RunState = { kind: 'idle' } | { kind: 'running' } | { kind: 'done'; result: ExportResult } | { kind: 'error'; message: string }
 
@@ -54,21 +55,27 @@ function Export(): React.JSX.Element {
       </p>
 
       <div className="format-options">
-        {FORMAT_IDS.map((id) => (
-          <button
-            key={id}
-            className={format === id ? 'format-card active' : 'format-card'}
-            onClick={() => handleFormatChange(id)}
-          >
-            <span className="format-icon">{FORMAT_ICON[id]}</span>
-            <span className="format-title">{t(`export.formats.${id}.title`)}</span>
-            <span className="format-desc">{t(`export.formats.${id}.description`)}</span>
-          </button>
-        ))}
+        {FORMAT_IDS.map((id) => {
+          const Icon = FORMAT_ICON[id]
+          return (
+            <button
+              key={id}
+              className={format === id ? 'format-card active' : 'format-card'}
+              onClick={() => handleFormatChange(id)}
+            >
+              <span className="format-icon">
+                <Icon size={20} />
+              </span>
+              <span className="format-title">{t(`export.formats.${id}.title`)}</span>
+              <span className="format-desc">{t(`export.formats.${id}.description`)}</span>
+            </button>
+          )
+        })}
       </div>
 
       <div className="export-actions">
         <button className="btn btn-ghost" onClick={handlePickDestination} disabled={totalItems === 0}>
+          {format === 'folder' ? <FolderOpen size={15} /> : <Save size={15} />}
           {format === 'folder' ? t('export.pickFolder') : t('export.pickFile')}
         </button>
         <span className="export-destination">{destination ?? t('export.noDestination')}</span>
@@ -89,7 +96,9 @@ function Export(): React.JSX.Element {
 
       {runState.kind === 'done' && (
         <div className="export-result">
-          <div className="notice ok">{t('export.exportDone', { path: runState.result.outputPath })}</div>
+          <div className="notice ok">
+            <Check size={14} /> {t('export.exportDone', { path: runState.result.outputPath })}
+          </div>
           {runState.result.warnings.length > 0 && (
             <div className="export-warnings">
               <div className="ew-head">{t('export.warningsCount', { count: runState.result.warnings.length })}</div>

@@ -20,8 +20,17 @@
 }
 
 .settings-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 15px;
   font-weight: 600;
+  color: var(--text);
+}
+
+.settings-card-title svg {
+  color: var(--accent);
+  flex-shrink: 0;
 }
 
 .settings .hint {

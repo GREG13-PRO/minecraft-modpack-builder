@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
+import { Pickaxe, Search, FolderOpen, Upload, Settings as SettingsIcon, Play, Plus } from 'lucide-react'
 import { queryClient } from './api/queryClient'
 import { useProjectStore } from './state/projectStore'
 import ProjectSetup from './screens/ProjectSetup/ProjectSetup'
@@ -48,29 +49,32 @@ function AppShell(): React.JSX.Element {
     <div className="app-shell">
       <aside className="sidebar">
         <div className="sidebar-brand">
-          <span className="brand-mark">⛏</span>
+          <span className="brand-mark">
+            <Pickaxe size={18} strokeWidth={2.25} />
+          </span>
           <span className="brand-name">Modpack Builder</span>
         </div>
 
         <nav className="sidebar-nav">
           <button className={tab === 'mods' ? 'nav-item active' : 'nav-item'} onClick={() => setTab('mods')}>
-            <span className="nav-icon">🔍</span> {t('app.nav.modBrowser')}
+            <Search className="nav-icon" size={16} /> {t('app.nav.modBrowser')}
           </button>
           <button className={tab === 'scan' ? 'nav-item active' : 'nav-item'} onClick={() => setTab('scan')}>
-            <span className="nav-icon">📂</span> {t('app.nav.installedScan')}
+            <FolderOpen className="nav-icon" size={16} /> {t('app.nav.installedScan')}
           </button>
           <button className={tab === 'export' ? 'nav-item active' : 'nav-item'} onClick={() => setTab('export')}>
-            <span className="nav-icon">📤</span> {t('app.nav.export')}
+            <Upload className="nav-icon" size={16} /> {t('app.nav.export')}
           </button>
           <button
             className={tab === 'settings' ? 'nav-item active' : 'nav-item'}
             onClick={() => setTab('settings')}
           >
-            <span className="nav-icon">⚙️</span> {t('app.nav.settings')}
+            <SettingsIcon className="nav-icon" size={16} /> {t('app.nav.settings')}
           </button>
         </nav>
 
         <button className="btn sidebar-launch" onClick={handleLaunch} disabled={launchState.kind === 'launching'}>
+          <Play size={15} fill="currentColor" />
           {launchState.kind === 'launching' ? t('app.sidebar.launching') : t('app.sidebar.launch')}
         </button>
         {launchState.kind === 'error' && (
@@ -94,7 +98,7 @@ function AppShell(): React.JSX.Element {
             })}
           </div>
           <button className="sp-new" onClick={newProject}>
-            {t('app.sidebar.newProject')}
+            <Plus size={14} /> {t('app.sidebar.newProject')}
           </button>
         </div>
       </aside>
