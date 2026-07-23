@@ -12,7 +12,8 @@ A desktop app for building Minecraft modpacks: search [Modrinth](https://modrint
   - a plain `mods/` / `resourcepacks/` / `shaderpacks/` folder structure, for launchers with no modpack-format support (TLauncher, the official Minecraft launcher)
   - `.mrpack` (Modrinth pack format), importable into Prism Launcher and other compatible launchers
   - a CurseForge modpack zip, importable into the CurseForge app
-- **Multi-language UI** — English, Magyar, Deutsch, Español (more can be added easily)
+- **Launch Game button** — pick your launcher (official Minecraft Launcher or TLauncher) in Settings and open it with one click from the sidebar. It only opens the launcher app; point its game directory at your exported folder once and you're set.
+- **14 languages** — English, Magyar, Deutsch, Español, Français, Português, Русский, 中文, Italiano, Polski, Türkçe, 日本語, 한국어, Nederlands (more can be added easily)
 - Your CurseForge API key is encrypted at rest via Electron's `safeStorage` and never leaves your machine
 
 ## Installing
@@ -60,7 +61,7 @@ Pushing a tag matching `v*.*.*` (e.g. `v1.0.0`) triggers [`.github/workflows/rel
 
 ## Tech stack
 
-Electron + [electron-vite](https://electron-vite.org/), React, TypeScript, Zustand, TanStack Query, react-i18next.
+Electron + [electron-vite](https://electron-vite.org/), React, TypeScript, Zustand, TanStack Query, react-i18next, lucide-react.
 
 All network calls (Modrinth/CurseForge APIs) run in the main process; the renderer talks to it through a typed `contextBridge` preload API.
 
