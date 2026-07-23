@@ -1,6 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
-import type { ModLoader, ModpackProject, ModRef, ModSearchParams } from '@shared/types'
+import type { ApiKeyTestResult, ModLoader, ModpackProject, ModRef, ModSearchParams } from '@shared/types'
 
 const api = {
   search: {
@@ -17,7 +17,9 @@ const api = {
   settings: {
     hasCurseForgeApiKey: () => ipcRenderer.invoke('settings:hasCurseForgeApiKey') as Promise<boolean>,
     setCurseForgeApiKey: (key: string) => ipcRenderer.invoke('settings:setCurseForgeApiKey', key) as Promise<void>,
-    clearCurseForgeApiKey: () => ipcRenderer.invoke('settings:clearCurseForgeApiKey') as Promise<void>
+    clearCurseForgeApiKey: () => ipcRenderer.invoke('settings:clearCurseForgeApiKey') as Promise<void>,
+    testCurseForgeApiKey: (key: string) =>
+      ipcRenderer.invoke('settings:testCurseForgeApiKey', key) as Promise<ApiKeyTestResult>
   }
 }
 

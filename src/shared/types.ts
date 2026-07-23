@@ -86,9 +86,15 @@ export interface ModSearchParams {
   pageSize?: number
 }
 
+export interface ModSourceError {
+  source: ModSource
+  message: string
+}
+
 export interface ModSearchResult {
   refs: ModRef[]
   totalCount: number
+  sourceErrors?: ModSourceError[]
 }
 
 export type ExportFormat = 'mrpack' | 'curseforge-zip'
@@ -103,4 +109,10 @@ export interface ExportResult {
   format: ExportFormat
   outputPath: string
   warnings: ExportModWarning[]
+}
+
+export interface ApiKeyTestResult {
+  ok: boolean
+  status: number
+  message?: string
 }

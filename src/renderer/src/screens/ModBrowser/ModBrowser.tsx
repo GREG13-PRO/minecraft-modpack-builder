@@ -64,6 +64,11 @@ function ModBrowser(): React.JSX.Element {
 
       {isFetching && <p>Keresés...</p>}
       {error && <p className="error">Hiba a keresés során: {(error as Error).message}</p>}
+      {data?.sourceErrors?.map((se) => (
+        <p key={se.source} className="warning">
+          {se.source === 'curseforge' ? 'CurseForge' : 'Modrinth'}: {se.message}
+        </p>
+      ))}
 
       <ul className="results">
         {data?.refs.map((ref) => {

@@ -63,3 +63,13 @@
   font-size: 13px;
   opacity: 0.8;
 }
+
+.settings .status.ok {
+  color: #4caf50;
+  opacity: 1;
+}
+
+.settings .status.error {
+  color: #ff6b6b;
+  opacity: 1;
+}

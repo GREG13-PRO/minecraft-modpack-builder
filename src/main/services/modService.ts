@@ -13,13 +13,15 @@ interface CacheEntry<T> {
 const CACHE_TTL_MS = 5 * 60 * 1000
 const cache = new Map<string, CacheEntry<unknown>>()
 
-function withCache<T>(key: string, fetcher: () => Promise<T>): Promise<T> {
+function withCache<T>(key: string, fetcher: () => Promise<T>, shouldCache: (value: T) => boolean = () => true): Promise<T> {
   const hit = cache.get(key)
   if (hit && hit.expiresAt > Date.now()) {
     return Promise.resolve(hit.value as T)
   }
   return fetcher().then((value) => {
-    cache.set(key, { value, expiresAt: Date.now() + CACHE_TTL_MS })
+    if (shouldCache(value)) {
+      cache.set(key, { value, expiresAt: Date.now() + CACHE_TTL_MS })
+    }
     return value
   })
 }
@@ -37,27 +39,38 @@ async function searchCurseForge(params: ModSearchParams): Promise<ModSearchResul
     return { refs: res.data.map(toCurseForgeRef), totalCount: res.pagination.totalCount }
   } catch (err) {
     if (err instanceof MissingApiKeyError) return { refs: [], totalCount: 0 }
-    throw err
+    const message =
+      err instanceof Error && /\b403\b/.test(err.message)
+        ? 'Érvénytelen CurseForge API kulcs (403). Ellenőrizd a Beállításokban.'
+        : err instanceof Error
+          ? err.message
+          : String(err)
+    return { refs: [], totalCount: 0, sourceErrors: [{ source: 'curseforge', message }] }
   }
 }
 
 export async function searchMods(params: ModSearchParams): Promise<ModSearchResult> {
-  const { query, mcVersion, loader, source, page = 0, pageSize = 20 } = params
-  const cacheKey = `search:${source}:${query}:${mcVersion}:${loader}:${page}:${pageSize}`
+  const { source } = params
+  const cacheKey = `search:${source}:${params.query}:${params.mcVersion}:${params.loader}:${params.page ?? 0}:${params.pageSize ?? 20}`
 
-  return withCache(cacheKey, async () => {
-    if (source === 'modrinth') return searchModrinth(params)
-    if (source === 'curseforge') return searchCurseForge(params)
+  return withCache(
+    cacheKey,
+    async () => {
+      if (source === 'modrinth') return searchModrinth(params)
+      if (source === 'curseforge') return searchCurseForge(params)
 
-    const [modrinthResult, curseforgeResult] = await Promise.all([
-      searchModrinth(params),
-      searchCurseForge(params)
-    ])
-    return {
-      refs: [...modrinthResult.refs, ...curseforgeResult.refs],
-      totalCount: modrinthResult.totalCount + curseforgeResult.totalCount
-    }
-  })
+      const [modrinthResult, curseforgeResult] = await Promise.all([
+        searchModrinth(params),
+        searchCurseForge(params)
+      ])
+      return {
+        refs: [...modrinthResult.refs, ...curseforgeResult.refs],
+        totalCount: modrinthResult.totalCount + curseforgeResult.totalCount,
+        sourceErrors: [...(modrinthResult.sourceErrors ?? []), ...(curseforgeResult.sourceErrors ?? [])]
+      }
+    },
+    (result) => !result.sourceErrors || result.sourceErrors.length === 0
+  )
 }
 
 export async function getReleaseGameVersions(): Promise<string[]> {

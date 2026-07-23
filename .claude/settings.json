@@ -28,7 +28,17 @@
       "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-screenshot2.png)",
       "Bash(kill 7150 7153)",
       "Bash(pkill -f \"MINECRAFT-MODPACK/node_modules/electron\")",
-      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-m2-1.png)"
+      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-m2-1.png)",
+      "Read(//Users/rego/Library/Application Support/minecraft-modpack-builder/**)",
+      "Bash(pkill -f \"test-cf-search.js\")",
+      "Bash(pkill -f \"test-safestorage.js\")",
+      "Bash(rm -f /tmp/test-safestorage.js /tmp/test-cf-search.js /tmp/test-cf-search2.js /tmp/test-cf-search3.js)",
+      "Bash(rm -rf /tmp/cf-test-userdata /tmp/cf-test-userdata2)",
+      "Bash(pkill -f \"electron-vite dev\")",
+      "Bash(rm -f \"/Users/rego/Library/Application Support/minecraft-modpack-builder/secure-settings.json\")",
+      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-m2-fix.png)",
+      "Bash(ls -la \"/Users/rego/Library/Application Support/minecraft-modpack-builder/secure-settings.json\" 2>&1 *)",
+      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-m2-fix2.png)"
     ]
   }
 }
