@@ -1,4 +1,4 @@
-appId: com.electron.app
+appId: com.greg13pro.minecraft-modpack-builder
 productName: minecraft-modpack-builder
 directories:
   buildResources: build
@@ -39,5 +39,6 @@ appImage:
   artifactName: ${name}-${version}.${ext}
 npmRebuild: false
 publish:
-  provider: generic
-  url: https://example.com/auto-updates
+  provider: github
+  owner: GREG13-PRO
+  repo: minecraft-modpack-builder

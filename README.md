@@ -54,6 +54,10 @@ npm run build:linux   # Linux
 npm run typecheck
 ```
 
+### Releasing (maintainers)
+
+Pushing a tag matching `v*.*.*` (e.g. `v1.0.0`) triggers [`.github/workflows/release-windows.yml`](.github/workflows/release-windows.yml), which builds the Windows installer on a `windows-latest` runner and publishes it to a GitHub Release. It can also be run manually from the Actions tab. Only the Windows build is ever published this way — macOS/Linux builds are local-only.
+
 ## Tech stack
 
 Electron + [electron-vite](https://electron-vite.org/), React, TypeScript, Zustand, TanStack Query, react-i18next.
