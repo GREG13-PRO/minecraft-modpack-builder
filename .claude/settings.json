@@ -38,7 +38,9 @@
       "Bash(rm -f \"/Users/rego/Library/Application Support/minecraft-modpack-builder/secure-settings.json\")",
       "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-m2-fix.png)",
       "Bash(ls -la \"/Users/rego/Library/Application Support/minecraft-modpack-builder/secure-settings.json\" 2>&1 *)",
-      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-m2-fix2.png)"
+      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-m2-fix2.png)",
+      "Bash(rm -f /tmp/check-icons.js)",
+      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-icons.png)"
     ]
   }
 }
