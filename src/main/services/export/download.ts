@@ -1,4 +1,5 @@
 import { promises as fs } from 'fs'
+import { join } from 'path'
 import { createHash } from 'crypto'
 import type { ModpackMod } from '@shared/types'
 
@@ -38,7 +39,7 @@ export async function fetchModBuffer(mod: ModpackMod): Promise<Buffer> {
 export async function downloadModFile(mod: ModpackMod, destDir: string): Promise<string> {
   const buffer = await fetchModBuffer(mod)
   const filename = mod.pinnedVersion.filename || `${mod.ref.slug}-${mod.pinnedVersion.versionId}`
-  const destPath = `${destDir}/${filename}`
+  const destPath = join(destDir, filename)
   await fs.mkdir(destDir, { recursive: true })
   await fs.writeFile(destPath, buffer)
   return destPath

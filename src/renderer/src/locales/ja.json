@@ -24,7 +24,11 @@
     "minecraftVersion": "Minecraftのバージョン",
     "loadingVersions": "読み込み中...",
     "modLoader": "MODローダー",
-    "createProject": "プロジェクトを作成"
+    "createProject": "プロジェクトを作成",
+    "versionsUnavailable": "Minecraftのバージョン一覧を読み込めませんでした。",
+    "retry": "再試行",
+    "enterManually": "手動で入力する",
+    "versionPlaceholder": "例: 1.21.1"
   },
   "modBrowser": {
     "noProject": "まずプロジェクトを作成してください。",

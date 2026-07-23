@@ -2,6 +2,7 @@ import type { ContentType } from '@shared/types'
 
 const BASE_URL = 'https://api.modrinth.com/v2'
 const USER_AGENT = 'GREG13-PRO/minecraft-modpack-builder/1.0.0 (github.com/GREG13-PRO/minecraft-modpack-builder)'
+const REQUEST_TIMEOUT_MS = 8_000
 
 async function request<T>(path: string, params?: Record<string, string>): Promise<T> {
   const url = new URL(BASE_URL + path)
@@ -11,8 +12,11 @@ async function request<T>(path: string, params?: Record<string, string>): Promis
     }
   }
 
+  // A hung connection (firewall silently dropping packets, flaky network)
+  // must fail fast rather than leave the UI stuck on "loading" indefinitely.
   const response = await fetch(url, {
-    headers: { 'User-Agent': USER_AGENT }
+    headers: { 'User-Agent': USER_AGENT },
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS)
   })
 
   if (!response.ok) {
@@ -110,7 +114,8 @@ export function getVersionsByHashes(hashes: string[], algorithm: 'sha1' | 'sha51
   return fetch(url, {
     method: 'POST',
     headers: { 'User-Agent': USER_AGENT, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ hashes, algorithm })
+    body: JSON.stringify({ hashes, algorithm }),
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS)
   }).then((res) => {
     if (!res.ok) throw new Error(`Modrinth API error ${res.status}`)
     return res.json()

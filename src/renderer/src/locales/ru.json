@@ -24,7 +24,11 @@
     "minecraftVersion": "Версия Minecraft",
     "loadingVersions": "Загрузка...",
     "modLoader": "Мод-лоадер",
-    "createProject": "Создать проект"
+    "createProject": "Создать проект",
+    "versionsUnavailable": "Не удалось загрузить список версий Minecraft.",
+    "retry": "Повторить",
+    "enterManually": "Ввести вручную",
+    "versionPlaceholder": "напр. 1.21.1"
   },
   "modBrowser": {
     "noProject": "Сначала создайте проект.",

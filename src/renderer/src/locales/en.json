@@ -24,7 +24,11 @@
     "minecraftVersion": "Minecraft version",
     "loadingVersions": "Loading...",
     "modLoader": "Mod loader",
-    "createProject": "Create project"
+    "createProject": "Create project",
+    "versionsUnavailable": "Couldn't load the Minecraft version list.",
+    "retry": "Retry",
+    "enterManually": "Enter manually instead",
+    "versionPlaceholder": "e.g. 1.21.1"
   },
   "modBrowser": {
     "noProject": "Create a project first.",

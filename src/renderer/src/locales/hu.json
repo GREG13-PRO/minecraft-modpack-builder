@@ -24,7 +24,11 @@
     "minecraftVersion": "Minecraft verzió",
     "loadingVersions": "Betöltés...",
     "modLoader": "Mod loader",
-    "createProject": "Projekt létrehozása"
+    "createProject": "Projekt létrehozása",
+    "versionsUnavailable": "Nem sikerült betölteni a Minecraft verziólistát.",
+    "retry": "Újra",
+    "enterManually": "Inkább kézzel írom be",
+    "versionPlaceholder": "pl. 1.21.1"
   },
   "modBrowser": {
     "noProject": "Előbb hozz létre egy projektet.",

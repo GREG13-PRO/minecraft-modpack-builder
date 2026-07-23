@@ -24,7 +24,11 @@
     "minecraftVersion": "Minecraft-versie",
     "loadingVersions": "Laden...",
     "modLoader": "Mod loader",
-    "createProject": "Project aanmaken"
+    "createProject": "Project aanmaken",
+    "versionsUnavailable": "De lijst met Minecraft-versies kon niet worden geladen.",
+    "retry": "Opnieuw proberen",
+    "enterManually": "Handmatig invoeren",
+    "versionPlaceholder": "bijv. 1.21.1"
   },
   "modBrowser": {
     "noProject": "Maak eerst een project aan.",

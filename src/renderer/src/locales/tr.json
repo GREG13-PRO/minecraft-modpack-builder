@@ -24,7 +24,11 @@
     "minecraftVersion": "Minecraft sürümü",
     "loadingVersions": "Yükleniyor...",
     "modLoader": "Mod loader",
-    "createProject": "Proje oluştur"
+    "createProject": "Proje oluştur",
+    "versionsUnavailable": "Minecraft sürüm listesi yüklenemedi.",
+    "retry": "Tekrar dene",
+    "enterManually": "Manuel olarak gir",
+    "versionPlaceholder": "örn. 1.21.1"
   },
   "modBrowser": {
     "noProject": "Önce bir proje oluştur.",

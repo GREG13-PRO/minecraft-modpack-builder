@@ -3,6 +3,7 @@ import { getCurseForgeApiKey } from '../secureSettings'
 
 const BASE_URL = 'https://api.curseforge.com/v1'
 const MINECRAFT_GAME_ID = 432
+const REQUEST_TIMEOUT_MS = 8_000
 
 // Verified live against GET /v1/categories?gameId=432 (isClass=true entries).
 const CLASS_ID: Record<ContentType, number> = {
@@ -38,7 +39,8 @@ async function request<T>(path: string, params?: Record<string, string>): Promis
   }
 
   const response = await fetch(url, {
-    headers: { 'x-api-key': apiKey, Accept: 'application/json' }
+    headers: { 'x-api-key': apiKey, Accept: 'application/json' },
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS)
   })
 
   if (!response.ok) {
@@ -55,7 +57,8 @@ async function requestPost<T>(path: string, body: unknown): Promise<T> {
   const response = await fetch(BASE_URL + path, {
     method: 'POST',
     headers: { 'x-api-key': apiKey, Accept: 'application/json', 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS)
   })
 
   if (!response.ok) {
@@ -176,7 +179,8 @@ export function getModsByIds(modIds: number[]): Promise<{ data: CurseForgeMod[] 
 // immediately instead of surfacing later as a confusing empty search result.
 export async function testApiKey(key: string): Promise<ApiKeyTestResult> {
   const response = await fetch(`${BASE_URL}/games`, {
-    headers: { 'x-api-key': key, Accept: 'application/json' }
+    headers: { 'x-api-key': key, Accept: 'application/json' },
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS)
   })
   if (response.ok) return { ok: true, status: response.status }
   return { ok: false, status: response.status, message: await response.text() }

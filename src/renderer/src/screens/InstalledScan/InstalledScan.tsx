@@ -92,7 +92,8 @@ function InstalledScan(): React.JSX.Element {
         <div className="scan-results">
           {results.map((r) => {
             const name = r.matchedRef?.name ?? r.detectedIdentity?.name ?? r.detectedIdentity?.modId ?? '?'
-            const fileName = r.filePath.split('/').pop()
+            // Windows paths use '\', everywhere else uses '/' — split on both.
+            const fileName = r.filePath.split(/[/\\]/).pop()
             const added = r.matchedRef ? addedIds.has(`${r.matchedRef.source}:${r.matchedRef.projectId}`) : false
 
             return (

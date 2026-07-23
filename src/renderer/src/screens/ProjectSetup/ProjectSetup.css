@@ -107,3 +107,39 @@ select.input {
   padding: 12px;
   font-size: 15px;
 }
+
+.field-hint {
+  font-size: 12px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.field-hint.warn {
+  color: var(--warn);
+}
+
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.link-btn:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+.link-btn:disabled {
+  color: var(--text-faint);
+  cursor: not-allowed;
+}

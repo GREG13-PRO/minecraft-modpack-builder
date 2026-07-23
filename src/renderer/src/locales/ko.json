@@ -24,7 +24,11 @@
     "minecraftVersion": "마인크래프트 버전",
     "loadingVersions": "로딩 중...",
     "modLoader": "모드 로더",
-    "createProject": "프로젝트 생성"
+    "createProject": "프로젝트 생성",
+    "versionsUnavailable": "마인크래프트 버전 목록을 불러오지 못했습니다.",
+    "retry": "다시 시도",
+    "enterManually": "직접 입력하기",
+    "versionPlaceholder": "예: 1.21.1"
   },
   "modBrowser": {
     "noProject": "먼저 프로젝트를 만드세요.",
