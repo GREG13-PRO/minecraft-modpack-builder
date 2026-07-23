@@ -57,7 +57,12 @@
       "Bash(sips --help)",
       "Bash(python3 -c \"from PIL import Image; print\\('PIL available'\\)\")",
       "Bash(sips -c 780 1160 \"/private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-i18n-en.png\" --out \"/Users/rego/Documents/AI/PROGRAMOZÁS/MINECRAFT-MODPACK/docs/screenshot.png\")",
-      "Bash(gh api *)"
+      "Bash(gh api *)",
+      "Bash(node -e \"console.log\\('valid JSON, keys:', Object.keys\\(JSON.parse\\(require\\('fs'\\).readFileSync\\('src/renderer/src/locales/en.json','utf8'\\)\\)\\).length\\)\")",
+      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/check-calc.png)",
+      "Bash(open -a Calculator)",
+      "Bash(osascript -e 'tell application \"Calculator\" to quit')",
+      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-launcher.png)"
     ],
     "additionalDirectories": [
       "/private/tmp/fp-verify",

@@ -6,6 +6,8 @@ import type {
   ExportFormat,
   ExportResult,
   InstalledModScanResult,
+  LauncherStatus,
+  LauncherType,
   ModLoader,
   ModpackProject,
   ModRef,
@@ -41,6 +43,12 @@ const api = {
       ipcRenderer.invoke('export:pickDestination', format, projectName) as Promise<string | undefined>,
     run: (project: ModpackProject, format: ExportFormat, outputPath: string) =>
       ipcRenderer.invoke('export:run', project, format, outputPath) as Promise<ExportResult>
+  },
+  launcher: {
+    getStatus: () => ipcRenderer.invoke('launcher:getStatus') as Promise<LauncherStatus>,
+    setType: (type: LauncherType) => ipcRenderer.invoke('launcher:setType', type) as Promise<void>,
+    pickExecutable: () => ipcRenderer.invoke('launcher:pickExecutable') as Promise<string | undefined>,
+    launch: () => ipcRenderer.invoke('launcher:launch') as Promise<void>
   }
 }
 

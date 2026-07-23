@@ -10,7 +10,10 @@
     "sidebar": {
       "activeProject": "Aktív projekt",
       "newProject": "+ Új projekt",
-      "counts": "{{mods}} mod · {{resourcePacks}} resource pack · {{shaders}} shader"
+      "counts": "{{mods}} mod · {{resourcePacks}} resource pack · {{shaders}} shader",
+      "launch": "▶ Játék indítása",
+      "launching": "Indítás...",
+      "launchError": "Nem sikerült elindítani: {{message}}"
     }
   },
   "projectSetup": {
@@ -96,7 +99,18 @@
     "clear": "Törlés",
     "keyValid": "✓ Elmentve és ellenőrizve — a kulcs érvényes és működik.",
     "keyInvalid": "⚠ Elmentve, de: a CurseForge elutasította a kulcsot ({{status}}). Ellenőrizd, hogy Core API kulcsot adtál-e meg, ne Studio personal access tokent.",
-    "keyError": "Hiba történt: {{message}}"
+    "keyError": "Hiba történt: {{message}}",
+    "launcher": {
+      "title": "Játék launcher",
+      "which": "Melyik launchert használod?",
+      "official": "Hivatalos Minecraft Launcher",
+      "tlauncher": "TLauncher",
+      "detected": "Automatikusan megtalálva: {{path}}",
+      "notDetected": "Nem található automatikusan — jelöld ki lent.",
+      "customPath": "Használatban: {{path}}",
+      "browse": "Tallózás…",
+      "note": "Ez megnyitja a launcher alkalmazást — a profilod kiválasztását vagy a Play gombot nem tudja helyetted megnyomni. Állítsd be egyszer a launchered játékmappáját az exportált mappára, utána bármikor ezzel a gombbal nyithatod meg."
+    }
   },
   "export": {
     "title": "Export",

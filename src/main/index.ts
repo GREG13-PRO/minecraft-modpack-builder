@@ -7,6 +7,7 @@ import { registerProjectsIpc } from './ipc/projects'
 import { registerSettingsIpc } from './ipc/settings'
 import { registerScanIpc } from './ipc/scan'
 import { registerExportIpc } from './ipc/export'
+import { registerLauncherIpc } from './ipc/launcher'
 
 function createWindow(): void {
   // Create the browser window.
@@ -61,6 +62,7 @@ app.whenReady().then(() => {
   registerSettingsIpc()
   registerScanIpc()
   registerExportIpc()
+  registerLauncherIpc()
 
   createWindow()
 

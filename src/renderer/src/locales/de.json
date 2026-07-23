@@ -10,7 +10,10 @@
     "sidebar": {
       "activeProject": "Aktives Projekt",
       "newProject": "+ Neues Projekt",
-      "counts": "{{mods}} Mods · {{resourcePacks}} Resource Packs · {{shaders}} Shader"
+      "counts": "{{mods}} Mods · {{resourcePacks}} Resource Packs · {{shaders}} Shader",
+      "launch": "▶ Spiel starten",
+      "launching": "Wird gestartet...",
+      "launchError": "Konnte nicht gestartet werden: {{message}}"
     }
   },
   "projectSetup": {
@@ -96,7 +99,18 @@
     "clear": "Löschen",
     "keyValid": "✓ Gespeichert und überprüft — der Schlüssel ist gültig und funktioniert.",
     "keyInvalid": "⚠ Gespeichert, aber: CurseForge hat den Schlüssel abgelehnt ({{status}}). Stelle sicher, dass du einen Core-API-Schlüssel verwendet hast, kein Studio-Personal-Access-Token.",
-    "keyError": "Fehler: {{message}}"
+    "keyError": "Fehler: {{message}}",
+    "launcher": {
+      "title": "Spiel-Launcher",
+      "which": "Welchen Launcher verwendest du?",
+      "official": "Offizieller Minecraft Launcher",
+      "tlauncher": "TLauncher",
+      "detected": "Automatisch erkannt: {{path}}",
+      "notDetected": "Nicht automatisch erkannt — unten manuell auswählen.",
+      "customPath": "Verwendet: {{path}}",
+      "browse": "Durchsuchen…",
+      "note": "Dies öffnet die Launcher-App — sie kann dein Profil nicht auswählen oder für dich auf Play drücken. Stelle einmalig das Spielverzeichnis deines Launchers auf den exportierten Ordner ein, dann kannst du ihn jederzeit mit diesem Button öffnen."
+    }
   },
   "export": {
     "title": "Export",

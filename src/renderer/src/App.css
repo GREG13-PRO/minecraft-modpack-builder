@@ -73,6 +73,19 @@
   font-size: 15px;
 }
 
+.sidebar-launch {
+  width: 100%;
+  padding: 11px;
+  font-size: 14px;
+  margin-top: -12px;
+}
+
+.sidebar-launch-error {
+  font-size: 12px;
+  margin-top: -12px;
+  padding: 8px 10px;
+}
+
 .sidebar-project {
   margin-top: auto;
   padding: 14px;

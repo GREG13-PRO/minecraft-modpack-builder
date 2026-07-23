@@ -10,7 +10,10 @@
     "sidebar": {
       "activeProject": "Proyecto activo",
       "newProject": "+ Nuevo proyecto",
-      "counts": "{{mods}} mods · {{resourcePacks}} paquetes de recursos · {{shaders}} shaders"
+      "counts": "{{mods}} mods · {{resourcePacks}} paquetes de recursos · {{shaders}} shaders",
+      "launch": "▶ Iniciar juego",
+      "launching": "Iniciando...",
+      "launchError": "No se pudo iniciar: {{message}}"
     }
   },
   "projectSetup": {
@@ -96,7 +99,18 @@
     "clear": "Borrar",
     "keyValid": "✓ Guardada y verificada — la clave es válida y funciona.",
     "keyInvalid": "⚠ Guardada, pero: CurseForge rechazó la clave ({{status}}). Asegúrate de usar una clave de Core API, no un token de acceso personal de Studio.",
-    "keyError": "Error: {{message}}"
+    "keyError": "Error: {{message}}",
+    "launcher": {
+      "title": "Launcher del juego",
+      "which": "¿Qué launcher usas?",
+      "official": "Launcher oficial de Minecraft",
+      "tlauncher": "TLauncher",
+      "detected": "Detectado automáticamente: {{path}}",
+      "notDetected": "No se detectó automáticamente — selecciónalo abajo.",
+      "customPath": "Usando: {{path}}",
+      "browse": "Examinar…",
+      "note": "Esto abre la aplicación del launcher — no puede seleccionar tu perfil ni pulsar Jugar por ti. Configura una vez la carpeta del juego de tu launcher para que apunte a la carpeta exportada, y luego usa este botón para abrirlo cuando quieras."
+    }
   },
   "export": {
     "title": "Exportar",

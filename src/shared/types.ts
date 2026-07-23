@@ -138,3 +138,19 @@ export interface ApiKeyTestResult {
   status: number
   message?: string
 }
+
+// Which launcher the "Launch" button should open. Neither launcher exposes a
+// supported way to auto-select a profile or press Play from outside, so this
+// only locates and opens the executable itself.
+export type LauncherType = 'official' | 'tlauncher'
+
+export interface LauncherSettings {
+  type: LauncherType
+  path?: string
+}
+
+export interface LauncherStatus {
+  type: LauncherType
+  path?: string
+  detectedPath?: string
+}

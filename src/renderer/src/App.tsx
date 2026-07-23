@@ -12,6 +12,8 @@ import './App.css'
 
 type Tab = 'mods' | 'scan' | 'export' | 'settings'
 
+type LaunchState = { kind: 'idle' } | { kind: 'launching' } | { kind: 'error'; message: string }
+
 function AppShell(): React.JSX.Element {
   const { t } = useTranslation()
   const project = useProjectStore((s) => s.project)
@@ -19,6 +21,7 @@ function AppShell(): React.JSX.Element {
   const newProject = useProjectStore((s) => s.newProject)
   const [tab, setTab] = useState<Tab>('mods')
   const [restoring, setRestoring] = useState(true)
+  const [launchState, setLaunchState] = useState<LaunchState>({ kind: 'idle' })
 
   // Reopen the most recently edited project on startup.
   useEffect(() => {
@@ -27,6 +30,16 @@ function AppShell(): React.JSX.Element {
       setRestoring(false)
     })
   }, [loadProject])
+
+  async function handleLaunch(): Promise<void> {
+    setLaunchState({ kind: 'launching' })
+    try {
+      await window.api.launcher.launch()
+      setLaunchState({ kind: 'idle' })
+    } catch (err) {
+      setLaunchState({ kind: 'error', message: err instanceof Error ? err.message : String(err) })
+    }
+  }
 
   if (restoring) return <div className="app-loading">{t('app.loading')}</div>
   if (!project) return <ProjectSetup />
@@ -56,6 +69,15 @@ function AppShell(): React.JSX.Element {
             <span className="nav-icon">⚙️</span> {t('app.nav.settings')}
           </button>
         </nav>
+
+        <button className="btn sidebar-launch" onClick={handleLaunch} disabled={launchState.kind === 'launching'}>
+          {launchState.kind === 'launching' ? t('app.sidebar.launching') : t('app.sidebar.launch')}
+        </button>
+        {launchState.kind === 'error' && (
+          <div className="notice danger sidebar-launch-error">
+            {t('app.sidebar.launchError', { message: launchState.message })}
+          </div>
+        )}
 
         <div className="sidebar-project">
           <div className="sp-label">{t('app.sidebar.activeProject')}</div>
