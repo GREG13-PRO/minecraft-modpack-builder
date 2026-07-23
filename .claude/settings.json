@@ -51,7 +51,13 @@
       "Bash(ls \"/Users/rego/Library/Application Support/minecraft-modpack-builder/projects/\" 2>&1)",
       "Read(//Users/rego/Library/Application Support/minecraft-modpack-builder/projects/**)",
       "Bash(rm -rf /tmp/export-verify-out /tmp/export-verify-userdata)",
-      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-export-tab.png)"
+      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-export-tab.png)",
+      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-i18n-en.png)",
+      "Bash(sips --version)",
+      "Bash(sips --help)",
+      "Bash(python3 -c \"from PIL import Image; print\\('PIL available'\\)\")",
+      "Bash(sips -c 780 1160 \"/private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-i18n-en.png\" --out \"/Users/rego/Documents/AI/PROGRAMOZÁS/MINECRAFT-MODPACK/docs/screenshot.png\")",
+      "Bash(gh api *)"
     ],
     "additionalDirectories": [
       "/private/tmp/fp-verify",

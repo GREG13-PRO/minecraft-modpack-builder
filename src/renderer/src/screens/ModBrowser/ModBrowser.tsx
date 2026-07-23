@@ -1,36 +1,20 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import type { ContentType, ModRef, ModSource } from '@shared/types'
 import { useProjectStore } from '../../state/projectStore'
 import './ModBrowser.css'
 
 type SourceFilter = ModSource | 'both'
 
-const SOURCE_LABELS: Record<SourceFilter, string> = {
-  both: 'Mindkettő',
-  modrinth: 'Modrinth',
-  curseforge: 'CurseForge'
-}
-
-const CONTENT_TYPES: { id: ContentType; label: string; icon: string; field: 'mods' | 'resourcePacks' | 'shaders' }[] = [
-  { id: 'mod', label: 'Modok', icon: '🧩', field: 'mods' },
-  { id: 'resourcepack', label: 'Resource packok', icon: '🖼️', field: 'resourcePacks' },
-  { id: 'shader', label: 'Shaderek', icon: '✨', field: 'shaders' }
+const CONTENT_TYPES: { id: ContentType; icon: string; field: 'mods' | 'resourcePacks' | 'shaders' }[] = [
+  { id: 'mod', icon: '🧩', field: 'mods' },
+  { id: 'resourcepack', icon: '🖼️', field: 'resourcePacks' },
+  { id: 'shader', icon: '✨', field: 'shaders' }
 ]
 
-const CONTENT_SEARCH_PLACEHOLDER: Record<ContentType, string> = {
-  mod: 'Mod keresése...',
-  resourcepack: 'Resource pack keresése...',
-  shader: 'Shader keresése...'
-}
-
-const CONTENT_ADD_LABEL: Record<ContentType, string> = {
-  mod: 'Kiválasztott modok',
-  resourcepack: 'Kiválasztott resource packok',
-  shader: 'Kiválasztott shaderek'
-}
-
 function ModBrowser(): React.JSX.Element {
+  const { t } = useTranslation()
   const project = useProjectStore((s) => s.project)
   const addItem = useProjectStore((s) => s.addItem)
   const removeItem = useProjectStore((s) => s.removeItem)
@@ -56,7 +40,7 @@ function ModBrowser(): React.JSX.Element {
     enabled: Boolean(project)
   })
 
-  if (!project) return <p>Előbb hozz létre egy projektet.</p>
+  if (!project) return <p>{t('modBrowser.noProject')}</p>
 
   const activeField = CONTENT_TYPES.find((c) => c.id === contentType)!.field
   const selectedItems = project[activeField]
@@ -77,7 +61,7 @@ function ModBrowser(): React.JSX.Element {
             className={contentType === c.id ? 'ct-tab active' : 'ct-tab'}
             onClick={() => setContentType(c.id)}
           >
-            <span>{c.icon}</span> {c.label}
+            <span>{c.icon}</span> {t(`modBrowser.contentType.${c.id}`)}
             <span className="ct-tab-count">{project[c.field].length}</span>
           </button>
         ))}
@@ -88,7 +72,7 @@ function ModBrowser(): React.JSX.Element {
           <span className="mb-search-icon">🔍</span>
           <input
             className="input"
-            placeholder={CONTENT_SEARCH_PLACEHOLDER[contentType]}
+            placeholder={t(`modBrowser.searchPlaceholder.${contentType}`)}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
@@ -96,29 +80,26 @@ function ModBrowser(): React.JSX.Element {
         <div className="segmented">
           {(['both', 'modrinth', 'curseforge'] as SourceFilter[]).map((s) => (
             <button key={s} className={source === s ? 'seg active' : 'seg'} onClick={() => setSource(s)}>
-              {SOURCE_LABELS[s]}
+              {t(`modBrowser.source.${s}`)}
             </button>
           ))}
         </div>
       </div>
 
       {source !== 'modrinth' && hasCurseForgeKey === false && (
-        <div className="notice warn">
-          Nincs beállítva CurseForge API kulcs — a CurseForge találatok nem jelennek meg. Add meg a
-          Beállításokban.
-        </div>
+        <div className="notice warn">{t('modBrowser.noCurseForgeKey')}</div>
       )}
-      {error && <div className="notice danger">Hiba a keresés során: {(error as Error).message}</div>}
+      {error && <div className="notice danger">{t('modBrowser.searchError', { message: (error as Error).message })}</div>}
       {data?.sourceErrors?.map((se) => (
         <div key={se.source} className="notice warn">
-          {se.source === 'curseforge' ? 'CurseForge' : 'Modrinth'}: {se.message}
+          {t(`modBrowser.sourceError.${se.code}`, { source: se.source, status: se.status, detail: se.detail })}
         </div>
       ))}
 
       <div className="mb-layout">
         <section className="mb-results">
-          {isFetching && <div className="mb-hint">Keresés...</div>}
-          {!isFetching && data?.refs.length === 0 && <div className="mb-hint">Nincs találat.</div>}
+          {isFetching && <div className="mb-hint">{t('modBrowser.searching')}</div>}
+          {!isFetching && data?.refs.length === 0 && <div className="mb-hint">{t('modBrowser.noResults')}</div>}
           {data?.refs.map((ref) => {
             const key = `${ref.source}:${ref.projectId}`
             const added = addedIds.has(key)
@@ -139,7 +120,7 @@ function ModBrowser(): React.JSX.Element {
                   disabled={added}
                   onClick={() => handleAdd(ref)}
                 >
-                  {added ? '✓ Hozzáadva' : '+ Hozzáadás'}
+                  {added ? t('modBrowser.added') : t('modBrowser.add')}
                 </button>
               </article>
             )
@@ -148,9 +129,9 @@ function ModBrowser(): React.JSX.Element {
 
         <aside className="mb-selected">
           <div className="mbs-head">
-            {CONTENT_ADD_LABEL[contentType]} <span className="mbs-count">{selectedItems.length}</span>
+            {t(`modBrowser.selectedLabel.${contentType}`)} <span className="mbs-count">{selectedItems.length}</span>
           </div>
-          {selectedItems.length === 0 && <div className="mbs-empty">Még nincs kiválasztva.</div>}
+          {selectedItems.length === 0 && <div className="mbs-empty">{t('modBrowser.empty')}</div>}
           <div className="mbs-list">
             {selectedItems.map((m) => (
               <div className="mbs-item" key={`${m.ref.source}:${m.ref.projectId}`}>
@@ -160,7 +141,7 @@ function ModBrowser(): React.JSX.Element {
                 </div>
                 <button
                   className="mbs-remove"
-                  title="Eltávolítás"
+                  title={t('modBrowser.remove')}
                   onClick={() => removeItem(contentType, m.ref.projectId, m.ref.source)}
                 >
                   ✕

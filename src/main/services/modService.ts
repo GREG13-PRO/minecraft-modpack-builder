@@ -39,13 +39,11 @@ async function searchCurseForge(params: ModSearchParams): Promise<ModSearchResul
     return { refs: res.data.map(toCurseForgeRef), totalCount: res.pagination.totalCount }
   } catch (err) {
     if (err instanceof MissingApiKeyError) return { refs: [], totalCount: 0 }
-    const message =
-      err instanceof Error && /\b403\b/.test(err.message)
-        ? 'Érvénytelen CurseForge API kulcs (403). Ellenőrizd a Beállításokban.'
-        : err instanceof Error
-          ? err.message
-          : String(err)
-    return { refs: [], totalCount: 0, sourceErrors: [{ source: 'curseforge', message }] }
+    if (err instanceof Error && /\b403\b/.test(err.message)) {
+      return { refs: [], totalCount: 0, sourceErrors: [{ source: 'curseforge', code: 'invalid-api-key', status: 403 }] }
+    }
+    const detail = err instanceof Error ? err.message : String(err)
+    return { refs: [], totalCount: 0, sourceErrors: [{ source: 'curseforge', code: 'other', detail }] }
   }
 }
 

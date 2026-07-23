@@ -22,15 +22,11 @@ function buildFileEntry(mod: ModpackMod, subfolder: string, warnings: ExportModW
   const { downloadUrl, sha1, filename, fileSize } = mod.pinnedVersion
 
   if (!downloadUrl) {
-    warnings.push({
-      mod,
-      format: 'mrpack',
-      reason: `${mod.ref.name}: nincs közvetlen letöltési link (a szerző letiltotta a terjesztést) — kimarad a csomagból`
-    })
+    warnings.push({ mod, format: 'mrpack', reasonCode: 'distribution-disabled' })
     return undefined
   }
   if (!sha1) {
-    warnings.push({ mod, format: 'mrpack', reason: `${mod.ref.name}: hiányzik a sha1 hash — kimarad a csomagból` })
+    warnings.push({ mod, format: 'mrpack', reasonCode: 'missing-hash' })
     return undefined
   }
 

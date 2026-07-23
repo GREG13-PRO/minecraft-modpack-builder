@@ -1,0 +1,134 @@
+{
+  "app": {
+    "loading": "Loading…",
+    "nav": {
+      "modBrowser": "Mod Browser",
+      "installedScan": "Installed Mods",
+      "export": "Export",
+      "settings": "Settings"
+    },
+    "sidebar": {
+      "activeProject": "Active Project",
+      "newProject": "+ New Project",
+      "counts": "{{mods}} mods · {{resourcePacks}} resource packs · {{shaders}} shaders"
+    }
+  },
+  "projectSetup": {
+    "title": "Minecraft Modpack Builder",
+    "subtitle": "Create a new modpack to get started",
+    "projectName": "Project name",
+    "defaultProjectName": "New modpack",
+    "minecraftVersion": "Minecraft version",
+    "loadingVersions": "Loading...",
+    "modLoader": "Mod loader",
+    "createProject": "Create project"
+  },
+  "modBrowser": {
+    "noProject": "Create a project first.",
+    "searchPlaceholder": {
+      "mod": "Search mods...",
+      "resourcepack": "Search resource packs...",
+      "shader": "Search shaders..."
+    },
+    "contentType": {
+      "mod": "Mods",
+      "resourcepack": "Resource Packs",
+      "shader": "Shaders"
+    },
+    "selectedLabel": {
+      "mod": "Selected Mods",
+      "resourcepack": "Selected Resource Packs",
+      "shader": "Selected Shaders"
+    },
+    "source": {
+      "both": "Both",
+      "modrinth": "Modrinth",
+      "curseforge": "CurseForge"
+    },
+    "noCurseForgeKey": "No CurseForge API key configured — CurseForge results won't appear. Add one in Settings.",
+    "searchError": "Search error: {{message}}",
+    "sourceError": {
+      "invalid-api-key": "CurseForge: invalid API key ({{status}}). Check Settings.",
+      "other": "{{source}}: {{detail}}"
+    },
+    "searching": "Searching...",
+    "noResults": "No results.",
+    "added": "✓ Added",
+    "add": "+ Add",
+    "remove": "Remove",
+    "empty": "Nothing selected yet."
+  },
+  "installedScan": {
+    "noProject": "Create a project first.",
+    "pickFolder": "📁 Choose mods folder",
+    "noFolder": "No folder selected",
+    "scanning": "Scanning...",
+    "startScan": "Start scan",
+    "scanError": "Scan error: {{message}}",
+    "summary": {
+      "total": "mods",
+      "upToDate": "up to date",
+      "outdated": "outdated",
+      "problem": "problems"
+    },
+    "status": {
+      "up-to-date": "Up to date",
+      "outdated": "Outdated",
+      "incompatible-loader": "Incompatible",
+      "unrecognized": "Unrecognized",
+      "not-on-target-mc-version": "Unverifiable"
+    },
+    "update": "Update ({{version}})",
+    "addToProject": "+ Add to project",
+    "added": "✓ Added"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "curseforgeApiKey": "CurseForge API Key",
+    "hintPrefix": "Get a Core API key at",
+    "hintSuffix": ". The key is stored encrypted on this machine and never enters the project files.",
+    "keyStatusOk": "✓ API key configured",
+    "keyStatusMissing": "No API key configured — CurseForge search won't work",
+    "placeholder": "Paste your CurseForge API key",
+    "save": "Save",
+    "checking": "Checking...",
+    "clear": "Clear",
+    "keyValid": "✓ Saved and verified — the key is valid and working.",
+    "keyInvalid": "⚠ Saved, but: CurseForge rejected the key ({{status}}). Make sure you used a Core API key, not a Studio personal access token.",
+    "keyError": "Error: {{message}}"
+  },
+  "export": {
+    "title": "Export",
+    "noProject": "Create a project first.",
+    "summary": "{{mods}} mods · {{resourcePacks}} resource packs · {{shaders}} shaders",
+    "formats": {
+      "folder": {
+        "title": "Mods Folder",
+        "description": "Downloads mods/resource packs/shaders into a mods/resourcepacks/shaderpacks folder structure — for TLauncher or the official launcher."
+      },
+      "mrpack": {
+        "title": ".mrpack",
+        "description": "Modrinth modpack format — importable into Prism Launcher and other .mrpack-compatible launchers."
+      },
+      "curseforge-zip": {
+        "title": "CurseForge zip",
+        "description": "CurseForge modpack format (manifest.json + overrides) — importable into the CurseForge app."
+      }
+    },
+    "pickFolder": "📁 Choose destination folder",
+    "pickFile": "💾 Choose destination file",
+    "noDestination": "No destination selected",
+    "exporting": "Exporting...",
+    "startExport": "Start export",
+    "nothingSelected": "No mods, resource packs, or shaders selected.",
+    "exportError": "Export error: {{message}}",
+    "exportDone": "✓ Export complete: {{path}}",
+    "warningsCount": "{{count}} warning(s):",
+    "warningReason": {
+      "distribution-disabled": "{{name}}: the author disabled direct distribution — install manually",
+      "missing-hash": "{{name}}: missing sha1 hash — skipped",
+      "download-failed": "{{name}}: {{detail}}"
+    }
+  }
+}

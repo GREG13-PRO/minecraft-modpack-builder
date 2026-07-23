@@ -35,7 +35,8 @@ async function addModpackMod(
     warnings.push({
       mod,
       format: 'curseforge-zip',
-      reason: `${mod.ref.name}: ${err instanceof Error ? err.message : String(err)}`
+      reasonCode: 'download-failed',
+      detail: err instanceof Error ? err.message : String(err)
     })
   }
 }

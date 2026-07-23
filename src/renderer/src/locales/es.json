@@ -1,0 +1,134 @@
+{
+  "app": {
+    "loading": "Cargando…",
+    "nav": {
+      "modBrowser": "Explorador de mods",
+      "installedScan": "Mods instalados",
+      "export": "Exportar",
+      "settings": "Ajustes"
+    },
+    "sidebar": {
+      "activeProject": "Proyecto activo",
+      "newProject": "+ Nuevo proyecto",
+      "counts": "{{mods}} mods · {{resourcePacks}} paquetes de recursos · {{shaders}} shaders"
+    }
+  },
+  "projectSetup": {
+    "title": "Minecraft Modpack Builder",
+    "subtitle": "Crea un nuevo modpack para empezar",
+    "projectName": "Nombre del proyecto",
+    "defaultProjectName": "Nuevo modpack",
+    "minecraftVersion": "Versión de Minecraft",
+    "loadingVersions": "Cargando...",
+    "modLoader": "Mod loader",
+    "createProject": "Crear proyecto"
+  },
+  "modBrowser": {
+    "noProject": "Primero crea un proyecto.",
+    "searchPlaceholder": {
+      "mod": "Buscar mods...",
+      "resourcepack": "Buscar paquetes de recursos...",
+      "shader": "Buscar shaders..."
+    },
+    "contentType": {
+      "mod": "Mods",
+      "resourcepack": "Paquetes de recursos",
+      "shader": "Shaders"
+    },
+    "selectedLabel": {
+      "mod": "Mods seleccionados",
+      "resourcepack": "Paquetes de recursos seleccionados",
+      "shader": "Shaders seleccionados"
+    },
+    "source": {
+      "both": "Ambos",
+      "modrinth": "Modrinth",
+      "curseforge": "CurseForge"
+    },
+    "noCurseForgeKey": "No hay una clave de API de CurseForge configurada — los resultados de CurseForge no aparecerán. Añade una en Ajustes.",
+    "searchError": "Error en la búsqueda: {{message}}",
+    "sourceError": {
+      "invalid-api-key": "CurseForge: clave de API no válida ({{status}}). Revisa los Ajustes.",
+      "other": "{{source}}: {{detail}}"
+    },
+    "searching": "Buscando...",
+    "noResults": "Sin resultados.",
+    "added": "✓ Añadido",
+    "add": "+ Añadir",
+    "remove": "Quitar",
+    "empty": "Todavía no hay nada seleccionado."
+  },
+  "installedScan": {
+    "noProject": "Primero crea un proyecto.",
+    "pickFolder": "📁 Elegir carpeta de mods",
+    "noFolder": "Ninguna carpeta seleccionada",
+    "scanning": "Escaneando...",
+    "startScan": "Iniciar escaneo",
+    "scanError": "Error en el escaneo: {{message}}",
+    "summary": {
+      "total": "mods",
+      "upToDate": "actualizados",
+      "outdated": "desactualizados",
+      "problem": "con problemas"
+    },
+    "status": {
+      "up-to-date": "Actualizado",
+      "outdated": "Desactualizado",
+      "incompatible-loader": "Incompatible",
+      "unrecognized": "Desconocido",
+      "not-on-target-mc-version": "No verificable"
+    },
+    "update": "Actualizar ({{version}})",
+    "addToProject": "+ Añadir al proyecto",
+    "added": "✓ Añadido"
+  },
+  "settings": {
+    "title": "Ajustes",
+    "language": "Idioma",
+    "curseforgeApiKey": "Clave de API de CurseForge",
+    "hintPrefix": "Consigue una clave de Core API en",
+    "hintSuffix": ". La clave se guarda cifrada en este equipo y nunca se incluye en los archivos del proyecto.",
+    "keyStatusOk": "✓ Clave de API configurada",
+    "keyStatusMissing": "No hay clave de API configurada — la búsqueda en CurseForge no funcionará",
+    "placeholder": "Pega tu clave de API de CurseForge",
+    "save": "Guardar",
+    "checking": "Comprobando...",
+    "clear": "Borrar",
+    "keyValid": "✓ Guardada y verificada — la clave es válida y funciona.",
+    "keyInvalid": "⚠ Guardada, pero: CurseForge rechazó la clave ({{status}}). Asegúrate de usar una clave de Core API, no un token de acceso personal de Studio.",
+    "keyError": "Error: {{message}}"
+  },
+  "export": {
+    "title": "Exportar",
+    "noProject": "Primero crea un proyecto.",
+    "summary": "{{mods}} mods · {{resourcePacks}} paquetes de recursos · {{shaders}} shaders",
+    "formats": {
+      "folder": {
+        "title": "Carpeta de mods",
+        "description": "Descarga los mods/paquetes de recursos/shaders en una estructura de carpetas mods/resourcepacks/shaderpacks — para TLauncher o el launcher oficial."
+      },
+      "mrpack": {
+        "title": ".mrpack",
+        "description": "Formato de modpack de Modrinth — se puede importar en Prism Launcher y otros launchers compatibles con .mrpack."
+      },
+      "curseforge-zip": {
+        "title": "ZIP de CurseForge",
+        "description": "Formato de modpack de CurseForge (manifest.json + overrides) — se puede importar en la app de CurseForge."
+      }
+    },
+    "pickFolder": "📁 Elegir carpeta de destino",
+    "pickFile": "💾 Elegir archivo de destino",
+    "noDestination": "Ningún destino seleccionado",
+    "exporting": "Exportando...",
+    "startExport": "Iniciar exportación",
+    "nothingSelected": "No hay mods, paquetes de recursos ni shaders seleccionados.",
+    "exportError": "Error al exportar: {{message}}",
+    "exportDone": "✓ Exportación completa: {{path}}",
+    "warningsCount": "{{count}} advertencia(s):",
+    "warningReason": {
+      "distribution-disabled": "{{name}}: el autor deshabilitó la distribución directa — instálalo manualmente",
+      "missing-hash": "{{name}}: falta el hash sha1 — omitido",
+      "download-failed": "{{name}}: {{detail}}"
+    }
+  }
+}

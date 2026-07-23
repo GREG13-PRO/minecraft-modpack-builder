@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
+import { SUPPORTED_LANGUAGES } from '../../i18n'
 import './Settings.css'
 
 type SaveState =
@@ -10,6 +12,7 @@ type SaveState =
   | { kind: 'error'; message: string }
 
 function Settings(): React.JSX.Element {
+  const { t, i18n } = useTranslation()
   const queryClient = useQueryClient()
   const [hasKey, setHasKey] = useState<boolean | null>(null)
   const [keyInput, setKeyInput] = useState('')
@@ -35,10 +38,7 @@ function Settings(): React.JSX.Element {
       if (result.ok) {
         setSaveState({ kind: 'valid' })
       } else {
-        setSaveState({
-          kind: 'invalid',
-          message: `A CurseForge elutasította a kulcsot (${result.status}). Ellenőrizd, hogy Core API kulcsot adtál-e meg, ne "Studio" personal access tokent.`
-        })
+        setSaveState({ kind: 'invalid', message: t('settings.keyInvalid', { status: result.status }) })
       }
     } catch (err) {
       setSaveState({ kind: 'error', message: err instanceof Error ? err.message : String(err) })
@@ -59,47 +59,53 @@ function Settings(): React.JSX.Element {
 
   return (
     <div className="settings">
-      <h2 className="settings-title">Beállítások</h2>
+      <h2 className="settings-title">{t('settings.title')}</h2>
 
       <section className="settings-card">
-        <h3 className="settings-card-title">CurseForge API kulcs</h3>
+        <h3 className="settings-card-title">{t('settings.language')}</h3>
+        <select className="input" value={i18n.language} onChange={(e) => i18n.changeLanguage(e.target.value)}>
+          {SUPPORTED_LANGUAGES.map((lang) => (
+            <option key={lang.code} value={lang.code}>
+              {lang.label}
+            </option>
+          ))}
+        </select>
+      </section>
+
+      <section className="settings-card">
+        <h3 className="settings-card-title">{t('settings.curseforgeApiKey')}</h3>
         <p className="hint">
-          A Core API kulcsot a{' '}
+          {t('settings.hintPrefix')}{' '}
           <a href="https://console.curseforge.com/" target="_blank" rel="noreferrer">
             console.curseforge.com
-          </a>{' '}
-          oldalon igényelheted. A kulcs titkosítva kerül tárolásra ezen a gépen, soha nem kerül a projekt
-          fájljaiba.
+          </a>
+          {t('settings.hintSuffix')}
         </p>
 
-        {hasKey === true && <div className="key-status ok">✓ API kulcs be van állítva</div>}
-        {hasKey === false && (
-          <div className="key-status missing">Nincs beállítva API kulcs — a CurseForge keresés nem fog működni</div>
-        )}
+        {hasKey === true && <div className="key-status ok">{t('settings.keyStatusOk')}</div>}
+        {hasKey === false && <div className="key-status missing">{t('settings.keyStatusMissing')}</div>}
 
         <div className="key-form">
           <input
             className="input"
             type="password"
-            placeholder="Illeszd be a CurseForge API kulcsot"
+            placeholder={t('settings.placeholder')}
             value={keyInput}
             onChange={(e) => setKeyInput(e.target.value)}
           />
           <button className="btn" onClick={handleSave} disabled={!keyInput.trim() || saveState.kind === 'saving'}>
-            {saveState.kind === 'saving' ? 'Ellenőrzés...' : 'Mentés'}
+            {saveState.kind === 'saving' ? t('settings.checking') : t('settings.save')}
           </button>
           {hasKey === true && (
             <button className="btn btn-danger" onClick={handleClear}>
-              Törlés
+              {t('settings.clear')}
             </button>
           )}
         </div>
 
-        {saveState.kind === 'valid' && (
-          <p className="status ok">✓ Elmentve és ellenőrizve — a kulcs érvényes és működik.</p>
-        )}
-        {saveState.kind === 'invalid' && <p className="status error">⚠ Elmentve, de: {saveState.message}</p>}
-        {saveState.kind === 'error' && <p className="status error">Hiba történt: {saveState.message}</p>}
+        {saveState.kind === 'valid' && <p className="status ok">{t('settings.keyValid')}</p>}
+        {saveState.kind === 'invalid' && <p className="status error">{saveState.message}</p>}
+        {saveState.kind === 'error' && <p className="status error">{t('settings.keyError', { message: saveState.message })}</p>}
       </section>
     </div>
   )

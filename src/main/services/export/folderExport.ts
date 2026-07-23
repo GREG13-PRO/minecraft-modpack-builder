@@ -27,11 +27,7 @@ export async function exportToFolder(
 
     for (const mod of group.items) {
       if (!canDownload(mod)) {
-        warnings.push({
-          mod,
-          format: 'folder',
-          reason: `${mod.ref.name}: a szerző letiltotta a közvetlen letöltést, kézzel kell telepíteni`
-        })
+        warnings.push({ mod, format: 'folder', reasonCode: 'distribution-disabled' })
         done++
         onProgress?.(done, total)
         continue
@@ -43,7 +39,8 @@ export async function exportToFolder(
         warnings.push({
           mod,
           format: 'folder',
-          reason: `${mod.ref.name}: ${err instanceof Error ? err.message : String(err)}`
+          reasonCode: 'download-failed',
+          detail: err instanceof Error ? err.message : String(err)
         })
       }
       done++

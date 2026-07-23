@@ -1,0 +1,134 @@
+{
+  "app": {
+    "loading": "Betöltés…",
+    "nav": {
+      "modBrowser": "Mod böngésző",
+      "installedScan": "Telepített modok",
+      "export": "Export",
+      "settings": "Beállítások"
+    },
+    "sidebar": {
+      "activeProject": "Aktív projekt",
+      "newProject": "+ Új projekt",
+      "counts": "{{mods}} mod · {{resourcePacks}} resource pack · {{shaders}} shader"
+    }
+  },
+  "projectSetup": {
+    "title": "Minecraft Modpack Builder",
+    "subtitle": "Hozz létre egy új modpacket a kezdéshez",
+    "projectName": "Projekt neve",
+    "defaultProjectName": "Új modpack",
+    "minecraftVersion": "Minecraft verzió",
+    "loadingVersions": "Betöltés...",
+    "modLoader": "Mod loader",
+    "createProject": "Projekt létrehozása"
+  },
+  "modBrowser": {
+    "noProject": "Előbb hozz létre egy projektet.",
+    "searchPlaceholder": {
+      "mod": "Mod keresése...",
+      "resourcepack": "Resource pack keresése...",
+      "shader": "Shader keresése..."
+    },
+    "contentType": {
+      "mod": "Modok",
+      "resourcepack": "Resource packok",
+      "shader": "Shaderek"
+    },
+    "selectedLabel": {
+      "mod": "Kiválasztott modok",
+      "resourcepack": "Kiválasztott resource packok",
+      "shader": "Kiválasztott shaderek"
+    },
+    "source": {
+      "both": "Mindkettő",
+      "modrinth": "Modrinth",
+      "curseforge": "CurseForge"
+    },
+    "noCurseForgeKey": "Nincs beállítva CurseForge API kulcs — a CurseForge találatok nem jelennek meg. Add meg a Beállításokban.",
+    "searchError": "Hiba a keresés során: {{message}}",
+    "sourceError": {
+      "invalid-api-key": "CurseForge: érvénytelen API kulcs ({{status}}). Ellenőrizd a Beállításokban.",
+      "other": "{{source}}: {{detail}}"
+    },
+    "searching": "Keresés...",
+    "noResults": "Nincs találat.",
+    "added": "✓ Hozzáadva",
+    "add": "+ Hozzáadás",
+    "remove": "Eltávolítás",
+    "empty": "Még nincs kiválasztva."
+  },
+  "installedScan": {
+    "noProject": "Előbb hozz létre egy projektet.",
+    "pickFolder": "📁 Mods mappa kiválasztása",
+    "noFolder": "Nincs mappa kiválasztva",
+    "scanning": "Beolvasás...",
+    "startScan": "Beolvasás indítása",
+    "scanError": "Hiba a beolvasás során: {{message}}",
+    "summary": {
+      "total": "mod",
+      "upToDate": "naprakész",
+      "outdated": "elavult",
+      "problem": "problémás"
+    },
+    "status": {
+      "up-to-date": "Naprakész",
+      "outdated": "Elavult",
+      "incompatible-loader": "Nem kompatibilis",
+      "unrecognized": "Ismeretlen",
+      "not-on-target-mc-version": "Nem ellenőrizhető"
+    },
+    "update": "Frissítés ({{version}})",
+    "addToProject": "+ Projekthez adás",
+    "added": "✓ Hozzáadva"
+  },
+  "settings": {
+    "title": "Beállítások",
+    "language": "Nyelv",
+    "curseforgeApiKey": "CurseForge API kulcs",
+    "hintPrefix": "A Core API kulcsot itt igényelheted:",
+    "hintSuffix": ". A kulcs titkosítva kerül tárolásra ezen a gépen, soha nem kerül a projekt fájljaiba.",
+    "keyStatusOk": "✓ API kulcs be van állítva",
+    "keyStatusMissing": "Nincs beállítva API kulcs — a CurseForge keresés nem fog működni",
+    "placeholder": "Illeszd be a CurseForge API kulcsot",
+    "save": "Mentés",
+    "checking": "Ellenőrzés...",
+    "clear": "Törlés",
+    "keyValid": "✓ Elmentve és ellenőrizve — a kulcs érvényes és működik.",
+    "keyInvalid": "⚠ Elmentve, de: a CurseForge elutasította a kulcsot ({{status}}). Ellenőrizd, hogy Core API kulcsot adtál-e meg, ne Studio personal access tokent.",
+    "keyError": "Hiba történt: {{message}}"
+  },
+  "export": {
+    "title": "Export",
+    "noProject": "Előbb hozz létre egy projektet.",
+    "summary": "{{mods}} mod · {{resourcePacks}} resource pack · {{shaders}} shader",
+    "formats": {
+      "folder": {
+        "title": "Mods mappa",
+        "description": "Letölti a modokat/resource packokat/shadereket egy mods/resourcepacks/shaderpacks mappastruktúrába — TLauncherhez vagy a hivatalos launcherhez."
+      },
+      "mrpack": {
+        "title": ".mrpack",
+        "description": "Modrinth modpack formátum — importálható Prism Launcherbe és más .mrpack-kompatibilis launcherekbe."
+      },
+      "curseforge-zip": {
+        "title": "CurseForge zip",
+        "description": "CurseForge modpack formátum (manifest.json + overrides) — importálható a CurseForge appba."
+      }
+    },
+    "pickFolder": "📁 Cél mappa kiválasztása",
+    "pickFile": "💾 Fájl helyének kiválasztása",
+    "noDestination": "Nincs cél kiválasztva",
+    "exporting": "Exportálás...",
+    "startExport": "Export indítása",
+    "nothingSelected": "Nincs kiválasztott mod, resource pack vagy shader.",
+    "exportError": "Hiba az export során: {{message}}",
+    "exportDone": "✓ Export kész: {{path}}",
+    "warningsCount": "{{count}} figyelmeztetés:",
+    "warningReason": {
+      "distribution-disabled": "{{name}}: a szerző letiltotta a közvetlen letöltést — kézzel kell telepíteni",
+      "missing-hash": "{{name}}: hiányzik a sha1 hash — kimarad",
+      "download-failed": "{{name}}: {{detail}}"
+    }
+  }
+}

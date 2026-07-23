@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import type { ModLoader } from '@shared/types'
 import { useProjectStore } from '../../state/projectStore'
 import './ProjectSetup.css'
@@ -12,8 +13,9 @@ const LOADERS: { id: ModLoader; label: string }[] = [
 ]
 
 function ProjectSetup(): React.JSX.Element {
+  const { t } = useTranslation()
   const createProject = useProjectStore((s) => s.createProject)
-  const [name, setName] = useState('Új modpack')
+  const [name, setName] = useState(t('projectSetup.defaultProjectName'))
   const [mcVersion, setMcVersion] = useState('')
   const [loader, setLoader] = useState<ModLoader>('fabric')
 
@@ -29,24 +31,24 @@ function ProjectSetup(): React.JSX.Element {
       <div className="setup-card">
         <div className="setup-head">
           <span className="setup-mark">⛏</span>
-          <h1>Minecraft Modpack Builder</h1>
-          <p className="setup-sub">Hozz létre egy új modpacket a kezdéshez</p>
+          <h1>{t('projectSetup.title')}</h1>
+          <p className="setup-sub">{t('projectSetup.subtitle')}</p>
         </div>
 
         <label className="field">
-          <span className="field-label">Projekt neve</span>
+          <span className="field-label">{t('projectSetup.projectName')}</span>
           <input className="input" value={name} onChange={(e) => setName(e.target.value)} />
         </label>
 
         <label className="field">
-          <span className="field-label">Minecraft verzió</span>
+          <span className="field-label">{t('projectSetup.minecraftVersion')}</span>
           <select
             className="input"
             value={effectiveVersion}
             onChange={(e) => setMcVersion(e.target.value)}
             disabled={isLoading}
           >
-            {isLoading && <option>Betöltés...</option>}
+            {isLoading && <option>{t('projectSetup.loadingVersions')}</option>}
             {gameVersions?.map((v) => (
               <option key={v} value={v}>
                 {v}
@@ -56,7 +58,7 @@ function ProjectSetup(): React.JSX.Element {
         </label>
 
         <div className="field">
-          <span className="field-label">Mod loader</span>
+          <span className="field-label">{t('projectSetup.modLoader')}</span>
           <div className="loader-grid">
             {LOADERS.map((l) => (
               <button
@@ -75,7 +77,7 @@ function ProjectSetup(): React.JSX.Element {
           disabled={!effectiveVersion || !name.trim()}
           onClick={() => createProject(name.trim(), effectiveVersion, loader)}
         >
-          Projekt létrehozása
+          {t('projectSetup.createProject')}
         </button>
       </div>
     </div>

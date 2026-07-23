@@ -1,38 +1,22 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { ExportFormat, ExportResult } from '@shared/types'
 import { useProjectStore } from '../../state/projectStore'
 import './Export.css'
 
-const FORMAT_OPTIONS: { id: ExportFormat; title: string; description: string; icon: string }[] = [
-  {
-    id: 'folder',
-    title: 'Mods mappa',
-    description: 'Letölti a modokat/resource packokat/shadereket egy mods/resourcepacks/shaderpacks mappastruktúrába — TLauncherhez vagy a hivatalos launcherhez.',
-    icon: '📁'
-  },
-  {
-    id: 'mrpack',
-    title: '.mrpack',
-    description: 'Modrinth modpack formátum — importálható Prism Launcherbe és más .mrpack-kompatibilis launcherekbe.',
-    icon: '📦'
-  },
-  {
-    id: 'curseforge-zip',
-    title: 'CurseForge zip',
-    description: 'CurseForge modpack formátum (manifest.json + overrides) — importálható a CurseForge appba.',
-    icon: '🗜️'
-  }
-]
+const FORMAT_IDS: ExportFormat[] = ['folder', 'mrpack', 'curseforge-zip']
+const FORMAT_ICON: Record<ExportFormat, string> = { folder: '📁', mrpack: '📦', 'curseforge-zip': '🗜️' }
 
 type RunState = { kind: 'idle' } | { kind: 'running' } | { kind: 'done'; result: ExportResult } | { kind: 'error'; message: string }
 
 function Export(): React.JSX.Element {
+  const { t } = useTranslation()
   const project = useProjectStore((s) => s.project)
   const [format, setFormat] = useState<ExportFormat>('folder')
   const [destination, setDestination] = useState<string | undefined>()
   const [runState, setRunState] = useState<RunState>({ kind: 'idle' })
 
-  if (!project) return <p>Előbb hozz létre egy projektet.</p>
+  if (!project) return <p>{t('export.noProject')}</p>
 
   const totalItems = project.mods.length + project.resourcePacks.length + project.shaders.length
 
@@ -60,52 +44,58 @@ function Export(): React.JSX.Element {
 
   return (
     <div className="export-screen">
-      <h2 className="export-title">Export</h2>
+      <h2 className="export-title">{t('export.title')}</h2>
       <p className="export-summary">
-        {project.mods.length} mod · {project.resourcePacks.length} resource pack · {project.shaders.length} shader
+        {t('export.summary', {
+          mods: project.mods.length,
+          resourcePacks: project.resourcePacks.length,
+          shaders: project.shaders.length
+        })}
       </p>
 
       <div className="format-options">
-        {FORMAT_OPTIONS.map((opt) => (
+        {FORMAT_IDS.map((id) => (
           <button
-            key={opt.id}
-            className={format === opt.id ? 'format-card active' : 'format-card'}
-            onClick={() => handleFormatChange(opt.id)}
+            key={id}
+            className={format === id ? 'format-card active' : 'format-card'}
+            onClick={() => handleFormatChange(id)}
           >
-            <span className="format-icon">{opt.icon}</span>
-            <span className="format-title">{opt.title}</span>
-            <span className="format-desc">{opt.description}</span>
+            <span className="format-icon">{FORMAT_ICON[id]}</span>
+            <span className="format-title">{t(`export.formats.${id}.title`)}</span>
+            <span className="format-desc">{t(`export.formats.${id}.description`)}</span>
           </button>
         ))}
       </div>
 
       <div className="export-actions">
         <button className="btn btn-ghost" onClick={handlePickDestination} disabled={totalItems === 0}>
-          {format === 'folder' ? '📁 Cél mappa kiválasztása' : '💾 Fájl helyének kiválasztása'}
+          {format === 'folder' ? t('export.pickFolder') : t('export.pickFile')}
         </button>
-        <span className="export-destination">{destination ?? 'Nincs cél kiválasztva'}</span>
+        <span className="export-destination">{destination ?? t('export.noDestination')}</span>
         <button
           className="btn"
           onClick={handleExport}
           disabled={!destination || totalItems === 0 || runState.kind === 'running'}
         >
-          {runState.kind === 'running' ? 'Exportálás...' : 'Export indítása'}
+          {runState.kind === 'running' ? t('export.exporting') : t('export.startExport')}
         </button>
       </div>
 
-      {totalItems === 0 && <div className="notice warn">Nincs kiválasztott mod, resource pack vagy shader.</div>}
+      {totalItems === 0 && <div className="notice warn">{t('export.nothingSelected')}</div>}
 
-      {runState.kind === 'error' && <div className="notice danger">Hiba az export során: {runState.message}</div>}
+      {runState.kind === 'error' && (
+        <div className="notice danger">{t('export.exportError', { message: runState.message })}</div>
+      )}
 
       {runState.kind === 'done' && (
         <div className="export-result">
-          <div className="notice ok">✓ Export kész: {runState.result.outputPath}</div>
+          <div className="notice ok">{t('export.exportDone', { path: runState.result.outputPath })}</div>
           {runState.result.warnings.length > 0 && (
             <div className="export-warnings">
-              <div className="ew-head">{runState.result.warnings.length} figyelmeztetés:</div>
+              <div className="ew-head">{t('export.warningsCount', { count: runState.result.warnings.length })}</div>
               {runState.result.warnings.map((w, i) => (
                 <div className="ew-item" key={i}>
-                  {w.reason}
+                  {t(`export.warningReason.${w.reasonCode}`, { name: w.mod.ref.name, detail: w.detail })}
                 </div>
               ))}
             </div>

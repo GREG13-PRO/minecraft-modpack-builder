@@ -1,17 +1,11 @@
 import { useState } from 'react'
-import type { InstalledModScanResult, ScanStatus } from '@shared/types'
+import { useTranslation } from 'react-i18next'
+import type { InstalledModScanResult } from '@shared/types'
 import { useProjectStore } from '../../state/projectStore'
 import './InstalledScan.css'
 
-const STATUS_LABEL: Record<ScanStatus, string> = {
-  'up-to-date': 'Naprakész',
-  outdated: 'Elavult',
-  'incompatible-loader': 'Nem kompatibilis',
-  unrecognized: 'Ismeretlen',
-  'not-on-target-mc-version': 'Nem ellenőrizhető'
-}
-
 function InstalledScan(): React.JSX.Element {
+  const { t } = useTranslation()
   const project = useProjectStore((s) => s.project)
   const addItem = useProjectStore((s) => s.addItem)
   const [folder, setFolder] = useState<string | undefined>()
@@ -19,7 +13,7 @@ function InstalledScan(): React.JSX.Element {
   const [scanning, setScanning] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  if (!project) return <p>Előbb hozz létre egy projektet.</p>
+  if (!project) return <p>{t('installedScan.noProject')}</p>
 
   async function handlePickFolder(): Promise<void> {
     const picked = await window.api.scan.pickFolder()
@@ -66,29 +60,29 @@ function InstalledScan(): React.JSX.Element {
     <div className="installed-scan">
       <div className="scan-toolbar">
         <button className="btn btn-ghost" onClick={handlePickFolder}>
-          📁 Mods mappa kiválasztása
+          {t('installedScan.pickFolder')}
         </button>
-        <span className="scan-folder-path">{folder ?? 'Nincs mappa kiválasztva'}</span>
+        <span className="scan-folder-path">{folder ?? t('installedScan.noFolder')}</span>
         <button className="btn" onClick={handleScan} disabled={!folder || scanning}>
-          {scanning ? 'Beolvasás...' : 'Beolvasás indítása'}
+          {scanning ? t('installedScan.scanning') : t('installedScan.startScan')}
         </button>
       </div>
 
-      {error && <div className="notice danger">Hiba a beolvasás során: {error}</div>}
+      {error && <div className="notice danger">{t('installedScan.scanError', { message: error })}</div>}
 
       {summary && (
         <div className="scan-summary">
           <span className="ss-item">
-            <strong>{summary.total}</strong> mod
+            <strong>{summary.total}</strong> {t('installedScan.summary.total')}
           </span>
           <span className="ss-item ok">
-            <strong>{summary.upToDate}</strong> naprakész
+            <strong>{summary.upToDate}</strong> {t('installedScan.summary.upToDate')}
           </span>
           <span className="ss-item warn">
-            <strong>{summary.outdated}</strong> elavult
+            <strong>{summary.outdated}</strong> {t('installedScan.summary.outdated')}
           </span>
           <span className="ss-item danger">
-            <strong>{summary.problem}</strong> problémás
+            <strong>{summary.problem}</strong> {t('installedScan.summary.problem')}
           </span>
         </div>
       )}
@@ -112,15 +106,17 @@ function InstalledScan(): React.JSX.Element {
                     <div className="scan-row-file">{fileName}</div>
                   </div>
                 </div>
-                <span className={`status-label ${r.status}`}>{STATUS_LABEL[r.status]}</span>
+                <span className={`status-label ${r.status}`}>{t(`installedScan.status.${r.status}`)}</span>
                 {r.status === 'outdated' && r.latestCompatibleVersion && (
                   <button className="btn" disabled={added} onClick={() => handleAdd(r, true)}>
-                    {added ? '✓ Hozzáadva' : `Frissítés (${r.latestCompatibleVersion.displayName})`}
+                    {added
+                      ? t('installedScan.added')
+                      : t('installedScan.update', { version: r.latestCompatibleVersion.displayName })}
                   </button>
                 )}
                 {r.status === 'up-to-date' && (
                   <button className="btn btn-ghost" disabled={added} onClick={() => handleAdd(r, false)}>
-                    {added ? '✓ Hozzáadva' : '+ Projekthez adás'}
+                    {added ? t('installedScan.added') : t('installedScan.addToProject')}
                   </button>
                 )}
               </div>

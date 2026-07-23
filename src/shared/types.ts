@@ -95,9 +95,16 @@ export interface ModSearchParams {
   pageSize?: number
 }
 
+// Reason codes rather than pre-rendered strings so the renderer can localize
+// them — these originate in the main process, which has no notion of the
+// UI's current language.
+export type ModSourceErrorCode = 'invalid-api-key' | 'other'
+
 export interface ModSourceError {
   source: ModSource
-  message: string
+  code: ModSourceErrorCode
+  detail?: string
+  status?: number
 }
 
 export interface ModSearchResult {
@@ -111,10 +118,13 @@ export interface ModSearchResult {
 // official launcher). 'mrpack'/'curseforge-zip' are the standard pack formats.
 export type ExportFormat = 'folder' | 'mrpack' | 'curseforge-zip'
 
+export type ExportWarningReason = 'distribution-disabled' | 'missing-hash' | 'download-failed'
+
 export interface ExportModWarning {
   mod: ModpackMod
   format: ExportFormat
-  reason: string
+  reasonCode: ExportWarningReason
+  detail?: string
 }
 
 export interface ExportResult {
