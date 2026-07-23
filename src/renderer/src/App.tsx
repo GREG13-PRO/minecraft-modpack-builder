@@ -5,10 +5,11 @@ import { useProjectStore } from './state/projectStore'
 import ProjectSetup from './screens/ProjectSetup/ProjectSetup'
 import ModBrowser from './screens/ModBrowser/ModBrowser'
 import InstalledScan from './screens/InstalledScan/InstalledScan'
+import Export from './screens/Export/Export'
 import Settings from './screens/Settings/Settings'
 import './App.css'
 
-type Tab = 'mods' | 'scan' | 'settings'
+type Tab = 'mods' | 'scan' | 'export' | 'settings'
 
 function AppShell(): React.JSX.Element {
   const project = useProjectStore((s) => s.project)
@@ -43,6 +44,9 @@ function AppShell(): React.JSX.Element {
           <button className={tab === 'scan' ? 'nav-item active' : 'nav-item'} onClick={() => setTab('scan')}>
             <span className="nav-icon">📂</span> Telepített modok
           </button>
+          <button className={tab === 'export' ? 'nav-item active' : 'nav-item'} onClick={() => setTab('export')}>
+            <span className="nav-icon">📤</span> Export
+          </button>
           <button
             className={tab === 'settings' ? 'nav-item active' : 'nav-item'}
             onClick={() => setTab('settings')}
@@ -71,6 +75,7 @@ function AppShell(): React.JSX.Element {
       <main className="app-main">
         {tab === 'mods' && <ModBrowser />}
         {tab === 'scan' && <InstalledScan />}
+        {tab === 'export' && <Export />}
         {tab === 'settings' && <Settings />}
       </main>
     </div>

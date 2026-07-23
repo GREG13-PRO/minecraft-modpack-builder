@@ -106,7 +106,10 @@ export interface ModSearchResult {
   sourceErrors?: ModSourceError[]
 }
 
-export type ExportFormat = 'mrpack' | 'curseforge-zip'
+// 'folder' downloads everything straight into mods/resourcepacks/shaderpacks
+// subfolders — for launchers with no modpack-format support (TLauncher, the
+// official launcher). 'mrpack'/'curseforge-zip' are the standard pack formats.
+export type ExportFormat = 'folder' | 'mrpack' | 'curseforge-zip'
 
 export interface ExportModWarning {
   mod: ModpackMod

@@ -3,6 +3,8 @@ import { electronAPI } from '@electron-toolkit/preload'
 import type {
   ApiKeyTestResult,
   ContentType,
+  ExportFormat,
+  ExportResult,
   InstalledModScanResult,
   ModLoader,
   ModpackProject,
@@ -33,6 +35,12 @@ const api = {
     pickFolder: () => ipcRenderer.invoke('scan:pickFolder') as Promise<string | undefined>,
     run: (folderPath: string, mcVersion: string, loader: ModLoader) =>
       ipcRenderer.invoke('scan:run', folderPath, mcVersion, loader) as Promise<InstalledModScanResult[]>
+  },
+  export: {
+    pickDestination: (format: ExportFormat, projectName: string) =>
+      ipcRenderer.invoke('export:pickDestination', format, projectName) as Promise<string | undefined>,
+    run: (project: ModpackProject, format: ExportFormat, outputPath: string) =>
+      ipcRenderer.invoke('export:run', project, format, outputPath) as Promise<ExportResult>
   }
 }
 
