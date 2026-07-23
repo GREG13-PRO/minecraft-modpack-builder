@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh auth *)",
+      "Bash(npm -v)",
+      "Read(//Users/rego/**)",
+      "Bash(command -v node)",
+      "Read(//usr/local/bin/**)",
+      "Bash(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh)",
+      "Bash(bash)",
+      "Bash(find ~/.npm/_npx -path \"*create-electron*/index*\" 2>/dev/null | head; find ~/.npm/_npx -path \"*create-electron*bin*\" 2>/dev/null | head)",
+      "Read(//Users/rego/.npm/_npx/**)",
+      "Bash(grep -n \"argv\\\\|minimist\\\\|prompts\\\\|template\\\\|overwrite\" ~/.npm/_npx/8c427fe066a6b90c/node_modules/@quick-start/create-electron/index.js | head -60)",
+      "Read(//Users/rego/.npm/_npx/8c427fe066a6b90c/node_modules/@quick-start/create-electron/**)",
+      "Bash(sed -n '40,120p' ~/.npm/_npx/8c427fe066a6b90c/node_modules/@quick-start/create-electron/index.js)",
+      "Bash(sed -n '120,165p' ~/.npm/_npx/8c427fe066a6b90c/node_modules/@quick-start/create-electron/index.js)",
+      "Bash(git init *)",
+      "Bash(git add *)"
+    ]
+  }
+}
