@@ -6,6 +6,12 @@ import './ModBrowser.css'
 
 type SourceFilter = ModSource | 'both'
 
+const SOURCE_LABELS: Record<SourceFilter, string> = {
+  both: 'Mindkettő',
+  modrinth: 'Modrinth',
+  curseforge: 'CurseForge'
+}
+
 function ModBrowser(): React.JSX.Element {
   const project = useProjectStore((s) => s.project)
   const addMod = useProjectStore((s) => s.addMod)
@@ -42,66 +48,93 @@ function ModBrowser(): React.JSX.Element {
 
   return (
     <div className="mod-browser">
-      <header>
-        <h2>
-          {project.name} — {project.mcVersion.id} ({project.loader})
-        </h2>
-        <input placeholder="Mod keresése..." value={query} onChange={(e) => setQuery(e.target.value)} />
-        <div className="source-toggle">
+      <div className="mb-toolbar">
+        <div className="mb-search">
+          <span className="mb-search-icon">🔍</span>
+          <input
+            className="input"
+            placeholder="Mod keresése..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </div>
+        <div className="segmented">
           {(['both', 'modrinth', 'curseforge'] as SourceFilter[]).map((s) => (
-            <button key={s} className={source === s ? 'active' : ''} onClick={() => setSource(s)}>
-              {s === 'both' ? 'Mindkettő' : s === 'modrinth' ? 'Modrinth' : 'CurseForge'}
+            <button key={s} className={source === s ? 'seg active' : 'seg'} onClick={() => setSource(s)}>
+              {SOURCE_LABELS[s]}
             </button>
           ))}
         </div>
-        {source !== 'modrinth' && hasCurseForgeKey === false && (
-          <p className="warning">
-            Nincs beállítva CurseForge API kulcs a Beállítások képernyőn — CurseForge találatok nem fognak
-            megjelenni.
-          </p>
-        )}
-      </header>
+      </div>
 
-      {isFetching && <p>Keresés...</p>}
-      {error && <p className="error">Hiba a keresés során: {(error as Error).message}</p>}
+      {source !== 'modrinth' && hasCurseForgeKey === false && (
+        <div className="notice warn">
+          Nincs beállítva CurseForge API kulcs — a CurseForge találatok nem jelennek meg. Add meg a
+          Beállításokban.
+        </div>
+      )}
+      {error && <div className="notice danger">Hiba a keresés során: {(error as Error).message}</div>}
       {data?.sourceErrors?.map((se) => (
-        <p key={se.source} className="warning">
+        <div key={se.source} className="notice warn">
           {se.source === 'curseforge' ? 'CurseForge' : 'Modrinth'}: {se.message}
-        </p>
+        </div>
       ))}
 
-      <ul className="results">
-        {data?.refs.map((ref) => {
-          const key = `${ref.source}:${ref.projectId}`
-          const added = addedIds.has(key)
-          return (
-            <li key={key}>
-              {ref.iconUrl && <img src={ref.iconUrl} alt="" />}
-              <div className="info">
-                <strong>
-                  {ref.name} <span className={`badge ${ref.source}`}>{ref.source}</span>
-                </strong>
-                <span>{ref.summary}</span>
-              </div>
-              <button disabled={added} onClick={() => handleAdd(ref)}>
-                {added ? 'Hozzáadva' : 'Hozzáadás'}
-              </button>
-            </li>
-          )
-        })}
-      </ul>
+      <div className="mb-layout">
+        <section className="mb-results">
+          {isFetching && <div className="mb-hint">Keresés...</div>}
+          {!isFetching && data?.refs.length === 0 && <div className="mb-hint">Nincs találat.</div>}
+          {data?.refs.map((ref) => {
+            const key = `${ref.source}:${ref.projectId}`
+            const added = addedIds.has(key)
+            return (
+              <article className="mod-card" key={key}>
+                <div className="mod-icon">
+                  {ref.iconUrl ? <img src={ref.iconUrl} alt="" /> : <span>📦</span>}
+                </div>
+                <div className="mod-info">
+                  <div className="mod-title">
+                    <span className="mod-name">{ref.name}</span>
+                    <span className={`badge ${ref.source}`}>{ref.source}</span>
+                  </div>
+                  {ref.summary && <p className="mod-summary">{ref.summary}</p>}
+                </div>
+                <button
+                  className={added ? 'btn btn-ghost' : 'btn'}
+                  disabled={added}
+                  onClick={() => handleAdd(ref)}
+                >
+                  {added ? '✓ Hozzáadva' : '+ Hozzáadás'}
+                </button>
+              </article>
+            )
+          })}
+        </section>
 
-      <section className="selected-mods">
-        <h3>Kiválasztott modok ({project.mods.length})</h3>
-        <ul>
-          {project.mods.map((m) => (
-            <li key={`${m.ref.source}:${m.ref.projectId}`}>
-              {m.ref.name} — {m.pinnedVersion.displayName}
-              <button onClick={() => removeMod(m.ref.projectId, m.ref.source)}>Eltávolítás</button>
-            </li>
-          ))}
-        </ul>
-      </section>
+        <aside className="mb-selected">
+          <div className="mbs-head">
+            Kiválasztott modok <span className="mbs-count">{project.mods.length}</span>
+          </div>
+          {project.mods.length === 0 && <div className="mbs-empty">Még nincs kiválasztott mod.</div>}
+          <div className="mbs-list">
+            {project.mods.map((m) => (
+              <div className="mbs-item" key={`${m.ref.source}:${m.ref.projectId}`}>
+                <div className="mbs-item-info">
+                  <span className="mbs-item-name">{m.ref.name}</span>
+                  <span className="mbs-item-version">{m.pinnedVersion.displayName}</span>
+                </div>
+                <button
+                  className="mbs-remove"
+                  title="Eltávolítás"
+                  onClick={() => removeMod(m.ref.projectId, m.ref.source)}
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+          </div>
+        </aside>
+      </div>
     </div>
   )
 }

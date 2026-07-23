@@ -4,7 +4,12 @@ import type { ModLoader } from '@shared/types'
 import { useProjectStore } from '../../state/projectStore'
 import './ProjectSetup.css'
 
-const LOADERS: ModLoader[] = ['fabric', 'forge', 'neoforge', 'quilt']
+const LOADERS: { id: ModLoader; label: string }[] = [
+  { id: 'fabric', label: 'Fabric' },
+  { id: 'forge', label: 'Forge' },
+  { id: 'neoforge', label: 'NeoForge' },
+  { id: 'quilt', label: 'Quilt' }
+]
 
 function ProjectSetup(): React.JSX.Element {
   const createProject = useProjectStore((s) => s.createProject)
@@ -21,38 +26,58 @@ function ProjectSetup(): React.JSX.Element {
 
   return (
     <div className="project-setup">
-      <h1>Új modpack projekt</h1>
-      <label>
-        Projekt neve
-        <input value={name} onChange={(e) => setName(e.target.value)} />
-      </label>
-      <label>
-        Minecraft verzió
-        <select value={effectiveVersion} onChange={(e) => setMcVersion(e.target.value)} disabled={isLoading}>
-          {isLoading && <option>Betöltés...</option>}
-          {gameVersions?.map((v) => (
-            <option key={v} value={v}>
-              {v}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Mod loader
-        <select value={loader} onChange={(e) => setLoader(e.target.value as ModLoader)}>
-          {LOADERS.map((l) => (
-            <option key={l} value={l}>
-              {l}
-            </option>
-          ))}
-        </select>
-      </label>
-      <button
-        disabled={!effectiveVersion || !name.trim()}
-        onClick={() => createProject(name.trim(), effectiveVersion, loader)}
-      >
-        Projekt létrehozása
-      </button>
+      <div className="setup-card">
+        <div className="setup-head">
+          <span className="setup-mark">⛏</span>
+          <h1>Minecraft Modpack Builder</h1>
+          <p className="setup-sub">Hozz létre egy új modpacket a kezdéshez</p>
+        </div>
+
+        <label className="field">
+          <span className="field-label">Projekt neve</span>
+          <input className="input" value={name} onChange={(e) => setName(e.target.value)} />
+        </label>
+
+        <label className="field">
+          <span className="field-label">Minecraft verzió</span>
+          <select
+            className="input"
+            value={effectiveVersion}
+            onChange={(e) => setMcVersion(e.target.value)}
+            disabled={isLoading}
+          >
+            {isLoading && <option>Betöltés...</option>}
+            {gameVersions?.map((v) => (
+              <option key={v} value={v}>
+                {v}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <div className="field">
+          <span className="field-label">Mod loader</span>
+          <div className="loader-grid">
+            {LOADERS.map((l) => (
+              <button
+                key={l.id}
+                className={loader === l.id ? 'loader-option active' : 'loader-option'}
+                onClick={() => setLoader(l.id)}
+              >
+                {l.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <button
+          className="btn setup-submit"
+          disabled={!effectiveVersion || !name.trim()}
+          onClick={() => createProject(name.trim(), effectiveVersion, loader)}
+        >
+          Projekt létrehozása
+        </button>
+      </div>
     </div>
   )
 }

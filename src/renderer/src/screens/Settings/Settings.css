@@ -1,29 +1,50 @@
 .settings {
-  max-width: 480px;
-  margin: 24px auto;
+  max-width: 560px;
 }
 
-.settings section {
+.settings-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.settings-card {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  padding: 22px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.settings-card-title {
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .settings .hint {
   font-size: 13px;
-  opacity: 0.75;
+  color: var(--text-dim);
+  line-height: 1.6;
 }
 
 .settings .key-status {
   font-weight: 600;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
 }
 
 .settings .key-status.ok {
-  color: #4caf50;
+  color: var(--accent);
+  background: var(--accent-soft);
 }
 
 .settings .key-status.missing {
-  color: #ffb020;
+  color: var(--warn);
+  background: rgba(245, 179, 74, 0.1);
 }
 
 .settings .key-form {
@@ -31,45 +52,19 @@
   gap: 8px;
 }
 
-.settings .key-form input {
+.settings .key-form .input {
   flex: 1;
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #444;
-  background: #1e1e1e;
-  color: inherit;
-}
-
-.settings button {
-  padding: 8px 14px;
-  border-radius: 6px;
-  border: none;
-  background: #4caf50;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.settings button:disabled {
-  background: #555;
-  cursor: not-allowed;
-}
-
-.settings button.danger {
-  background: #c0392b;
 }
 
 .settings .status {
   font-size: 13px;
-  opacity: 0.8;
+  color: var(--text-dim);
 }
 
 .settings .status.ok {
-  color: #4caf50;
-  opacity: 1;
+  color: var(--accent);
 }
 
 .settings .status.error {
-  color: #ff6b6b;
-  opacity: 1;
+  color: var(--danger);
 }

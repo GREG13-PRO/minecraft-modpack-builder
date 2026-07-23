@@ -59,10 +59,10 @@ function Settings(): React.JSX.Element {
 
   return (
     <div className="settings">
-      <h2>Beállítások</h2>
+      <h2 className="settings-title">Beállítások</h2>
 
-      <section>
-        <h3>CurseForge API kulcs</h3>
+      <section className="settings-card">
+        <h3 className="settings-card-title">CurseForge API kulcs</h3>
         <p className="hint">
           A Core API kulcsot a{' '}
           <a href="https://console.curseforge.com/" target="_blank" rel="noreferrer">
@@ -72,23 +72,24 @@ function Settings(): React.JSX.Element {
           fájljaiba.
         </p>
 
-        {hasKey === true && <p className="key-status ok">✓ API kulcs be van állítva</p>}
+        {hasKey === true && <div className="key-status ok">✓ API kulcs be van állítva</div>}
         {hasKey === false && (
-          <p className="key-status missing">Nincs beállítva API kulcs — a CurseForge keresés nem fog működni</p>
+          <div className="key-status missing">Nincs beállítva API kulcs — a CurseForge keresés nem fog működni</div>
         )}
 
         <div className="key-form">
           <input
+            className="input"
             type="password"
             placeholder="Illeszd be a CurseForge API kulcsot"
             value={keyInput}
             onChange={(e) => setKeyInput(e.target.value)}
           />
-          <button onClick={handleSave} disabled={!keyInput.trim() || saveState.kind === 'saving'}>
-            {saveState.kind === 'saving' ? 'Mentés és ellenőrzés...' : 'Mentés'}
+          <button className="btn" onClick={handleSave} disabled={!keyInput.trim() || saveState.kind === 'saving'}>
+            {saveState.kind === 'saving' ? 'Ellenőrzés...' : 'Mentés'}
           </button>
           {hasKey === true && (
-            <button className="danger" onClick={handleClear}>
+            <button className="btn btn-danger" onClick={handleClear}>
               Törlés
             </button>
           )}

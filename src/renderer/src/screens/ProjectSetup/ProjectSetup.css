@@ -1,38 +1,103 @@
 .project-setup {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 360px;
-  margin: 48px auto;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 24px;
 }
 
-.project-setup label {
+.setup-card {
+  width: 100%;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 18px;
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.setup-head {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.setup-mark {
+  font-size: 34px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.setup-head h1 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.setup-sub {
+  color: var(--text-dim);
   font-size: 14px;
+  margin-top: 6px;
 }
 
-.project-setup input,
-.project-setup select {
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #444;
-  background: #1e1e1e;
-  color: inherit;
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
 }
 
-.project-setup button {
-  padding: 10px;
-  border-radius: 6px;
-  border: none;
-  background: #4caf50;
-  color: white;
-  font-weight: 600;
+.field-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dim);
+}
+
+select.input {
   cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239aa4b4' stroke-width='2.5'><path d='M6 9l6 6 6-6'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 34px;
 }
 
-.project-setup button:disabled {
-  background: #555;
-  cursor: not-allowed;
+.loader-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.loader-option {
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-dim);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.loader-option:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.loader-option.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.setup-submit {
+  margin-top: 6px;
+  padding: 12px;
+  font-size: 15px;
 }

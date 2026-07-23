@@ -5,6 +5,7 @@ interface ProjectState {
   project: ModpackProject | null
   createProject: (name: string, mcVersion: string, loader: ModLoader) => void
   loadProject: (project: ModpackProject) => void
+  newProject: () => void
   addMod: (mod: ModpackMod) => void
   removeMod: (projectId: string, source: string) => void
 }
@@ -33,6 +34,8 @@ export const useProjectStore = create<ProjectState>((set) => ({
     }),
 
   loadProject: (project) => set({ project }),
+
+  newProject: () => set({ project: null }),
 
   addMod: (mod) =>
     set((state) => {

@@ -1,110 +1,279 @@
 .mod-browser {
-  max-width: 640px;
-  margin: 24px auto;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  height: 100%;
 }
 
-.mod-browser header {
+/* Toolbar */
+.mb-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.mb-search {
+  position: relative;
+  flex: 1;
+  min-width: 220px;
+}
+
+.mb-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.mb-search .input {
+  padding-left: 34px;
+}
+
+.segmented {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.seg {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.seg:hover {
+  color: var(--text);
+}
+
+.seg.active {
+  background: var(--surface-3);
+  color: var(--text);
+}
+
+/* Notices */
+.notice {
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  border: 1px solid transparent;
+}
+
+.notice.warn {
+  background: rgba(245, 179, 74, 0.1);
+  border-color: rgba(245, 179, 74, 0.3);
+  color: var(--warn);
+}
+
+.notice.danger {
+  background: rgba(239, 90, 90, 0.1);
+  border-color: rgba(239, 90, 90, 0.3);
+  color: var(--danger);
+}
+
+/* Layout: results + selected panel */
+.mb-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 20px;
+  flex: 1;
+  min-height: 0;
+}
+
+.mb-results {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.mb-hint {
+  color: var(--text-dim);
+  font-size: 14px;
+  padding: 12px 4px;
+}
+
+/* Mod card */
+.mod-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.mod-card:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-2);
+}
+
+.mod-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.mod-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mod-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.mod-title {
+  display: flex;
+  align-items: center;
   gap: 8px;
 }
 
-.mod-browser input {
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #444;
-  background: #1e1e1e;
-  color: inherit;
+.mod-name {
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.mod-browser .error {
-  color: #ff6b6b;
+.mod-summary {
+  color: var(--text-dim);
+  font-size: 13px;
+  margin-top: 3px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.mod-browser .warning {
-  color: #ffb020;
+.mod-card .btn {
+  flex-shrink: 0;
+}
+
+/* Selected panel */
+.mb-selected {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.mbs-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.mbs-count {
+  min-width: 22px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 11px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mbs-empty {
+  padding: 16px;
+  color: var(--text-faint);
   font-size: 13px;
 }
 
-.mod-browser .source-toggle {
-  display: flex;
-  gap: 6px;
+.mbs-list {
+  overflow-y: auto;
+  padding: 8px;
 }
 
-.mod-browser .source-toggle button {
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: 1px solid #444;
-  background: #1e1e1e;
-  color: inherit;
-  cursor: pointer;
-}
-
-.mod-browser .source-toggle button.active {
-  background: #4caf50;
-  border-color: #4caf50;
-  color: white;
-}
-
-.mod-browser .badge {
-  font-size: 10px;
-  font-weight: 600;
-  text-transform: uppercase;
-  padding: 2px 6px;
-  border-radius: 4px;
-  vertical-align: middle;
-}
-
-.mod-browser .badge.modrinth {
-  background: #1bd96a;
-  color: #04331a;
-}
-
-.mod-browser .badge.curseforge {
-  background: #f16436;
-  color: #3a1200;
-}
-
-.mod-browser .results,
-.mod-browser .selected-mods ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.mod-browser .results li {
+.mbs-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 8px;
-  border: 1px solid #333;
-  border-radius: 6px;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
 }
 
-.mod-browser .results img {
-  width: 40px;
-  height: 40px;
-  border-radius: 6px;
+.mbs-item:hover {
+  background: var(--surface-2);
 }
 
-.mod-browser .info {
+.mbs-item-info {
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
 }
 
-.mod-browser .info span {
-  font-size: 12px;
-  opacity: 0.7;
+.mbs-item-name {
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.mod-browser .selected-mods li {
-  display: flex;
-  justify-content: space-between;
-  padding: 4px 0;
+.mbs-item-version {
+  font-size: 11px;
+  color: var(--text-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mbs-remove {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-faint);
+  cursor: pointer;
+  font-size: 12px;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.mbs-remove:hover {
+  background: rgba(239, 90, 90, 0.14);
+  color: var(--danger);
 }
