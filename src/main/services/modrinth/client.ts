@@ -1,3 +1,5 @@
+import type { ContentType } from '@shared/types'
+
 const BASE_URL = 'https://api.modrinth.com/v2'
 const USER_AGENT = 'GREG13-PRO/minecraft-modpack-builder/1.0.0 (github.com/GREG13-PRO/minecraft-modpack-builder)'
 
@@ -56,27 +58,42 @@ export interface ModrinthVersion {
   }[]
 }
 
+const PROJECT_TYPE: Record<ContentType, string> = {
+  mod: 'mod',
+  resourcepack: 'resourcepack',
+  shader: 'shader'
+}
+
 export function searchProjects(
   query: string,
   mcVersion: string,
   loader: string,
+  contentType: ContentType,
   page = 0,
   pageSize = 20
 ): Promise<ModrinthSearchResponse> {
-  const facets = JSON.stringify([[`versions:${mcVersion}`], [`categories:${loader}`], ['project_type:mod']])
+  const facets = [[`versions:${mcVersion}`], [`project_type:${PROJECT_TYPE[contentType]}`]]
+  // Resource packs/shaders aren't mod-loader-specific (shaders use their own
+  // iris/optifine "loaders"), so only constrain by loader for actual mods.
+  if (contentType === 'mod') facets.push([`categories:${loader}`])
+
   return request<ModrinthSearchResponse>('/search', {
     query,
-    facets,
+    facets: JSON.stringify(facets),
     offset: String(page * pageSize),
     limit: String(pageSize)
   })
 }
 
-export function listVersions(projectId: string, mcVersion: string, loader: string): Promise<ModrinthVersion[]> {
-  return request<ModrinthVersion[]>(`/project/${projectId}/version`, {
-    game_versions: JSON.stringify([mcVersion]),
-    loaders: JSON.stringify([loader])
-  })
+export function listVersions(
+  projectId: string,
+  mcVersion: string,
+  loader: string,
+  contentType: ContentType
+): Promise<ModrinthVersion[]> {
+  const params: Record<string, string> = { game_versions: JSON.stringify([mcVersion]) }
+  if (contentType === 'mod') params.loaders = JSON.stringify([loader])
+  return request<ModrinthVersion[]>(`/project/${projectId}/version`, params)
 }
 
 export interface ModrinthGameVersionTag {

@@ -1,4 +1,4 @@
-import type { ModSearchParams, ModSearchResult, ModRef, ModVersionRef, ModLoader } from '@shared/types'
+import type { ModSearchParams, ModSearchResult, ModRef, ModVersionRef, ModLoader, ContentType } from '@shared/types'
 import * as modrinth from './modrinth/client'
 import { toModRef as toModrinthRef, toModVersionRef as toModrinthVersionRef } from './modrinth/mapper'
 import * as curseforge from './curseforge/client'
@@ -27,15 +27,15 @@ function withCache<T>(key: string, fetcher: () => Promise<T>, shouldCache: (valu
 }
 
 async function searchModrinth(params: ModSearchParams): Promise<ModSearchResult> {
-  const { query, mcVersion, loader, page = 0, pageSize = 20 } = params
-  const res = await modrinth.searchProjects(query, mcVersion, loader, page, pageSize)
+  const { query, mcVersion, loader, contentType, page = 0, pageSize = 20 } = params
+  const res = await modrinth.searchProjects(query, mcVersion, loader, contentType, page, pageSize)
   return { refs: res.hits.map(toModrinthRef), totalCount: res.total_hits }
 }
 
 async function searchCurseForge(params: ModSearchParams): Promise<ModSearchResult> {
-  const { query, mcVersion, loader, page = 0, pageSize = 20 } = params
+  const { query, mcVersion, loader, contentType, page = 0, pageSize = 20 } = params
   try {
-    const res = await curseforge.searchMods(query, mcVersion, loader, page, pageSize)
+    const res = await curseforge.searchMods(query, mcVersion, loader, contentType, page, pageSize)
     return { refs: res.data.map(toCurseForgeRef), totalCount: res.pagination.totalCount }
   } catch (err) {
     if (err instanceof MissingApiKeyError) return { refs: [], totalCount: 0 }
@@ -51,7 +51,7 @@ async function searchCurseForge(params: ModSearchParams): Promise<ModSearchResul
 
 export async function searchMods(params: ModSearchParams): Promise<ModSearchResult> {
   const { source } = params
-  const cacheKey = `search:${source}:${params.query}:${params.mcVersion}:${params.loader}:${params.page ?? 0}:${params.pageSize ?? 20}`
+  const cacheKey = `search:${source}:${params.contentType}:${params.query}:${params.mcVersion}:${params.loader}:${params.page ?? 0}:${params.pageSize ?? 20}`
 
   return withCache(
     cacheKey,
@@ -80,16 +80,21 @@ export async function getReleaseGameVersions(): Promise<string[]> {
   })
 }
 
-export async function listVersions(ref: ModRef, mcVersion: string, loader: ModLoader): Promise<ModVersionRef[]> {
-  const cacheKey = `versions:${ref.source}:${ref.projectId}:${mcVersion}:${loader}`
+export async function listVersions(
+  ref: ModRef,
+  mcVersion: string,
+  loader: ModLoader,
+  contentType: ContentType = 'mod'
+): Promise<ModVersionRef[]> {
+  const cacheKey = `versions:${ref.source}:${ref.projectId}:${mcVersion}:${loader}:${contentType}`
 
   return withCache(cacheKey, async () => {
     if (ref.source === 'modrinth') {
-      const versions = await modrinth.listVersions(ref.projectId, mcVersion, loader)
+      const versions = await modrinth.listVersions(ref.projectId, mcVersion, loader, contentType)
       return versions.map(toModrinthVersionRef)
     }
 
-    const res = await curseforge.listFiles(ref.projectId, mcVersion, loader)
+    const res = await curseforge.listFiles(ref.projectId, mcVersion, loader, contentType)
     return res.data.map(toCurseForgeVersionRef)
   })
 }

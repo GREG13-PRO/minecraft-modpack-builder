@@ -1,9 +1,15 @@
-import type { ModLoader, ApiKeyTestResult } from '@shared/types'
+import type { ContentType, ModLoader, ApiKeyTestResult } from '@shared/types'
 import { getCurseForgeApiKey } from '../secureSettings'
 
 const BASE_URL = 'https://api.curseforge.com/v1'
 const MINECRAFT_GAME_ID = 432
-const MODS_CLASS_ID = 6
+
+// Verified live against GET /v1/categories?gameId=432 (isClass=true entries).
+const CLASS_ID: Record<ContentType, number> = {
+  mod: 6,
+  resourcepack: 12,
+  shader: 6552
+}
 
 // https://docs.curseforge.com/rest-api/#tocS_ModLoaderType
 const MOD_LOADER_TYPE: Record<ModLoader, number> = {
@@ -109,25 +115,33 @@ export function searchMods(
   query: string,
   mcVersion: string,
   loader: ModLoader,
+  contentType: ContentType,
   page = 0,
   pageSize = 20
 ): Promise<CurseForgeSearchResponse> {
-  return request<CurseForgeSearchResponse>('/mods/search', {
+  const params: Record<string, string> = {
     gameId: String(MINECRAFT_GAME_ID),
-    classId: String(MODS_CLASS_ID),
+    classId: String(CLASS_ID[contentType]),
     searchFilter: query,
     gameVersion: mcVersion,
-    modLoaderType: String(MOD_LOADER_TYPE[loader]),
     index: String(page * pageSize),
     pageSize: String(pageSize)
-  })
+  }
+  // Resource packs/shaders aren't loader-specific on CurseForge either.
+  if (contentType === 'mod') params.modLoaderType = String(MOD_LOADER_TYPE[loader])
+
+  return request<CurseForgeSearchResponse>('/mods/search', params)
 }
 
-export function listFiles(modId: string, mcVersion: string, loader: ModLoader): Promise<CurseForgeFilesResponse> {
-  return request<CurseForgeFilesResponse>(`/mods/${modId}/files`, {
-    gameVersion: mcVersion,
-    modLoaderType: String(MOD_LOADER_TYPE[loader])
-  })
+export function listFiles(
+  modId: string,
+  mcVersion: string,
+  loader: ModLoader,
+  contentType: ContentType
+): Promise<CurseForgeFilesResponse> {
+  const params: Record<string, string> = { gameVersion: mcVersion }
+  if (contentType === 'mod') params.modLoaderType = String(MOD_LOADER_TYPE[loader])
+  return request<CurseForgeFilesResponse>(`/mods/${modId}/files`, params)
 }
 
 export function getMod(modId: string): Promise<{ data: CurseForgeMod }> {

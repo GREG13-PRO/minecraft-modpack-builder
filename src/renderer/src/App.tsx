@@ -58,7 +58,10 @@ function AppShell(): React.JSX.Element {
             <span className="sp-chip">{project.mcVersion.id}</span>
             <span className="sp-chip">{project.loader}</span>
           </div>
-          <div className="sp-count">{project.mods.length} mod kiválasztva</div>
+          <div className="sp-count">
+            {project.mods.length} mod · {project.resourcePacks.length} resource pack · {project.shaders.length}{' '}
+            shader
+          </div>
           <button className="sp-new" onClick={newProject}>
             + Új projekt
           </button>

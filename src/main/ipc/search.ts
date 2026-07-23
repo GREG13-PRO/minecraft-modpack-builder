@@ -1,5 +1,5 @@
 import { ipcMain } from 'electron'
-import type { ModSearchParams, ModRef, ModLoader } from '@shared/types'
+import type { ModSearchParams, ModRef, ModLoader, ContentType } from '@shared/types'
 import * as modService from '../services/modService'
 
 export function registerSearchIpc(): void {
@@ -7,7 +7,8 @@ export function registerSearchIpc(): void {
 
   ipcMain.handle(
     'search:versions',
-    (_event, ref: ModRef, mcVersion: string, loader: ModLoader) => modService.listVersions(ref, mcVersion, loader)
+    (_event, ref: ModRef, mcVersion: string, loader: ModLoader, contentType: ContentType) =>
+      modService.listVersions(ref, mcVersion, loader, contentType)
   )
 
   ipcMain.handle('search:gameVersions', () => modService.getReleaseGameVersions())

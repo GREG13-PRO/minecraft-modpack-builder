@@ -2,6 +2,12 @@ export type ModLoader = 'forge' | 'fabric' | 'neoforge' | 'quilt'
 
 export type ModSource = 'curseforge' | 'modrinth'
 
+// What kind of content is being searched/stored. Resource packs and shaders
+// aren't tied to a mod loader the way mods are (shaders use their own
+// "loaders" like iris/optifine on Modrinth) — the ModLoader filter only
+// applies when contentType is 'mod'.
+export type ContentType = 'mod' | 'resourcepack' | 'shader'
+
 export interface MinecraftVersion {
   id: string
   type: 'release' | 'snapshot'
@@ -52,6 +58,8 @@ export interface ModpackProject {
   loader: ModLoader
   loaderVersion?: string
   mods: ModpackMod[]
+  resourcePacks: ModpackMod[]
+  shaders: ModpackMod[]
   createdAt: string
   updatedAt: string
 }
@@ -82,6 +90,7 @@ export interface ModSearchParams {
   mcVersion: string
   loader: ModLoader
   source: ModSource | 'both'
+  contentType: ContentType
   page?: number
   pageSize?: number
 }

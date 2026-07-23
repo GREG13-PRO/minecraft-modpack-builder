@@ -13,7 +13,7 @@ const STATUS_LABEL: Record<ScanStatus, string> = {
 
 function InstalledScan(): React.JSX.Element {
   const project = useProjectStore((s) => s.project)
-  const addMod = useProjectStore((s) => s.addMod)
+  const addItem = useProjectStore((s) => s.addItem)
   const [folder, setFolder] = useState<string | undefined>()
   const [results, setResults] = useState<InstalledModScanResult[] | null>(null)
   const [scanning, setScanning] = useState(false)
@@ -44,7 +44,12 @@ function InstalledScan(): React.JSX.Element {
     if (!result.matchedRef) return
     const version = useLatest ? result.latestCompatibleVersion : result.matchedVersion
     if (!version) return
-    addMod({ ref: result.matchedRef, pinnedVersion: version, addedAt: new Date().toISOString(), fromLocalScan: true })
+    addItem('mod', {
+      ref: result.matchedRef,
+      pinnedVersion: version,
+      addedAt: new Date().toISOString(),
+      fromLocalScan: true
+    })
   }
 
   const addedIds = new Set(project.mods.map((m) => `${m.ref.source}:${m.ref.projectId}`))

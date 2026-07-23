@@ -2,6 +2,7 @@ import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 import type {
   ApiKeyTestResult,
+  ContentType,
   InstalledModScanResult,
   ModLoader,
   ModpackProject,
@@ -12,8 +13,8 @@ import type {
 const api = {
   search: {
     searchMods: (params: ModSearchParams) => ipcRenderer.invoke('search:mods', params),
-    listVersions: (ref: ModRef, mcVersion: string, loader: ModLoader) =>
-      ipcRenderer.invoke('search:versions', ref, mcVersion, loader),
+    listVersions: (ref: ModRef, mcVersion: string, loader: ModLoader, contentType: ContentType) =>
+      ipcRenderer.invoke('search:versions', ref, mcVersion, loader, contentType),
     gameVersions: () => ipcRenderer.invoke('search:gameVersions') as Promise<string[]>
   },
   projects: {

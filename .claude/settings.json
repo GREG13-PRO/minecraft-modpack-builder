@@ -45,7 +45,8 @@
       "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-modern-2.png)",
       "Bash(node -e \"const a = require\\('archiver'\\); console.log\\(typeof a, Object.keys\\(a\\)\\)\")",
       "Bash(rm -rf /tmp/fp-verify /tmp/fp-verify2 /tmp/fp-verify3 /tmp/fetch-userdata *)",
-      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-scan-tab.png)"
+      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-scan-tab.png)",
+      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-content-types-1.png)"
     ],
     "additionalDirectories": [
       "/private/tmp/fp-verify"

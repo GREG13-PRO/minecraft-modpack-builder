@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import type { ModRef, ModSource } from '@shared/types'
+import type { ContentType, ModRef, ModSource } from '@shared/types'
 import { useProjectStore } from '../../state/projectStore'
 import './ModBrowser.css'
 
@@ -12,10 +12,29 @@ const SOURCE_LABELS: Record<SourceFilter, string> = {
   curseforge: 'CurseForge'
 }
 
+const CONTENT_TYPES: { id: ContentType; label: string; icon: string; field: 'mods' | 'resourcePacks' | 'shaders' }[] = [
+  { id: 'mod', label: 'Modok', icon: '🧩', field: 'mods' },
+  { id: 'resourcepack', label: 'Resource packok', icon: '🖼️', field: 'resourcePacks' },
+  { id: 'shader', label: 'Shaderek', icon: '✨', field: 'shaders' }
+]
+
+const CONTENT_SEARCH_PLACEHOLDER: Record<ContentType, string> = {
+  mod: 'Mod keresése...',
+  resourcepack: 'Resource pack keresése...',
+  shader: 'Shader keresése...'
+}
+
+const CONTENT_ADD_LABEL: Record<ContentType, string> = {
+  mod: 'Kiválasztott modok',
+  resourcepack: 'Kiválasztott resource packok',
+  shader: 'Kiválasztott shaderek'
+}
+
 function ModBrowser(): React.JSX.Element {
   const project = useProjectStore((s) => s.project)
-  const addMod = useProjectStore((s) => s.addMod)
-  const removeMod = useProjectStore((s) => s.removeMod)
+  const addItem = useProjectStore((s) => s.addItem)
+  const removeItem = useProjectStore((s) => s.removeItem)
+  const [contentType, setContentType] = useState<ContentType>('mod')
   const [query, setQuery] = useState('')
   const [source, setSource] = useState<SourceFilter>('both')
 
@@ -25,35 +44,51 @@ function ModBrowser(): React.JSX.Element {
   })
 
   const { data, isFetching, error } = useQuery({
-    queryKey: ['modSearch', query, project?.mcVersion.id, project?.loader, source],
+    queryKey: ['modSearch', query, project?.mcVersion.id, project?.loader, source, contentType],
     queryFn: () =>
       window.api.search.searchMods({
         query,
         mcVersion: project!.mcVersion.id,
         loader: project!.loader,
-        source
+        source,
+        contentType
       }),
     enabled: Boolean(project)
   })
 
   if (!project) return <p>Előbb hozz létre egy projektet.</p>
 
-  const addedIds = new Set(project.mods.map((m) => `${m.ref.source}:${m.ref.projectId}`))
+  const activeField = CONTENT_TYPES.find((c) => c.id === contentType)!.field
+  const selectedItems = project[activeField]
+  const addedIds = new Set(selectedItems.map((m) => `${m.ref.source}:${m.ref.projectId}`))
 
   async function handleAdd(ref: ModRef): Promise<void> {
-    const versions = await window.api.search.listVersions(ref, project!.mcVersion.id, project!.loader)
+    const versions = await window.api.search.listVersions(ref, project!.mcVersion.id, project!.loader, contentType)
     if (versions.length === 0) return
-    addMod({ ref, pinnedVersion: versions[0], addedAt: new Date().toISOString() })
+    addItem(contentType, { ref, pinnedVersion: versions[0], addedAt: new Date().toISOString() })
   }
 
   return (
     <div className="mod-browser">
+      <div className="content-type-tabs">
+        {CONTENT_TYPES.map((c) => (
+          <button
+            key={c.id}
+            className={contentType === c.id ? 'ct-tab active' : 'ct-tab'}
+            onClick={() => setContentType(c.id)}
+          >
+            <span>{c.icon}</span> {c.label}
+            <span className="ct-tab-count">{project[c.field].length}</span>
+          </button>
+        ))}
+      </div>
+
       <div className="mb-toolbar">
         <div className="mb-search">
           <span className="mb-search-icon">🔍</span>
           <input
             className="input"
-            placeholder="Mod keresése..."
+            placeholder={CONTENT_SEARCH_PLACEHOLDER[contentType]}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
@@ -113,11 +148,11 @@ function ModBrowser(): React.JSX.Element {
 
         <aside className="mb-selected">
           <div className="mbs-head">
-            Kiválasztott modok <span className="mbs-count">{project.mods.length}</span>
+            {CONTENT_ADD_LABEL[contentType]} <span className="mbs-count">{selectedItems.length}</span>
           </div>
-          {project.mods.length === 0 && <div className="mbs-empty">Még nincs kiválasztott mod.</div>}
+          {selectedItems.length === 0 && <div className="mbs-empty">Még nincs kiválasztva.</div>}
           <div className="mbs-list">
-            {project.mods.map((m) => (
+            {selectedItems.map((m) => (
               <div className="mbs-item" key={`${m.ref.source}:${m.ref.projectId}`}>
                 <div className="mbs-item-info">
                   <span className="mbs-item-name">{m.ref.name}</span>
@@ -126,7 +161,7 @@ function ModBrowser(): React.JSX.Element {
                 <button
                   className="mbs-remove"
                   title="Eltávolítás"
-                  onClick={() => removeMod(m.ref.projectId, m.ref.source)}
+                  onClick={() => removeItem(contentType, m.ref.projectId, m.ref.source)}
                 >
                   ✕
                 </button>

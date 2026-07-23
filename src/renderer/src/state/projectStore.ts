@@ -1,13 +1,19 @@
 import { create } from 'zustand'
-import type { ModLoader, ModpackMod, ModpackProject } from '@shared/types'
+import type { ContentType, ModLoader, ModpackMod, ModpackProject } from '@shared/types'
+
+const FIELD: Record<ContentType, 'mods' | 'resourcePacks' | 'shaders'> = {
+  mod: 'mods',
+  resourcepack: 'resourcePacks',
+  shader: 'shaders'
+}
 
 interface ProjectState {
   project: ModpackProject | null
   createProject: (name: string, mcVersion: string, loader: ModLoader) => void
   loadProject: (project: ModpackProject) => void
   newProject: () => void
-  addMod: (mod: ModpackMod) => void
-  removeMod: (projectId: string, source: string) => void
+  addItem: (contentType: ContentType, mod: ModpackMod) => void
+  removeItem: (contentType: ContentType, projectId: string, source: string) => void
 }
 
 function newProjectId(): string {
@@ -26,6 +32,8 @@ export const useProjectStore = create<ProjectState>((set) => ({
         mcVersion: { id: mcVersion, type: 'release' },
         loader,
         mods: [],
+        resourcePacks: [],
+        shaders: [],
         createdAt: now,
         updatedAt: now
       }
@@ -33,28 +41,36 @@ export const useProjectStore = create<ProjectState>((set) => ({
       return { project }
     }),
 
-  loadProject: (project) => set({ project }),
+  loadProject: (project) =>
+    set({
+      project: {
+        ...project,
+        resourcePacks: project.resourcePacks ?? [],
+        shaders: project.shaders ?? []
+      }
+    }),
 
   newProject: () => set({ project: null }),
 
-  addMod: (mod) =>
+  addItem: (contentType, mod) =>
     set((state) => {
       if (!state.project) return state
-      const alreadyAdded = state.project.mods.some(
-        (m) => m.ref.source === mod.ref.source && m.ref.projectId === mod.ref.projectId
-      )
+      const field = FIELD[contentType]
+      const items = state.project[field]
+      const alreadyAdded = items.some((m) => m.ref.source === mod.ref.source && m.ref.projectId === mod.ref.projectId)
       if (alreadyAdded) return state
-      const project = { ...state.project, mods: [...state.project.mods, mod] }
+      const project = { ...state.project, [field]: [...items, mod] }
       window.api.projects.save(project)
       return { project }
     }),
 
-  removeMod: (projectId, source) =>
+  removeItem: (contentType, projectId, source) =>
     set((state) => {
       if (!state.project) return state
+      const field = FIELD[contentType]
       const project = {
         ...state.project,
-        mods: state.project.mods.filter((m) => !(m.ref.projectId === projectId && m.ref.source === source))
+        [field]: state.project[field].filter((m) => !(m.ref.projectId === projectId && m.ref.source === source))
       }
       window.api.projects.save(project)
       return { project }
