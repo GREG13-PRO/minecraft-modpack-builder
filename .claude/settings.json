@@ -25,7 +25,10 @@
       "Bash(osascript -e 'tell application \"Electron\" to activate')",
       "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-screenshot.png)",
       "Bash(osascript -e 'tell application \"System Events\" to tell process \"Electron\" to get {name, position, size} of every window')",
-      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-screenshot2.png)"
+      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-screenshot2.png)",
+      "Bash(kill 7150 7153)",
+      "Bash(pkill -f \"MINECRAFT-MODPACK/node_modules/electron\")",
+      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-m2-1.png)"
     ]
   }
 }

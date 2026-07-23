@@ -1,6 +1,9 @@
-import type { ModSearchParams, ModSearchResult, ModRef, ModVersionRef } from '@shared/types'
+import type { ModSearchParams, ModSearchResult, ModRef, ModVersionRef, ModLoader } from '@shared/types'
 import * as modrinth from './modrinth/client'
-import { toModRef, toModVersionRef } from './modrinth/mapper'
+import { toModRef as toModrinthRef, toModVersionRef as toModrinthVersionRef } from './modrinth/mapper'
+import * as curseforge from './curseforge/client'
+import { MissingApiKeyError } from './curseforge/client'
+import { toModRef as toCurseForgeRef, toModVersionRef as toCurseForgeVersionRef } from './curseforge/mapper'
 
 interface CacheEntry<T> {
   value: T
@@ -21,16 +24,38 @@ function withCache<T>(key: string, fetcher: () => Promise<T>): Promise<T> {
   })
 }
 
-export async function searchMods(params: ModSearchParams): Promise<ModSearchResult> {
+async function searchModrinth(params: ModSearchParams): Promise<ModSearchResult> {
   const { query, mcVersion, loader, page = 0, pageSize = 20 } = params
-  const cacheKey = `search:${query}:${mcVersion}:${loader}:${page}:${pageSize}`
+  const res = await modrinth.searchProjects(query, mcVersion, loader, page, pageSize)
+  return { refs: res.hits.map(toModrinthRef), totalCount: res.total_hits }
+}
 
-  // Only Modrinth is wired up so far; CurseForge integration lands in M2.
+async function searchCurseForge(params: ModSearchParams): Promise<ModSearchResult> {
+  const { query, mcVersion, loader, page = 0, pageSize = 20 } = params
+  try {
+    const res = await curseforge.searchMods(query, mcVersion, loader, page, pageSize)
+    return { refs: res.data.map(toCurseForgeRef), totalCount: res.pagination.totalCount }
+  } catch (err) {
+    if (err instanceof MissingApiKeyError) return { refs: [], totalCount: 0 }
+    throw err
+  }
+}
+
+export async function searchMods(params: ModSearchParams): Promise<ModSearchResult> {
+  const { query, mcVersion, loader, source, page = 0, pageSize = 20 } = params
+  const cacheKey = `search:${source}:${query}:${mcVersion}:${loader}:${page}:${pageSize}`
+
   return withCache(cacheKey, async () => {
-    const res = await modrinth.searchProjects(query, mcVersion, loader, page, pageSize)
+    if (source === 'modrinth') return searchModrinth(params)
+    if (source === 'curseforge') return searchCurseForge(params)
+
+    const [modrinthResult, curseforgeResult] = await Promise.all([
+      searchModrinth(params),
+      searchCurseForge(params)
+    ])
     return {
-      refs: res.hits.map(toModRef),
-      totalCount: res.total_hits
+      refs: [...modrinthResult.refs, ...curseforgeResult.refs],
+      totalCount: modrinthResult.totalCount + curseforgeResult.totalCount
     }
   })
 }
@@ -42,14 +67,16 @@ export async function getReleaseGameVersions(): Promise<string[]> {
   })
 }
 
-export async function listVersions(ref: ModRef, mcVersion: string, loader: string): Promise<ModVersionRef[]> {
+export async function listVersions(ref: ModRef, mcVersion: string, loader: ModLoader): Promise<ModVersionRef[]> {
   const cacheKey = `versions:${ref.source}:${ref.projectId}:${mcVersion}:${loader}`
 
   return withCache(cacheKey, async () => {
     if (ref.source === 'modrinth') {
       const versions = await modrinth.listVersions(ref.projectId, mcVersion, loader)
-      return versions.map(toModVersionRef)
+      return versions.map(toModrinthVersionRef)
     }
-    throw new Error('CurseForge support is not implemented yet')
+
+    const res = await curseforge.listFiles(ref.projectId, mcVersion, loader)
+    return res.data.map(toCurseForgeVersionRef)
   })
 }

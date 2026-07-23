@@ -1,23 +1,31 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import type { ModRef } from '@shared/types'
+import type { ModRef, ModSource } from '@shared/types'
 import { useProjectStore } from '../../state/projectStore'
 import './ModBrowser.css'
+
+type SourceFilter = ModSource | 'both'
 
 function ModBrowser(): React.JSX.Element {
   const project = useProjectStore((s) => s.project)
   const addMod = useProjectStore((s) => s.addMod)
   const removeMod = useProjectStore((s) => s.removeMod)
   const [query, setQuery] = useState('')
+  const [source, setSource] = useState<SourceFilter>('both')
+
+  const { data: hasCurseForgeKey } = useQuery({
+    queryKey: ['hasCurseForgeApiKey'],
+    queryFn: () => window.api.settings.hasCurseForgeApiKey()
+  })
 
   const { data, isFetching, error } = useQuery({
-    queryKey: ['modSearch', query, project?.mcVersion.id, project?.loader],
+    queryKey: ['modSearch', query, project?.mcVersion.id, project?.loader, source],
     queryFn: () =>
       window.api.search.searchMods({
         query,
         mcVersion: project!.mcVersion.id,
         loader: project!.loader,
-        source: 'modrinth'
+        source
       }),
     enabled: Boolean(project)
   })
@@ -38,11 +46,20 @@ function ModBrowser(): React.JSX.Element {
         <h2>
           {project.name} — {project.mcVersion.id} ({project.loader})
         </h2>
-        <input
-          placeholder="Mod keresése..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
+        <input placeholder="Mod keresése..." value={query} onChange={(e) => setQuery(e.target.value)} />
+        <div className="source-toggle">
+          {(['both', 'modrinth', 'curseforge'] as SourceFilter[]).map((s) => (
+            <button key={s} className={source === s ? 'active' : ''} onClick={() => setSource(s)}>
+              {s === 'both' ? 'Mindkettő' : s === 'modrinth' ? 'Modrinth' : 'CurseForge'}
+            </button>
+          ))}
+        </div>
+        {source !== 'modrinth' && hasCurseForgeKey === false && (
+          <p className="warning">
+            Nincs beállítva CurseForge API kulcs a Beállítások képernyőn — CurseForge találatok nem fognak
+            megjelenni.
+          </p>
+        )}
       </header>
 
       {isFetching && <p>Keresés...</p>}
@@ -56,7 +73,9 @@ function ModBrowser(): React.JSX.Element {
             <li key={key}>
               {ref.iconUrl && <img src={ref.iconUrl} alt="" />}
               <div className="info">
-                <strong>{ref.name}</strong>
+                <strong>
+                  {ref.name} <span className={`badge ${ref.source}`}>{ref.source}</span>
+                </strong>
                 <span>{ref.summary}</span>
               </div>
               <button disabled={added} onClick={() => handleAdd(ref)}>

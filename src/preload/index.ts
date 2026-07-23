@@ -1,11 +1,11 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
-import type { ModpackProject, ModRef, ModSearchParams } from '@shared/types'
+import type { ModLoader, ModpackProject, ModRef, ModSearchParams } from '@shared/types'
 
 const api = {
   search: {
     searchMods: (params: ModSearchParams) => ipcRenderer.invoke('search:mods', params),
-    listVersions: (ref: ModRef, mcVersion: string, loader: string) =>
+    listVersions: (ref: ModRef, mcVersion: string, loader: ModLoader) =>
       ipcRenderer.invoke('search:versions', ref, mcVersion, loader),
     gameVersions: () => ipcRenderer.invoke('search:gameVersions') as Promise<string[]>
   },
@@ -13,6 +13,11 @@ const api = {
     list: () => ipcRenderer.invoke('projects:list'),
     save: (project: ModpackProject) => ipcRenderer.invoke('projects:save', project),
     delete: (id: string) => ipcRenderer.invoke('projects:delete', id)
+  },
+  settings: {
+    hasCurseForgeApiKey: () => ipcRenderer.invoke('settings:hasCurseForgeApiKey') as Promise<boolean>,
+    setCurseForgeApiKey: (key: string) => ipcRenderer.invoke('settings:setCurseForgeApiKey', key) as Promise<void>,
+    clearCurseForgeApiKey: () => ipcRenderer.invoke('settings:clearCurseForgeApiKey') as Promise<void>
   }
 }
 
