@@ -1,0 +1,148 @@
+{
+  "app": {
+    "loading": "Laden…",
+    "nav": {
+      "modBrowser": "Mod-verkenner",
+      "installedScan": "Geïnstalleerde mods",
+      "export": "Exporteren",
+      "settings": "Instellingen"
+    },
+    "sidebar": {
+      "activeProject": "Actief project",
+      "newProject": "Nieuw project",
+      "counts": "{{mods}} mods · {{resourcePacks}} resourcepacks · {{shaders}} shaders",
+      "launch": "Spel starten",
+      "launching": "Starten...",
+      "launchError": "Kon niet starten: {{message}}"
+    }
+  },
+  "projectSetup": {
+    "title": "Minecraft Modpack Builder",
+    "subtitle": "Maak een nieuwe modpack om te beginnen",
+    "projectName": "Projectnaam",
+    "defaultProjectName": "Nieuwe modpack",
+    "minecraftVersion": "Minecraft-versie",
+    "loadingVersions": "Laden...",
+    "modLoader": "Mod loader",
+    "createProject": "Project aanmaken"
+  },
+  "modBrowser": {
+    "noProject": "Maak eerst een project aan.",
+    "searchPlaceholder": {
+      "mod": "Mods zoeken...",
+      "resourcepack": "Resourcepacks zoeken...",
+      "shader": "Shaders zoeken..."
+    },
+    "contentType": {
+      "mod": "Mods",
+      "resourcepack": "Resourcepacks",
+      "shader": "Shaders"
+    },
+    "selectedLabel": {
+      "mod": "Geselecteerde mods",
+      "resourcepack": "Geselecteerde resourcepacks",
+      "shader": "Geselecteerde shaders"
+    },
+    "source": {
+      "both": "Beide",
+      "modrinth": "Modrinth",
+      "curseforge": "CurseForge"
+    },
+    "noCurseForgeKey": "Geen CurseForge API-sleutel ingesteld — CurseForge-resultaten verschijnen niet. Voeg er een toe bij Instellingen.",
+    "searchError": "Zoekfout: {{message}}",
+    "sourceError": {
+      "invalid-api-key": "CurseForge: ongeldige API-sleutel ({{status}}). Controleer de Instellingen.",
+      "other": "{{source}}: {{detail}}"
+    },
+    "searching": "Zoeken...",
+    "noResults": "Geen resultaten.",
+    "added": "Toegevoegd",
+    "add": "Toevoegen",
+    "remove": "Verwijderen",
+    "empty": "Nog niets geselecteerd."
+  },
+  "installedScan": {
+    "noProject": "Maak eerst een project aan.",
+    "pickFolder": "Kies mods-map",
+    "noFolder": "Geen map geselecteerd",
+    "scanning": "Scannen...",
+    "startScan": "Scan starten",
+    "scanError": "Scanfout: {{message}}",
+    "summary": {
+      "total": "mods",
+      "upToDate": "actueel",
+      "outdated": "verouderd",
+      "problem": "problematisch"
+    },
+    "status": {
+      "up-to-date": "Actueel",
+      "outdated": "Verouderd",
+      "incompatible-loader": "Niet compatibel",
+      "unrecognized": "Niet herkend",
+      "not-on-target-mc-version": "Niet te verifiëren"
+    },
+    "update": "Bijwerken ({{version}})",
+    "addToProject": "Toevoegen aan project",
+    "added": "Toegevoegd"
+  },
+  "settings": {
+    "title": "Instellingen",
+    "language": "Taal",
+    "curseforgeApiKey": "CurseForge API-sleutel",
+    "hintPrefix": "Haal een Core API-sleutel op via",
+    "hintSuffix": ". De sleutel wordt versleuteld op deze computer opgeslagen en komt nooit in de projectbestanden terecht.",
+    "keyStatusOk": "API-sleutel ingesteld",
+    "keyStatusMissing": "Geen API-sleutel ingesteld — zoeken op CurseForge werkt niet",
+    "placeholder": "Plak je CurseForge API-sleutel",
+    "save": "Opslaan",
+    "checking": "Controleren...",
+    "clear": "Wissen",
+    "keyValid": "Opgeslagen en geverifieerd — de sleutel is geldig en werkt.",
+    "keyInvalid": "⚠ Opgeslagen, maar: CurseForge heeft de sleutel geweigerd ({{status}}). Zorg dat je een Core API-sleutel hebt gebruikt, geen Studio persoonlijk toegangstoken.",
+    "keyError": "Fout: {{message}}",
+    "launcher": {
+      "title": "Spellauncher",
+      "which": "Welke launcher gebruik je?",
+      "official": "Officiële Minecraft Launcher",
+      "tlauncher": "TLauncher",
+      "detected": "Automatisch gedetecteerd: {{path}}",
+      "notDetected": "Niet automatisch gedetecteerd — kies hieronder handmatig.",
+      "customPath": "In gebruik: {{path}}",
+      "browse": "Bladeren…",
+      "note": "Dit opent alleen de launcher-app — hij kan niet je profiel selecteren of voor jou op Spelen drukken. Stel eenmalig de spelmap van je launcher in op de geëxporteerde map en gebruik daarna deze knop om hem op elk moment te openen."
+    }
+  },
+  "export": {
+    "title": "Exporteren",
+    "noProject": "Maak eerst een project aan.",
+    "summary": "{{mods}} mods · {{resourcePacks}} resourcepacks · {{shaders}} shaders",
+    "formats": {
+      "folder": {
+        "title": "Mods-map",
+        "description": "Downloadt mods/resourcepacks/shaders naar een mods/resourcepacks/shaderpacks-mapstructuur — voor TLauncher of de officiële launcher."
+      },
+      "mrpack": {
+        "title": ".mrpack",
+        "description": "Modrinth-modpackformaat — te importeren in Prism Launcher en andere .mrpack-compatibele launchers."
+      },
+      "curseforge-zip": {
+        "title": "CurseForge zip",
+        "description": "CurseForge-modpackformaat (manifest.json + overrides) — te importeren in de CurseForge-app."
+      }
+    },
+    "pickFolder": "Kies doelmap",
+    "pickFile": "Kies doelbestand",
+    "noDestination": "Geen bestemming geselecteerd",
+    "exporting": "Exporteren...",
+    "startExport": "Export starten",
+    "nothingSelected": "Geen mods, resourcepacks of shaders geselecteerd.",
+    "exportError": "Exportfout: {{message}}",
+    "exportDone": "Export voltooid: {{path}}",
+    "warningsCount": "{{count}} waarschuwing(en):",
+    "warningReason": {
+      "distribution-disabled": "{{name}}: de auteur heeft directe distributie uitgeschakeld — installeer handmatig",
+      "missing-hash": "{{name}}: sha1-hash ontbreekt — overgeslagen",
+      "download-failed": "{{name}}: {{detail}}"
+    }
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "app": {
+    "loading": "Загрузка…",
+    "nav": {
+      "modBrowser": "Обзор модов",
+      "installedScan": "Установленные моды",
+      "export": "Экспорт",
+      "settings": "Настройки"
+    },
+    "sidebar": {
+      "activeProject": "Активный проект",
+      "newProject": "Новый проект",
+      "counts": "{{mods}} модов · {{resourcePacks}} ресурспаков · {{shaders}} шейдеров",
+      "launch": "Запустить игру",
+      "launching": "Запуск...",
+      "launchError": "Не удалось запустить: {{message}}"
+    }
+  },
+  "projectSetup": {
+    "title": "Minecraft Modpack Builder",
+    "subtitle": "Создайте новый модпак, чтобы начать",
+    "projectName": "Название проекта",
+    "defaultProjectName": "Новый модпак",
+    "minecraftVersion": "Версия Minecraft",
+    "loadingVersions": "Загрузка...",
+    "modLoader": "Мод-лоадер",
+    "createProject": "Создать проект"
+  },
+  "modBrowser": {
+    "noProject": "Сначала создайте проект.",
+    "searchPlaceholder": {
+      "mod": "Поиск модов...",
+      "resourcepack": "Поиск ресурспаков...",
+      "shader": "Поиск шейдеров..."
+    },
+    "contentType": {
+      "mod": "Моды",
+      "resourcepack": "Ресурспаки",
+      "shader": "Шейдеры"
+    },
+    "selectedLabel": {
+      "mod": "Выбранные моды",
+      "resourcepack": "Выбранные ресурспаки",
+      "shader": "Выбранные шейдеры"
+    },
+    "source": {
+      "both": "Оба",
+      "modrinth": "Modrinth",
+      "curseforge": "CurseForge"
+    },
+    "noCurseForgeKey": "API-ключ CurseForge не настроен — результаты CurseForge не появятся. Добавьте его в Настройках.",
+    "searchError": "Ошибка поиска: {{message}}",
+    "sourceError": {
+      "invalid-api-key": "CurseForge: неверный API-ключ ({{status}}). Проверьте Настройки.",
+      "other": "{{source}}: {{detail}}"
+    },
+    "searching": "Поиск...",
+    "noResults": "Нет результатов.",
+    "added": "Добавлено",
+    "add": "Добавить",
+    "remove": "Удалить",
+    "empty": "Пока ничего не выбрано."
+  },
+  "installedScan": {
+    "noProject": "Сначала создайте проект.",
+    "pickFolder": "Выбрать папку модов",
+    "noFolder": "Папка не выбрана",
+    "scanning": "Сканирование...",
+    "startScan": "Начать сканирование",
+    "scanError": "Ошибка сканирования: {{message}}",
+    "summary": {
+      "total": "модов",
+      "upToDate": "актуальны",
+      "outdated": "устарели",
+      "problem": "проблемных"
+    },
+    "status": {
+      "up-to-date": "Актуален",
+      "outdated": "Устарел",
+      "incompatible-loader": "Несовместим",
+      "unrecognized": "Не распознан",
+      "not-on-target-mc-version": "Невозможно проверить"
+    },
+    "update": "Обновить ({{version}})",
+    "addToProject": "Добавить в проект",
+    "added": "Добавлено"
+  },
+  "settings": {
+    "title": "Настройки",
+    "language": "Язык",
+    "curseforgeApiKey": "API-ключ CurseForge",
+    "hintPrefix": "Получите ключ Core API на",
+    "hintSuffix": ". Ключ хранится в зашифрованном виде на этом компьютере и никогда не попадает в файлы проекта.",
+    "keyStatusOk": "API-ключ настроен",
+    "keyStatusMissing": "API-ключ не настроен — поиск в CurseForge работать не будет",
+    "placeholder": "Вставьте ваш API-ключ CurseForge",
+    "save": "Сохранить",
+    "checking": "Проверка...",
+    "clear": "Очистить",
+    "keyValid": "Сохранён и проверен — ключ действителен и работает.",
+    "keyInvalid": "⚠ Сохранён, но: CurseForge отклонил ключ ({{status}}). Убедитесь, что вы использовали ключ Core API, а не личный токен доступа Studio.",
+    "keyError": "Ошибка: {{message}}",
+    "launcher": {
+      "title": "Лаунчер игры",
+      "which": "Каким лаунчером вы пользуетесь?",
+      "official": "Официальный лаунчер Minecraft",
+      "tlauncher": "TLauncher",
+      "detected": "Обнаружен автоматически: {{path}}",
+      "notDetected": "Не удалось обнаружить автоматически — выберите вручную ниже.",
+      "customPath": "Используется: {{path}}",
+      "browse": "Обзор…",
+      "note": "Это открывает приложение лаунчера — оно не может выбрать ваш профиль или нажать «Играть» за вас. Один раз настройте папку игры вашего лаунчера на экспортированную папку, а затем используйте эту кнопку, чтобы открывать его в любое время."
+    }
+  },
+  "export": {
+    "title": "Экспорт",
+    "noProject": "Сначала создайте проект.",
+    "summary": "{{mods}} модов · {{resourcePacks}} ресурспаков · {{shaders}} шейдеров",
+    "formats": {
+      "folder": {
+        "title": "Папка модов",
+        "description": "Скачивает моды/ресурспаки/шейдеры в структуру папок mods/resourcepacks/shaderpacks — для TLauncher или официального лаунчера."
+      },
+      "mrpack": {
+        "title": ".mrpack",
+        "description": "Формат модпака Modrinth — можно импортировать в Prism Launcher и другие лаунчеры, совместимые с .mrpack."
+      },
+      "curseforge-zip": {
+        "title": "ZIP CurseForge",
+        "description": "Формат модпака CurseForge (manifest.json + overrides) — можно импортировать в приложение CurseForge."
+      }
+    },
+    "pickFolder": "Выбрать папку назначения",
+    "pickFile": "Выбрать файл назначения",
+    "noDestination": "Место назначения не выбрано",
+    "exporting": "Экспорт...",
+    "startExport": "Начать экспорт",
+    "nothingSelected": "Не выбраны моды, ресурспаки или шейдеры.",
+    "exportError": "Ошибка экспорта: {{message}}",
+    "exportDone": "Экспорт завершён: {{path}}",
+    "warningsCount": "Предупреждений: {{count}}",
+    "warningReason": {
+      "distribution-disabled": "{{name}}: автор отключил прямое распространение — установите вручную",
+      "missing-hash": "{{name}}: отсутствует хеш sha1 — пропущено",
+      "download-failed": "{{name}}: {{detail}}"
+    }
+  }
+}

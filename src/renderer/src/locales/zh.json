@@ -1,0 +1,148 @@
+{
+  "app": {
+    "loading": "加载中…",
+    "nav": {
+      "modBrowser": "模组浏览器",
+      "installedScan": "已安装的模组",
+      "export": "导出",
+      "settings": "设置"
+    },
+    "sidebar": {
+      "activeProject": "当前项目",
+      "newProject": "新建项目",
+      "counts": "{{mods}} 个模组 · {{resourcePacks}} 个资源包 · {{shaders}} 个光影",
+      "launch": "启动游戏",
+      "launching": "正在启动...",
+      "launchError": "无法启动：{{message}}"
+    }
+  },
+  "projectSetup": {
+    "title": "Minecraft 整合包构建器",
+    "subtitle": "创建一个新的整合包以开始使用",
+    "projectName": "项目名称",
+    "defaultProjectName": "新整合包",
+    "minecraftVersion": "Minecraft 版本",
+    "loadingVersions": "加载中...",
+    "modLoader": "模组加载器",
+    "createProject": "创建项目"
+  },
+  "modBrowser": {
+    "noProject": "请先创建一个项目。",
+    "searchPlaceholder": {
+      "mod": "搜索模组...",
+      "resourcepack": "搜索资源包...",
+      "shader": "搜索光影..."
+    },
+    "contentType": {
+      "mod": "模组",
+      "resourcepack": "资源包",
+      "shader": "光影"
+    },
+    "selectedLabel": {
+      "mod": "已选模组",
+      "resourcepack": "已选资源包",
+      "shader": "已选光影"
+    },
+    "source": {
+      "both": "两者",
+      "modrinth": "Modrinth",
+      "curseforge": "CurseForge"
+    },
+    "noCurseForgeKey": "尚未配置 CurseForge API 密钥 — 将不会显示 CurseForge 的结果。请在设置中添加。",
+    "searchError": "搜索出错：{{message}}",
+    "sourceError": {
+      "invalid-api-key": "CurseForge：API 密钥无效（{{status}}）。请检查设置。",
+      "other": "{{source}}：{{detail}}"
+    },
+    "searching": "搜索中...",
+    "noResults": "没有找到结果。",
+    "added": "已添加",
+    "add": "添加",
+    "remove": "移除",
+    "empty": "尚未选择任何内容。"
+  },
+  "installedScan": {
+    "noProject": "请先创建一个项目。",
+    "pickFolder": "选择模组文件夹",
+    "noFolder": "未选择文件夹",
+    "scanning": "扫描中...",
+    "startScan": "开始扫描",
+    "scanError": "扫描出错：{{message}}",
+    "summary": {
+      "total": "个模组",
+      "upToDate": "已是最新",
+      "outdated": "已过时",
+      "problem": "有问题"
+    },
+    "status": {
+      "up-to-date": "已是最新",
+      "outdated": "已过时",
+      "incompatible-loader": "不兼容",
+      "unrecognized": "无法识别",
+      "not-on-target-mc-version": "无法验证"
+    },
+    "update": "更新（{{version}}）",
+    "addToProject": "添加到项目",
+    "added": "已添加"
+  },
+  "settings": {
+    "title": "设置",
+    "language": "语言",
+    "curseforgeApiKey": "CurseForge API 密钥",
+    "hintPrefix": "在以下网址获取 Core API 密钥：",
+    "hintSuffix": "。密钥会以加密方式保存在本机，绝不会写入项目文件中。",
+    "keyStatusOk": "API 密钥已配置",
+    "keyStatusMissing": "未配置 API 密钥 — CurseForge 搜索将无法使用",
+    "placeholder": "粘贴你的 CurseForge API 密钥",
+    "save": "保存",
+    "checking": "验证中...",
+    "clear": "清除",
+    "keyValid": "已保存并验证 — 密钥有效且可正常使用。",
+    "keyInvalid": "⚠ 已保存，但：CurseForge 拒绝了该密钥（{{status}}）。请确认使用的是 Core API 密钥，而不是 Studio 个人访问令牌。",
+    "keyError": "错误：{{message}}",
+    "launcher": {
+      "title": "游戏启动器",
+      "which": "你使用哪个启动器？",
+      "official": "官方 Minecraft 启动器",
+      "tlauncher": "TLauncher",
+      "detected": "已自动检测到：{{path}}",
+      "notDetected": "未能自动检测 — 请在下方手动选择。",
+      "customPath": "正在使用：{{path}}",
+      "browse": "浏览…",
+      "note": "此操作会打开启动器应用 — 它无法替你选择游戏配置文件或点击“开始游戏”。请先将你的启动器的游戏目录设置为导出的文件夹，之后即可随时用此按钮打开它。"
+    }
+  },
+  "export": {
+    "title": "导出",
+    "noProject": "请先创建一个项目。",
+    "summary": "{{mods}} 个模组 · {{resourcePacks}} 个资源包 · {{shaders}} 个光影",
+    "formats": {
+      "folder": {
+        "title": "模组文件夹",
+        "description": "将模组/资源包/光影下载到 mods/resourcepacks/shaderpacks 文件夹结构中 — 适用于 TLauncher 或官方启动器。"
+      },
+      "mrpack": {
+        "title": ".mrpack",
+        "description": "Modrinth 整合包格式 — 可导入 Prism Launcher 及其他兼容 .mrpack 的启动器。"
+      },
+      "curseforge-zip": {
+        "title": "CurseForge 压缩包",
+        "description": "CurseForge 整合包格式（manifest.json + overrides）— 可导入 CurseForge 应用。"
+      }
+    },
+    "pickFolder": "选择目标文件夹",
+    "pickFile": "选择目标文件",
+    "noDestination": "未选择目标位置",
+    "exporting": "导出中...",
+    "startExport": "开始导出",
+    "nothingSelected": "尚未选择任何模组、资源包或光影。",
+    "exportError": "导出出错：{{message}}",
+    "exportDone": "导出完成：{{path}}",
+    "warningsCount": "{{count}} 条警告：",
+    "warningReason": {
+      "distribution-disabled": "{{name}}：作者已禁止直接分发 — 请手动安装",
+      "missing-hash": "{{name}}：缺少 sha1 哈希值 — 已跳过",
+      "download-failed": "{{name}}：{{detail}}"
+    }
+  }
+}

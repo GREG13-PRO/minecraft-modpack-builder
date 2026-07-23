@@ -1,0 +1,148 @@
+{
+  "app": {
+    "loading": "読み込み中…",
+    "nav": {
+      "modBrowser": "MODブラウザ",
+      "installedScan": "インストール済みMOD",
+      "export": "エクスポート",
+      "settings": "設定"
+    },
+    "sidebar": {
+      "activeProject": "現在のプロジェクト",
+      "newProject": "新規プロジェクト",
+      "counts": "MOD {{mods}}個 · リソースパック {{resourcePacks}}個 · シェーダー {{shaders}}個",
+      "launch": "ゲームを起動",
+      "launching": "起動中...",
+      "launchError": "起動できませんでした: {{message}}"
+    }
+  },
+  "projectSetup": {
+    "title": "Minecraft Modpack Builder",
+    "subtitle": "新しいモッドパックを作成して始めましょう",
+    "projectName": "プロジェクト名",
+    "defaultProjectName": "新しいモッドパック",
+    "minecraftVersion": "Minecraftのバージョン",
+    "loadingVersions": "読み込み中...",
+    "modLoader": "MODローダー",
+    "createProject": "プロジェクトを作成"
+  },
+  "modBrowser": {
+    "noProject": "まずプロジェクトを作成してください。",
+    "searchPlaceholder": {
+      "mod": "MODを検索...",
+      "resourcepack": "リソースパックを検索...",
+      "shader": "シェーダーを検索..."
+    },
+    "contentType": {
+      "mod": "MOD",
+      "resourcepack": "リソースパック",
+      "shader": "シェーダー"
+    },
+    "selectedLabel": {
+      "mod": "選択中のMOD",
+      "resourcepack": "選択中のリソースパック",
+      "shader": "選択中のシェーダー"
+    },
+    "source": {
+      "both": "両方",
+      "modrinth": "Modrinth",
+      "curseforge": "CurseForge"
+    },
+    "noCurseForgeKey": "CurseForgeのAPIキーが設定されていません — CurseForgeの検索結果は表示されません。設定画面で追加してください。",
+    "searchError": "検索エラー: {{message}}",
+    "sourceError": {
+      "invalid-api-key": "CurseForge: APIキーが無効です（{{status}}）。設定を確認してください。",
+      "other": "{{source}}: {{detail}}"
+    },
+    "searching": "検索中...",
+    "noResults": "結果が見つかりません。",
+    "added": "追加済み",
+    "add": "追加",
+    "remove": "削除",
+    "empty": "まだ何も選択されていません。"
+  },
+  "installedScan": {
+    "noProject": "まずプロジェクトを作成してください。",
+    "pickFolder": "MODフォルダを選択",
+    "noFolder": "フォルダが選択されていません",
+    "scanning": "スキャン中...",
+    "startScan": "スキャン開始",
+    "scanError": "スキャンエラー: {{message}}",
+    "summary": {
+      "total": "個のMOD",
+      "upToDate": "最新",
+      "outdated": "更新が必要",
+      "problem": "問題あり"
+    },
+    "status": {
+      "up-to-date": "最新",
+      "outdated": "更新が必要",
+      "incompatible-loader": "非対応",
+      "unrecognized": "不明",
+      "not-on-target-mc-version": "確認不可"
+    },
+    "update": "更新（{{version}}）",
+    "addToProject": "プロジェクトに追加",
+    "added": "追加済み"
+  },
+  "settings": {
+    "title": "設定",
+    "language": "言語",
+    "curseforgeApiKey": "CurseForge APIキー",
+    "hintPrefix": "Core APIキーはこちらで取得できます:",
+    "hintSuffix": "。キーはこの端末上で暗号化して保存され、プロジェクトファイルに含まれることはありません。",
+    "keyStatusOk": "APIキーが設定されています",
+    "keyStatusMissing": "APIキーが設定されていません — CurseForgeの検索は機能しません",
+    "placeholder": "CurseForgeのAPIキーを貼り付けてください",
+    "save": "保存",
+    "checking": "確認中...",
+    "clear": "クリア",
+    "keyValid": "保存して確認しました — キーは有効で正常に動作しています。",
+    "keyInvalid": "⚠ 保存しましたが、CurseForgeにキーを拒否されました（{{status}}）。Studioの個人アクセストークンではなく、Core APIキーを使用しているか確認してください。",
+    "keyError": "エラー: {{message}}",
+    "launcher": {
+      "title": "ゲームランチャー",
+      "which": "使用しているランチャーはどちらですか？",
+      "official": "公式Minecraftランチャー",
+      "tlauncher": "TLauncher",
+      "detected": "自動検出済み: {{path}}",
+      "notDetected": "自動検出できませんでした — 下から選択してください。",
+      "customPath": "使用中: {{path}}",
+      "browse": "参照…",
+      "note": "このボタンはランチャーアプリを開くだけです — プロファイルの選択やプレイボタンの実行は代行できません。ランチャーのゲームディレクトリを一度エクスポート先フォルダに設定すれば、以降はこのボタンでいつでも開けます。"
+    }
+  },
+  "export": {
+    "title": "エクスポート",
+    "noProject": "まずプロジェクトを作成してください。",
+    "summary": "MOD {{mods}}個 · リソースパック {{resourcePacks}}個 · シェーダー {{shaders}}個",
+    "formats": {
+      "folder": {
+        "title": "MODフォルダ",
+        "description": "MOD/リソースパック/シェーダーをmods/resourcepacks/shaderpacksフォルダ構成でダウンロードします — TLauncherや公式ランチャー向けです。"
+      },
+      "mrpack": {
+        "title": ".mrpack",
+        "description": "Modrinthのモッドパック形式 — Prism Launcherや他の.mrpack対応ランチャーにインポートできます。"
+      },
+      "curseforge-zip": {
+        "title": "CurseForge zip",
+        "description": "CurseForgeのモッドパック形式（manifest.json + overrides）— CurseForgeアプリにインポートできます。"
+      }
+    },
+    "pickFolder": "保存先フォルダを選択",
+    "pickFile": "保存先ファイルを選択",
+    "noDestination": "保存先が選択されていません",
+    "exporting": "エクスポート中...",
+    "startExport": "エクスポート開始",
+    "nothingSelected": "MOD、リソースパック、シェーダーが選択されていません。",
+    "exportError": "エクスポートエラー: {{message}}",
+    "exportDone": "エクスポート完了: {{path}}",
+    "warningsCount": "警告 {{count}} 件:",
+    "warningReason": {
+      "distribution-disabled": "{{name}}: 作者が直接配布を無効にしています — 手動でインストールしてください",
+      "missing-hash": "{{name}}: sha1ハッシュがありません — スキップしました",
+      "download-failed": "{{name}}: {{detail}}"
+    }
+  }
+}

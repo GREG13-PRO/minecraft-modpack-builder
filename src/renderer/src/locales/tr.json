@@ -1,0 +1,148 @@
+{
+  "app": {
+    "loading": "Yükleniyor…",
+    "nav": {
+      "modBrowser": "Mod Tarayıcı",
+      "installedScan": "Yüklü Modlar",
+      "export": "Dışa Aktar",
+      "settings": "Ayarlar"
+    },
+    "sidebar": {
+      "activeProject": "Aktif Proje",
+      "newProject": "Yeni Proje",
+      "counts": "{{mods}} mod · {{resourcePacks}} kaynak paketi · {{shaders}} shader",
+      "launch": "Oyunu Başlat",
+      "launching": "Başlatılıyor...",
+      "launchError": "Başlatılamadı: {{message}}"
+    }
+  },
+  "projectSetup": {
+    "title": "Minecraft Modpack Builder",
+    "subtitle": "Başlamak için yeni bir modpack oluştur",
+    "projectName": "Proje adı",
+    "defaultProjectName": "Yeni modpack",
+    "minecraftVersion": "Minecraft sürümü",
+    "loadingVersions": "Yükleniyor...",
+    "modLoader": "Mod loader",
+    "createProject": "Proje oluştur"
+  },
+  "modBrowser": {
+    "noProject": "Önce bir proje oluştur.",
+    "searchPlaceholder": {
+      "mod": "Mod ara...",
+      "resourcepack": "Kaynak paketi ara...",
+      "shader": "Shader ara..."
+    },
+    "contentType": {
+      "mod": "Modlar",
+      "resourcepack": "Kaynak Paketleri",
+      "shader": "Shaderlar"
+    },
+    "selectedLabel": {
+      "mod": "Seçili Modlar",
+      "resourcepack": "Seçili Kaynak Paketleri",
+      "shader": "Seçili Shaderlar"
+    },
+    "source": {
+      "both": "İkisi de",
+      "modrinth": "Modrinth",
+      "curseforge": "CurseForge"
+    },
+    "noCurseForgeKey": "CurseForge API anahtarı ayarlanmamış — CurseForge sonuçları görünmeyecek. Ayarlar'dan bir tane ekle.",
+    "searchError": "Arama hatası: {{message}}",
+    "sourceError": {
+      "invalid-api-key": "CurseForge: geçersiz API anahtarı ({{status}}). Ayarlar'ı kontrol et.",
+      "other": "{{source}}: {{detail}}"
+    },
+    "searching": "Aranıyor...",
+    "noResults": "Sonuç bulunamadı.",
+    "added": "Eklendi",
+    "add": "Ekle",
+    "remove": "Kaldır",
+    "empty": "Henüz bir şey seçilmedi."
+  },
+  "installedScan": {
+    "noProject": "Önce bir proje oluştur.",
+    "pickFolder": "Mod klasörünü seç",
+    "noFolder": "Klasör seçilmedi",
+    "scanning": "Taranıyor...",
+    "startScan": "Taramayı başlat",
+    "scanError": "Tarama hatası: {{message}}",
+    "summary": {
+      "total": "mod",
+      "upToDate": "güncel",
+      "outdated": "eski",
+      "problem": "sorunlu"
+    },
+    "status": {
+      "up-to-date": "Güncel",
+      "outdated": "Eski",
+      "incompatible-loader": "Uyumsuz",
+      "unrecognized": "Tanınmadı",
+      "not-on-target-mc-version": "Doğrulanamıyor"
+    },
+    "update": "Güncelle ({{version}})",
+    "addToProject": "Projeye ekle",
+    "added": "Eklendi"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "language": "Dil",
+    "curseforgeApiKey": "CurseForge API Anahtarı",
+    "hintPrefix": "Core API anahtarını şuradan al:",
+    "hintSuffix": ". Anahtar bu cihazda şifrelenmiş olarak saklanır ve asla proje dosyalarına girmez.",
+    "keyStatusOk": "API anahtarı ayarlandı",
+    "keyStatusMissing": "API anahtarı ayarlanmamış — CurseForge araması çalışmayacak",
+    "placeholder": "CurseForge API anahtarını yapıştır",
+    "save": "Kaydet",
+    "checking": "Kontrol ediliyor...",
+    "clear": "Temizle",
+    "keyValid": "Kaydedildi ve doğrulandı — anahtar geçerli ve çalışıyor.",
+    "keyInvalid": "⚠ Kaydedildi, ancak: CurseForge anahtarı reddetti ({{status}}). Studio kişisel erişim jetonu değil, bir Core API anahtarı kullandığından emin ol.",
+    "keyError": "Hata: {{message}}",
+    "launcher": {
+      "title": "Oyun Başlatıcısı",
+      "which": "Hangi başlatıcıyı kullanıyorsun?",
+      "official": "Resmi Minecraft Başlatıcısı",
+      "tlauncher": "TLauncher",
+      "detected": "Otomatik algılandı: {{path}}",
+      "notDetected": "Otomatik algılanamadı — aşağıdan seç.",
+      "customPath": "Kullanılıyor: {{path}}",
+      "browse": "Göz at…",
+      "note": "Bu, başlatıcı uygulamasını açar — senin yerine profilini seçemez veya Oyna'ya basamaz. Başlatıcının oyun dizinini bir kez dışa aktarılan klasöre ayarla, ardından istediğin zaman açmak için bu düğmeyi kullan."
+    }
+  },
+  "export": {
+    "title": "Dışa Aktar",
+    "noProject": "Önce bir proje oluştur.",
+    "summary": "{{mods}} mod · {{resourcePacks}} kaynak paketi · {{shaders}} shader",
+    "formats": {
+      "folder": {
+        "title": "Mod Klasörü",
+        "description": "Modları/kaynak paketlerini/shaderları bir mods/resourcepacks/shaderpacks klasör yapısına indirir — TLauncher veya resmi başlatıcı için."
+      },
+      "mrpack": {
+        "title": ".mrpack",
+        "description": "Modrinth modpack formatı — Prism Launcher ve diğer .mrpack uyumlu başlatıcılara aktarılabilir."
+      },
+      "curseforge-zip": {
+        "title": "CurseForge zip",
+        "description": "CurseForge modpack formatı (manifest.json + overrides) — CurseForge uygulamasına aktarılabilir."
+      }
+    },
+    "pickFolder": "Hedef klasörü seç",
+    "pickFile": "Hedef dosyayı seç",
+    "noDestination": "Hedef seçilmedi",
+    "exporting": "Dışa aktarılıyor...",
+    "startExport": "Dışa aktarmayı başlat",
+    "nothingSelected": "Mod, kaynak paketi veya shader seçilmedi.",
+    "exportError": "Dışa aktarma hatası: {{message}}",
+    "exportDone": "Dışa aktarma tamamlandı: {{path}}",
+    "warningsCount": "{{count}} uyarı:",
+    "warningReason": {
+      "distribution-disabled": "{{name}}: yazar doğrudan dağıtımı devre dışı bıraktı — elle yükle",
+      "missing-hash": "{{name}}: sha1 hash eksik — atlandı",
+      "download-failed": "{{name}}: {{detail}}"
+    }
+  }
+}

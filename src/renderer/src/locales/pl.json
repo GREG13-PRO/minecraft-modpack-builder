@@ -1,0 +1,148 @@
+{
+  "app": {
+    "loading": "Ładowanie…",
+    "nav": {
+      "modBrowser": "Przeglądarka modów",
+      "installedScan": "Zainstalowane mody",
+      "export": "Eksport",
+      "settings": "Ustawienia"
+    },
+    "sidebar": {
+      "activeProject": "Aktywny projekt",
+      "newProject": "Nowy projekt",
+      "counts": "{{mods}} modów · {{resourcePacks}} paczek tekstur · {{shaders}} shaderów",
+      "launch": "Uruchom grę",
+      "launching": "Uruchamianie...",
+      "launchError": "Nie udało się uruchomić: {{message}}"
+    }
+  },
+  "projectSetup": {
+    "title": "Minecraft Modpack Builder",
+    "subtitle": "Utwórz nowy modpack, aby zacząć",
+    "projectName": "Nazwa projektu",
+    "defaultProjectName": "Nowy modpack",
+    "minecraftVersion": "Wersja Minecrafta",
+    "loadingVersions": "Ładowanie...",
+    "modLoader": "Mod loader",
+    "createProject": "Utwórz projekt"
+  },
+  "modBrowser": {
+    "noProject": "Najpierw utwórz projekt.",
+    "searchPlaceholder": {
+      "mod": "Szukaj modów...",
+      "resourcepack": "Szukaj paczek tekstur...",
+      "shader": "Szukaj shaderów..."
+    },
+    "contentType": {
+      "mod": "Mody",
+      "resourcepack": "Paczki tekstur",
+      "shader": "Shadery"
+    },
+    "selectedLabel": {
+      "mod": "Wybrane mody",
+      "resourcepack": "Wybrane paczki tekstur",
+      "shader": "Wybrane shadery"
+    },
+    "source": {
+      "both": "Oba",
+      "modrinth": "Modrinth",
+      "curseforge": "CurseForge"
+    },
+    "noCurseForgeKey": "Nie skonfigurowano klucza API CurseForge — wyniki CurseForge się nie pojawią. Dodaj go w Ustawieniach.",
+    "searchError": "Błąd wyszukiwania: {{message}}",
+    "sourceError": {
+      "invalid-api-key": "CurseForge: nieprawidłowy klucz API ({{status}}). Sprawdź Ustawienia.",
+      "other": "{{source}}: {{detail}}"
+    },
+    "searching": "Wyszukiwanie...",
+    "noResults": "Brak wyników.",
+    "added": "Dodano",
+    "add": "Dodaj",
+    "remove": "Usuń",
+    "empty": "Nic jeszcze nie wybrano."
+  },
+  "installedScan": {
+    "noProject": "Najpierw utwórz projekt.",
+    "pickFolder": "Wybierz folder modów",
+    "noFolder": "Nie wybrano folderu",
+    "scanning": "Skanowanie...",
+    "startScan": "Rozpocznij skanowanie",
+    "scanError": "Błąd skanowania: {{message}}",
+    "summary": {
+      "total": "modów",
+      "upToDate": "aktualnych",
+      "outdated": "nieaktualnych",
+      "problem": "problematycznych"
+    },
+    "status": {
+      "up-to-date": "Aktualny",
+      "outdated": "Nieaktualny",
+      "incompatible-loader": "Niekompatybilny",
+      "unrecognized": "Nierozpoznany",
+      "not-on-target-mc-version": "Nie można zweryfikować"
+    },
+    "update": "Zaktualizuj ({{version}})",
+    "addToProject": "Dodaj do projektu",
+    "added": "Dodano"
+  },
+  "settings": {
+    "title": "Ustawienia",
+    "language": "Język",
+    "curseforgeApiKey": "Klucz API CurseForge",
+    "hintPrefix": "Uzyskaj klucz Core API na stronie",
+    "hintSuffix": ". Klucz jest przechowywany w postaci zaszyfrowanej na tym komputerze i nigdy nie trafia do plików projektu.",
+    "keyStatusOk": "Klucz API skonfigurowany",
+    "keyStatusMissing": "Nie skonfigurowano klucza API — wyszukiwanie w CurseForge nie będzie działać",
+    "placeholder": "Wklej swój klucz API CurseForge",
+    "save": "Zapisz",
+    "checking": "Sprawdzanie...",
+    "clear": "Wyczyść",
+    "keyValid": "Zapisano i zweryfikowano — klucz jest prawidłowy i działa.",
+    "keyInvalid": "⚠ Zapisano, ale: CurseForge odrzucił klucz ({{status}}). Upewnij się, że użyto klucza Core API, a nie osobistego tokenu dostępu Studio.",
+    "keyError": "Błąd: {{message}}",
+    "launcher": {
+      "title": "Launcher gry",
+      "which": "Z jakiego launchera korzystasz?",
+      "official": "Oficjalny Launcher Minecraft",
+      "tlauncher": "TLauncher",
+      "detected": "Wykryto automatycznie: {{path}}",
+      "notDetected": "Nie wykryto automatycznie — wybierz poniżej.",
+      "customPath": "Używany: {{path}}",
+      "browse": "Przeglądaj…",
+      "note": "To otwiera aplikację launchera — nie może za ciebie wybrać profilu ani nacisnąć Graj. Ustaw raz folder gry launchera na wyeksportowany folder, a potem używaj tego przycisku, by otworzyć go w dowolnym momencie."
+    }
+  },
+  "export": {
+    "title": "Eksport",
+    "noProject": "Najpierw utwórz projekt.",
+    "summary": "{{mods}} modów · {{resourcePacks}} paczek tekstur · {{shaders}} shaderów",
+    "formats": {
+      "folder": {
+        "title": "Folder modów",
+        "description": "Pobiera mody/paczki tekstur/shadery do struktury folderów mods/resourcepacks/shaderpacks — dla TLauncher lub oficjalnego launchera."
+      },
+      "mrpack": {
+        "title": ".mrpack",
+        "description": "Format modpacka Modrinth — można importować do Prism Launcher i innych launcherów kompatybilnych z .mrpack."
+      },
+      "curseforge-zip": {
+        "title": "ZIP CurseForge",
+        "description": "Format modpacka CurseForge (manifest.json + overrides) — można importować do aplikacji CurseForge."
+      }
+    },
+    "pickFolder": "Wybierz folder docelowy",
+    "pickFile": "Wybierz plik docelowy",
+    "noDestination": "Nie wybrano miejsca docelowego",
+    "exporting": "Eksportowanie...",
+    "startExport": "Rozpocznij eksport",
+    "nothingSelected": "Nie wybrano żadnych modów, paczek tekstur ani shaderów.",
+    "exportError": "Błąd eksportu: {{message}}",
+    "exportDone": "Eksport zakończony: {{path}}",
+    "warningsCount": "Ostrzeżeń: {{count}}",
+    "warningReason": {
+      "distribution-disabled": "{{name}}: autor wyłączył bezpośrednią dystrybucję — zainstaluj ręcznie",
+      "missing-hash": "{{name}}: brak skrótu sha1 — pominięto",
+      "download-failed": "{{name}}: {{detail}}"
+    }
+  }
+}
