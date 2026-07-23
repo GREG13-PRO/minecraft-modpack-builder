@@ -1,8 +1,22 @@
-import { contextBridge } from 'electron'
+import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+import type { ModpackProject, ModRef, ModSearchParams } from '@shared/types'
 
-// Custom APIs for renderer
-const api = {}
+const api = {
+  search: {
+    searchMods: (params: ModSearchParams) => ipcRenderer.invoke('search:mods', params),
+    listVersions: (ref: ModRef, mcVersion: string, loader: string) =>
+      ipcRenderer.invoke('search:versions', ref, mcVersion, loader),
+    gameVersions: () => ipcRenderer.invoke('search:gameVersions') as Promise<string[]>
+  },
+  projects: {
+    list: () => ipcRenderer.invoke('projects:list'),
+    save: (project: ModpackProject) => ipcRenderer.invoke('projects:save', project),
+    delete: (id: string) => ipcRenderer.invoke('projects:delete', id)
+  }
+}
+
+export type ModpackApi = typeof api
 
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise

@@ -1,0 +1,38 @@
+.project-setup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 360px;
+  margin: 48px auto;
+}
+
+.project-setup label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.project-setup input,
+.project-setup select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #1e1e1e;
+  color: inherit;
+}
+
+.project-setup button {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background: #4caf50;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.project-setup button:disabled {
+  background: #555;
+  cursor: not-allowed;
+}

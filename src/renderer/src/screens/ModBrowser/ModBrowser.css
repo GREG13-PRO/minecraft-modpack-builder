@@ -1,0 +1,66 @@
+.mod-browser {
+  max-width: 640px;
+  margin: 24px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mod-browser header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mod-browser input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #1e1e1e;
+  color: inherit;
+}
+
+.mod-browser .error {
+  color: #ff6b6b;
+}
+
+.mod-browser .results,
+.mod-browser .selected-mods ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mod-browser .results li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border: 1px solid #333;
+  border-radius: 6px;
+}
+
+.mod-browser .results img {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+}
+
+.mod-browser .info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mod-browser .info span {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.mod-browser .selected-mods li {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+}

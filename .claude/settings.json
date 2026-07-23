@@ -15,7 +15,17 @@
       "Bash(sed -n '40,120p' ~/.npm/_npx/8c427fe066a6b90c/node_modules/@quick-start/create-electron/index.js)",
       "Bash(sed -n '120,165p' ~/.npm/_npx/8c427fe066a6b90c/node_modules/@quick-start/create-electron/index.js)",
       "Bash(git init *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(gh repo *)",
+      "Bash(rm -f src/renderer/src/components/Versions.tsx src/renderer/src/assets/electron.svg src/renderer/src/assets/wavy-lines.svg)",
+      "Bash(rmdir src/renderer/src/components)",
+      "Bash(env)",
+      "Bash(grep -rn \"ELECTRON_RUN_AS_NODE\" ~/.zshrc ~/.bash_profile ~/.bashrc ~/.profile ~/.zprofile 2>/dev/null)",
+      "Bash(osascript -e 'tell application \"System Events\" to get name of every process whose background only is false')",
+      "Bash(osascript -e 'tell application \"Electron\" to activate')",
+      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-screenshot.png)",
+      "Bash(osascript -e 'tell application \"System Events\" to tell process \"Electron\" to get {name, position, size} of every window')",
+      "Bash(screencapture -o -x /private/tmp/claude-501/-Users-rego-Documents-AI-PROGRAMOZ-S-MINECRAFT-MODPACK/700c594c-d14a-4d61-bacf-057e1332a8b8/scratchpad/app-screenshot2.png)"
     ]
   }
 }
