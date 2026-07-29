@@ -63,7 +63,16 @@
     "added": "Toegevoegd",
     "add": "Toevoegen",
     "remove": "Verwijderen",
-    "empty": "Nog niets geselecteerd."
+    "empty": "Nog niets geselecteerd.",
+    "dependenciesNeeded": "Deze mods hebben de volgende afhankelijkheden nodig om te werken:",
+    "dismiss": "Negeren"
+  },
+  "modDetail": {
+    "versionsTitle": "Versies",
+    "loading": "Versies laden...",
+    "noVersions": "Geen compatibele versies gevonden.",
+    "current": "Huidig",
+    "useVersion": "Deze versie gebruiken"
   },
   "installedScan": {
     "noProject": "Maak eerst een project aan.",
@@ -104,6 +113,17 @@
     "keyValid": "Opgeslagen en geverifieerd — de sleutel is geldig en werkt.",
     "keyInvalid": "⚠ Opgeslagen, maar: CurseForge heeft de sleutel geweigerd ({{status}}). Zorg dat je een Core API-sleutel hebt gebruikt, geen Studio persoonlijk toegangstoken.",
     "keyError": "Fout: {{message}}",
+    "updates": {
+      "title": "Updates",
+      "currentVersion": "Huidige versie: v{{version}}",
+      "checkButton": "Controleren op updates",
+      "checking": "Controleren op updates...",
+      "upToDate": "Je hebt de nieuwste versie.",
+      "available": "Update v{{version}} beschikbaar.",
+      "downloading": "Downloaden... {{percent}}%",
+      "downloaded": "Update v{{version}} gedownload — herstart om te installeren.",
+      "error": "Controleren op updates mislukt: {{message}}"
+    },
     "launcher": {
       "title": "Spellauncher",
       "which": "Welke launcher gebruik je?",
@@ -147,6 +167,15 @@
       "distribution-disabled": "{{name}}: de auteur heeft directe distributie uitgeschakeld — installeer handmatig",
       "missing-hash": "{{name}}: sha1-hash ontbreekt — overgeslagen",
       "download-failed": "{{name}}: {{detail}}"
-    }
+    },
+    "folderReplaceNotice": "Hierheen exporteren verwijdert eerst de vorige inhoud van de mappen mods/resourcepacks/shaderpacks voordat de nieuwe bestanden worden geschreven."
+  },
+  "updater": {
+    "updateAvailable": "Update v{{version}} is beschikbaar.",
+    "download": "Downloaden",
+    "downloading": "Downloaden... {{percent}}%",
+    "downloaded": "Update v{{version}} gedownload — herstart om te installeren.",
+    "restartInstall": "Herstarten en installeren",
+    "dismiss": "Negeren"
   }
 }

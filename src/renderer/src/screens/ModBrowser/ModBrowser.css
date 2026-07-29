@@ -203,6 +203,7 @@
 .mod-info {
   flex: 1;
   min-width: 0;
+  cursor: pointer;
 }
 
 .mod-title {
@@ -295,6 +296,7 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .mbs-item-name {
@@ -333,4 +335,33 @@
 .mbs-remove:hover {
   background: rgba(239, 90, 90, 0.14);
   color: var(--danger);
+}
+
+/* Required-dependency notice */
+.dep-notice {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dep-notice-text {
+  font-weight: 600;
+}
+
+.dep-notice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dep-notice-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.dep-notice-item span {
+  flex: 1;
+  min-width: 0;
 }

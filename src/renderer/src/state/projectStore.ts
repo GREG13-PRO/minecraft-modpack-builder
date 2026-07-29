@@ -1,5 +1,12 @@
 import { create } from 'zustand'
-import type { ContentType, ModLoader, ModpackMod, ModpackProject } from '@shared/types'
+import type {
+  ContentType,
+  ExportFormat,
+  ModLoader,
+  ModpackMod,
+  ModpackProject,
+  ModVersionRef
+} from '@shared/types'
 
 const FIELD: Record<ContentType, 'mods' | 'resourcePacks' | 'shaders'> = {
   mod: 'mods',
@@ -14,6 +21,13 @@ interface ProjectState {
   newProject: () => void
   addItem: (contentType: ContentType, mod: ModpackMod) => void
   removeItem: (contentType: ContentType, projectId: string, source: string) => void
+  updateVersion: (
+    contentType: ContentType,
+    projectId: string,
+    source: string,
+    version: ModVersionRef
+  ) => void
+  setLastExportPath: (format: ExportFormat, path: string) => void
 }
 
 function newProjectId(): string {
@@ -57,7 +71,9 @@ export const useProjectStore = create<ProjectState>((set) => ({
       if (!state.project) return state
       const field = FIELD[contentType]
       const items = state.project[field]
-      const alreadyAdded = items.some((m) => m.ref.source === mod.ref.source && m.ref.projectId === mod.ref.projectId)
+      const alreadyAdded = items.some(
+        (m) => m.ref.source === mod.ref.source && m.ref.projectId === mod.ref.projectId
+      )
       if (alreadyAdded) return state
       const project = { ...state.project, [field]: [...items, mod] }
       window.api.projects.save(project)
@@ -70,7 +86,36 @@ export const useProjectStore = create<ProjectState>((set) => ({
       const field = FIELD[contentType]
       const project = {
         ...state.project,
-        [field]: state.project[field].filter((m) => !(m.ref.projectId === projectId && m.ref.source === source))
+        [field]: state.project[field].filter(
+          (m) => !(m.ref.projectId === projectId && m.ref.source === source)
+        )
+      }
+      window.api.projects.save(project)
+      return { project }
+    }),
+
+  updateVersion: (contentType, projectId, source, version) =>
+    set((state) => {
+      if (!state.project) return state
+      const field = FIELD[contentType]
+      const project = {
+        ...state.project,
+        [field]: state.project[field].map((m) =>
+          m.ref.projectId === projectId && m.ref.source === source
+            ? { ...m, pinnedVersion: version }
+            : m
+        )
+      }
+      window.api.projects.save(project)
+      return { project }
+    }),
+
+  setLastExportPath: (format, path) =>
+    set((state) => {
+      if (!state.project) return state
+      const project = {
+        ...state.project,
+        lastExportPaths: { ...state.project.lastExportPaths, [format]: path }
       }
       window.api.projects.save(project)
       return { project }

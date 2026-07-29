@@ -1,5 +1,11 @@
 import { ipcMain } from 'electron'
-import type { ModSearchParams, ModRef, ModLoader, ContentType } from '@shared/types'
+import type {
+  ModSearchParams,
+  ModRef,
+  ModLoader,
+  ContentType,
+  DependencyLookup
+} from '@shared/types'
 import * as modService from '../services/modService'
 
 export function registerSearchIpc(): void {
@@ -12,4 +18,8 @@ export function registerSearchIpc(): void {
   )
 
   ipcMain.handle('search:gameVersions', () => modService.getReleaseGameVersions())
+
+  ipcMain.handle('search:resolveRefs', (_event, refs: DependencyLookup[]) =>
+    modService.resolveRefs(refs)
+  )
 }

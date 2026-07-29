@@ -6,15 +6,26 @@ import { useProjectStore } from '../../state/projectStore'
 import './Export.css'
 
 const FORMAT_IDS: ExportFormat[] = ['folder', 'mrpack', 'curseforge-zip']
-const FORMAT_ICON: Record<ExportFormat, LucideIcon> = { folder: Folder, mrpack: Package, 'curseforge-zip': Archive }
+const FORMAT_ICON: Record<ExportFormat, LucideIcon> = {
+  folder: Folder,
+  mrpack: Package,
+  'curseforge-zip': Archive
+}
 
-type RunState = { kind: 'idle' } | { kind: 'running' } | { kind: 'done'; result: ExportResult } | { kind: 'error'; message: string }
+type RunState =
+  | { kind: 'idle' }
+  | { kind: 'running' }
+  | { kind: 'done'; result: ExportResult }
+  | { kind: 'error'; message: string }
 
 function Export(): React.JSX.Element {
   const { t } = useTranslation()
   const project = useProjectStore((s) => s.project)
+  const setLastExportPath = useProjectStore((s) => s.setLastExportPath)
   const [format, setFormat] = useState<ExportFormat>('folder')
-  const [destination, setDestination] = useState<string | undefined>()
+  const [destination, setDestination] = useState<string | undefined>(
+    () => project?.lastExportPaths?.folder
+  )
   const [runState, setRunState] = useState<RunState>({ kind: 'idle' })
 
   if (!project) return <p>{t('export.noProject')}</p>
@@ -31,6 +42,7 @@ function Export(): React.JSX.Element {
     setRunState({ kind: 'running' })
     try {
       const result = await window.api.export.run(project!, format, destination)
+      setLastExportPath(format, destination)
       setRunState({ kind: 'done', result })
     } catch (err) {
       setRunState({ kind: 'error', message: err instanceof Error ? err.message : String(err) })
@@ -39,7 +51,7 @@ function Export(): React.JSX.Element {
 
   function handleFormatChange(next: ExportFormat): void {
     setFormat(next)
-    setDestination(undefined)
+    setDestination(project?.lastExportPaths?.[next])
     setRunState({ kind: 'idle' })
   }
 
@@ -74,7 +86,11 @@ function Export(): React.JSX.Element {
       </div>
 
       <div className="export-actions">
-        <button className="btn btn-ghost" onClick={handlePickDestination} disabled={totalItems === 0}>
+        <button
+          className="btn btn-ghost"
+          onClick={handlePickDestination}
+          disabled={totalItems === 0}
+        >
           {format === 'folder' ? <FolderOpen size={15} /> : <Save size={15} />}
           {format === 'folder' ? t('export.pickFolder') : t('export.pickFile')}
         </button>
@@ -89,9 +105,14 @@ function Export(): React.JSX.Element {
       </div>
 
       {totalItems === 0 && <div className="notice warn">{t('export.nothingSelected')}</div>}
+      {format === 'folder' && destination && (
+        <div className="notice warn">{t('export.folderReplaceNotice')}</div>
+      )}
 
       {runState.kind === 'error' && (
-        <div className="notice danger">{t('export.exportError', { message: runState.message })}</div>
+        <div className="notice danger">
+          {t('export.exportError', { message: runState.message })}
+        </div>
       )}
 
       {runState.kind === 'done' && (
@@ -101,10 +122,15 @@ function Export(): React.JSX.Element {
           </div>
           {runState.result.warnings.length > 0 && (
             <div className="export-warnings">
-              <div className="ew-head">{t('export.warningsCount', { count: runState.result.warnings.length })}</div>
+              <div className="ew-head">
+                {t('export.warningsCount', { count: runState.result.warnings.length })}
+              </div>
               {runState.result.warnings.map((w, i) => (
                 <div className="ew-item" key={i}>
-                  {t(`export.warningReason.${w.reasonCode}`, { name: w.mod.ref.name, detail: w.detail })}
+                  {t(`export.warningReason.${w.reasonCode}`, {
+                    name: w.mod.ref.name,
+                    detail: w.detail
+                  })}
                 </div>
               ))}
             </div>

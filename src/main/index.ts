@@ -8,8 +8,9 @@ import { registerSettingsIpc } from './ipc/settings'
 import { registerScanIpc } from './ipc/scan'
 import { registerExportIpc } from './ipc/export'
 import { registerLauncherIpc } from './ipc/launcher'
+import { registerUpdaterIpc, checkForUpdatesSilently } from './services/updater'
 
-function createWindow(): void {
+function createWindow(): BrowserWindow {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 1160,
@@ -41,6 +42,8 @@ function createWindow(): void {
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
+
+  return mainWindow
 }
 
 // This method will be called when Electron has finished
@@ -64,7 +67,14 @@ app.whenReady().then(() => {
   registerExportIpc()
   registerLauncherIpc()
 
-  createWindow()
+  const mainWindow = createWindow()
+  registerUpdaterIpc(mainWindow)
+
+  if (app.isPackaged) {
+    // Delay slightly so the window is fully up before a background network
+    // check fires; this never auto-downloads or auto-installs on its own.
+    setTimeout(() => checkForUpdatesSilently(), 3000)
+  }
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the

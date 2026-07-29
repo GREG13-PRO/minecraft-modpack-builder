@@ -63,7 +63,16 @@
     "added": "추가됨",
     "add": "추가",
     "remove": "제거",
-    "empty": "아직 선택된 항목이 없습니다."
+    "empty": "아직 선택된 항목이 없습니다.",
+    "dependenciesNeeded": "이 모드가 작동하려면 다음 종속성이 필요합니다:",
+    "dismiss": "닫기"
+  },
+  "modDetail": {
+    "versionsTitle": "버전",
+    "loading": "버전을 불러오는 중...",
+    "noVersions": "호환되는 버전을 찾을 수 없습니다.",
+    "current": "현재 버전",
+    "useVersion": "이 버전 사용"
   },
   "installedScan": {
     "noProject": "먼저 프로젝트를 만드세요.",
@@ -104,6 +113,17 @@
     "keyValid": "저장 및 확인 완료 — 키가 유효하며 정상 작동합니다.",
     "keyInvalid": "⚠ 저장되었지만: CurseForge가 키를 거부했습니다 ({{status}}). Studio 개인 액세스 토큰이 아닌 Core API 키를 사용했는지 확인하세요.",
     "keyError": "오류: {{message}}",
+    "updates": {
+      "title": "업데이트",
+      "currentVersion": "현재 버전: v{{version}}",
+      "checkButton": "업데이트 확인",
+      "checking": "업데이트 확인 중...",
+      "upToDate": "최신 버전을 사용 중입니다.",
+      "available": "업데이트 v{{version}}을(를) 사용할 수 있습니다.",
+      "downloading": "다운로드 중... {{percent}}%",
+      "downloaded": "업데이트 v{{version}}이(가) 다운로드되었습니다 — 설치하려면 다시 시작하세요.",
+      "error": "업데이트 확인에 실패했습니다: {{message}}"
+    },
     "launcher": {
       "title": "게임 런처",
       "which": "어떤 런처를 사용하시나요?",
@@ -147,6 +167,15 @@
       "distribution-disabled": "{{name}}: 제작자가 직접 배포를 비활성화했습니다 — 수동으로 설치하세요",
       "missing-hash": "{{name}}: sha1 해시가 없습니다 — 건너뜀",
       "download-failed": "{{name}}: {{detail}}"
-    }
+    },
+    "folderReplaceNotice": "여기로 내보내면 새 파일을 쓰기 전에 mods/resourcepacks/shaderpacks 폴더의 이전 내용이 삭제됩니다."
+  },
+  "updater": {
+    "updateAvailable": "업데이트 v{{version}}을(를) 사용할 수 있습니다.",
+    "download": "다운로드",
+    "downloading": "다운로드 중... {{percent}}%",
+    "downloaded": "업데이트 v{{version}}이(가) 다운로드되었습니다 — 설치하려면 다시 시작하세요.",
+    "restartInstall": "다시 시작하고 설치",
+    "dismiss": "닫기"
   }
 }

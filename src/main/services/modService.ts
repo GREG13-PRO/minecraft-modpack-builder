@@ -1,9 +1,24 @@
-import type { ModSearchParams, ModSearchResult, ModRef, ModVersionRef, ModLoader, ContentType } from '@shared/types'
+import type {
+  ModSearchParams,
+  ModSearchResult,
+  ModRef,
+  ModVersionRef,
+  ModLoader,
+  ContentType,
+  DependencyLookup
+} from '@shared/types'
 import * as modrinth from './modrinth/client'
-import { toModRef as toModrinthRef, toModVersionRef as toModrinthVersionRef } from './modrinth/mapper'
+import {
+  toModRef as toModrinthRef,
+  toModVersionRef as toModrinthVersionRef,
+  projectToModRef
+} from './modrinth/mapper'
 import * as curseforge from './curseforge/client'
 import { MissingApiKeyError } from './curseforge/client'
-import { toModRef as toCurseForgeRef, toModVersionRef as toCurseForgeVersionRef } from './curseforge/mapper'
+import {
+  toModRef as toCurseForgeRef,
+  toModVersionRef as toCurseForgeVersionRef
+} from './curseforge/mapper'
 
 interface CacheEntry<T> {
   value: T
@@ -13,7 +28,11 @@ interface CacheEntry<T> {
 const CACHE_TTL_MS = 5 * 60 * 1000
 const cache = new Map<string, CacheEntry<unknown>>()
 
-function withCache<T>(key: string, fetcher: () => Promise<T>, shouldCache: (value: T) => boolean = () => true): Promise<T> {
+function withCache<T>(
+  key: string,
+  fetcher: () => Promise<T>,
+  shouldCache: (value: T) => boolean = () => true
+): Promise<T> {
   const hit = cache.get(key)
   if (hit && hit.expiresAt > Date.now()) {
     return Promise.resolve(hit.value as T)
@@ -40,10 +59,18 @@ async function searchCurseForge(params: ModSearchParams): Promise<ModSearchResul
   } catch (err) {
     if (err instanceof MissingApiKeyError) return { refs: [], totalCount: 0 }
     if (err instanceof Error && /\b403\b/.test(err.message)) {
-      return { refs: [], totalCount: 0, sourceErrors: [{ source: 'curseforge', code: 'invalid-api-key', status: 403 }] }
+      return {
+        refs: [],
+        totalCount: 0,
+        sourceErrors: [{ source: 'curseforge', code: 'invalid-api-key', status: 403 }]
+      }
     }
     const detail = err instanceof Error ? err.message : String(err)
-    return { refs: [], totalCount: 0, sourceErrors: [{ source: 'curseforge', code: 'other', detail }] }
+    return {
+      refs: [],
+      totalCount: 0,
+      sourceErrors: [{ source: 'curseforge', code: 'other', detail }]
+    }
   }
 }
 
@@ -64,11 +91,40 @@ export async function searchMods(params: ModSearchParams): Promise<ModSearchResu
       return {
         refs: [...modrinthResult.refs, ...curseforgeResult.refs],
         totalCount: modrinthResult.totalCount + curseforgeResult.totalCount,
-        sourceErrors: [...(modrinthResult.sourceErrors ?? []), ...(curseforgeResult.sourceErrors ?? [])]
+        sourceErrors: [
+          ...(modrinthResult.sourceErrors ?? []),
+          ...(curseforgeResult.sourceErrors ?? [])
+        ]
       }
     },
     (result) => !result.sourceErrors || result.sourceErrors.length === 0
   )
+}
+
+// Dependency graphs from Modrinth/CurseForge are practically always mod→mod,
+// so this assumes every DependencyLookup refers to a mod project.
+export async function resolveRefs(refs: DependencyLookup[]): Promise<ModRef[]> {
+  const modrinthIds = [
+    ...new Set(refs.filter((r) => r.source === 'modrinth').map((r) => r.projectId))
+  ]
+  const curseforgeIds = [
+    ...new Set(refs.filter((r) => r.source === 'curseforge').map((r) => r.projectId))
+  ]
+
+  const [modrinthProjects, curseforgeMods] = await Promise.all([
+    modrinthIds.length ? modrinth.getProjectsByIds(modrinthIds) : Promise.resolve([]),
+    curseforgeIds.length
+      ? curseforge
+          .getModsByIds(curseforgeIds.map(Number))
+          .then((r) => r.data)
+          .catch((err) => {
+            if (err instanceof MissingApiKeyError) return []
+            throw err
+          })
+      : Promise.resolve([])
+  ])
+
+  return [...modrinthProjects.map(projectToModRef), ...curseforgeMods.map(toCurseForgeRef)]
 }
 
 export async function getReleaseGameVersions(): Promise<string[]> {

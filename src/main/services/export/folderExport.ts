@@ -1,6 +1,14 @@
 import { join } from 'path'
+import { promises as fs } from 'fs'
 import type { ExportModWarning, ExportResult, ModpackMod, ModpackProject } from '@shared/types'
 import { CONTENT_SUBFOLDER, canDownload, downloadModFile } from './download'
+
+// Wipes stale content from a previous export so removed mods don't linger
+// on disk — re-exporting must reflect the project's current state exactly,
+// not just add on top of whatever was there before.
+async function clearDirectory(dir: string): Promise<void> {
+  await fs.rm(dir, { recursive: true, force: true })
+}
 
 // Downloads every selected mod/resource pack/shader straight into the
 // mods/resourcepacks/shaderpacks subfolders of a chosen directory — meant to
@@ -22,8 +30,9 @@ export async function exportToFolder(
   let done = 0
 
   for (const group of groups) {
-    if (group.items.length === 0) continue
     const destDir = join(outputDir, group.subfolder)
+    await clearDirectory(destDir)
+    if (group.items.length === 0) continue
 
     for (const mod of group.items) {
       if (!canDownload(mod)) {

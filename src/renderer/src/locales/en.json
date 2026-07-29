@@ -63,7 +63,16 @@
     "added": "Added",
     "add": "Add",
     "remove": "Remove",
-    "empty": "Nothing selected yet."
+    "empty": "Nothing selected yet.",
+    "dependenciesNeeded": "These mods require the following dependencies to work:",
+    "dismiss": "Dismiss"
+  },
+  "modDetail": {
+    "versionsTitle": "Versions",
+    "loading": "Loading versions...",
+    "noVersions": "No compatible versions found.",
+    "current": "Current",
+    "useVersion": "Use this version"
   },
   "installedScan": {
     "noProject": "Create a project first.",
@@ -104,6 +113,17 @@
     "keyValid": "Saved and verified — the key is valid and working.",
     "keyInvalid": "⚠ Saved, but: CurseForge rejected the key ({{status}}). Make sure you used a Core API key, not a Studio personal access token.",
     "keyError": "Error: {{message}}",
+    "updates": {
+      "title": "Updates",
+      "currentVersion": "Current version: v{{version}}",
+      "checkButton": "Check for Updates",
+      "checking": "Checking for updates...",
+      "upToDate": "You're up to date.",
+      "available": "Update v{{version}} available.",
+      "downloading": "Downloading... {{percent}}%",
+      "downloaded": "Update v{{version}} downloaded — restart to install.",
+      "error": "Update check failed: {{message}}"
+    },
     "launcher": {
       "title": "Game Launcher",
       "which": "Which launcher do you use?",
@@ -147,6 +167,15 @@
       "distribution-disabled": "{{name}}: the author disabled direct distribution — install manually",
       "missing-hash": "{{name}}: missing sha1 hash — skipped",
       "download-failed": "{{name}}: {{detail}}"
-    }
+    },
+    "folderReplaceNotice": "Exporting here will delete the previous contents of the mods/resourcepacks/shaderpacks folders before writing the new ones."
+  },
+  "updater": {
+    "updateAvailable": "Update v{{version}} is available.",
+    "download": "Download",
+    "downloading": "Downloading... {{percent}}%",
+    "downloaded": "Update v{{version}} downloaded — restart to install.",
+    "restartInstall": "Restart & Install",
+    "dismiss": "Dismiss"
   }
 }

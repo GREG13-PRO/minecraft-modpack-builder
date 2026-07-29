@@ -63,7 +63,16 @@
     "added": "Eklendi",
     "add": "Ekle",
     "remove": "Kaldır",
-    "empty": "Henüz bir şey seçilmedi."
+    "empty": "Henüz bir şey seçilmedi.",
+    "dependenciesNeeded": "Bu modların çalışması için aşağıdaki bağımlılıklar gerekiyor:",
+    "dismiss": "Kapat"
+  },
+  "modDetail": {
+    "versionsTitle": "Sürümler",
+    "loading": "Sürümler yükleniyor...",
+    "noVersions": "Uyumlu sürüm bulunamadı.",
+    "current": "Mevcut",
+    "useVersion": "Bu sürümü kullan"
   },
   "installedScan": {
     "noProject": "Önce bir proje oluştur.",
@@ -104,6 +113,17 @@
     "keyValid": "Kaydedildi ve doğrulandı — anahtar geçerli ve çalışıyor.",
     "keyInvalid": "⚠ Kaydedildi, ancak: CurseForge anahtarı reddetti ({{status}}). Studio kişisel erişim jetonu değil, bir Core API anahtarı kullandığından emin ol.",
     "keyError": "Hata: {{message}}",
+    "updates": {
+      "title": "Güncellemeler",
+      "currentVersion": "Mevcut sürüm: v{{version}}",
+      "checkButton": "Güncellemeleri kontrol et",
+      "checking": "Güncellemeler kontrol ediliyor...",
+      "upToDate": "Güncelsin.",
+      "available": "v{{version}} güncellemesi mevcut.",
+      "downloading": "İndiriliyor... {{percent}}%",
+      "downloaded": "v{{version}} güncellemesi indirildi — yüklemek için yeniden başlat.",
+      "error": "Güncelleme kontrolü başarısız oldu: {{message}}"
+    },
     "launcher": {
       "title": "Oyun Başlatıcısı",
       "which": "Hangi başlatıcıyı kullanıyorsun?",
@@ -147,6 +167,15 @@
       "distribution-disabled": "{{name}}: yazar doğrudan dağıtımı devre dışı bıraktı — elle yükle",
       "missing-hash": "{{name}}: sha1 hash eksik — atlandı",
       "download-failed": "{{name}}: {{detail}}"
-    }
+    },
+    "folderReplaceNotice": "Buraya dışa aktarma, yenilerini yazmadan önce mods/resourcepacks/shaderpacks klasörlerinin önceki içeriğini silecek."
+  },
+  "updater": {
+    "updateAvailable": "v{{version}} güncellemesi mevcut.",
+    "download": "İndir",
+    "downloading": "İndiriliyor... {{percent}}%",
+    "downloaded": "v{{version}} güncellemesi indirildi — yüklemek için yeniden başlat.",
+    "restartInstall": "Yeniden başlat ve yükle",
+    "dismiss": "Kapat"
   }
 }

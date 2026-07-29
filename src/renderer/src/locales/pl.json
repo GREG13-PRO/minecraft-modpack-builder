@@ -63,7 +63,16 @@
     "added": "Dodano",
     "add": "Dodaj",
     "remove": "Usuń",
-    "empty": "Nic jeszcze nie wybrano."
+    "empty": "Nic jeszcze nie wybrano.",
+    "dependenciesNeeded": "Te mody wymagają następujących zależności, aby działać:",
+    "dismiss": "Odrzuć"
+  },
+  "modDetail": {
+    "versionsTitle": "Wersje",
+    "loading": "Ładowanie wersji...",
+    "noVersions": "Nie znaleziono kompatybilnych wersji.",
+    "current": "Obecna",
+    "useVersion": "Użyj tej wersji"
   },
   "installedScan": {
     "noProject": "Najpierw utwórz projekt.",
@@ -104,6 +113,17 @@
     "keyValid": "Zapisano i zweryfikowano — klucz jest prawidłowy i działa.",
     "keyInvalid": "⚠ Zapisano, ale: CurseForge odrzucił klucz ({{status}}). Upewnij się, że użyto klucza Core API, a nie osobistego tokenu dostępu Studio.",
     "keyError": "Błąd: {{message}}",
+    "updates": {
+      "title": "Aktualizacje",
+      "currentVersion": "Bieżąca wersja: v{{version}}",
+      "checkButton": "Sprawdź aktualizacje",
+      "checking": "Sprawdzanie aktualizacji...",
+      "upToDate": "Masz najnowszą wersję.",
+      "available": "Dostępna aktualizacja v{{version}}.",
+      "downloading": "Pobieranie... {{percent}}%",
+      "downloaded": "Aktualizacja v{{version}} pobrana — uruchom ponownie, aby zainstalować.",
+      "error": "Sprawdzanie aktualizacji nie powiodło się: {{message}}"
+    },
     "launcher": {
       "title": "Launcher gry",
       "which": "Z jakiego launchera korzystasz?",
@@ -147,6 +167,15 @@
       "distribution-disabled": "{{name}}: autor wyłączył bezpośrednią dystrybucję — zainstaluj ręcznie",
       "missing-hash": "{{name}}: brak skrótu sha1 — pominięto",
       "download-failed": "{{name}}: {{detail}}"
-    }
+    },
+    "folderReplaceNotice": "Eksport tutaj usunie poprzednią zawartość folderów mods/resourcepacks/shaderpacks przed zapisaniem nowych plików."
+  },
+  "updater": {
+    "updateAvailable": "Dostępna jest aktualizacja v{{version}}.",
+    "download": "Pobierz",
+    "downloading": "Pobieranie... {{percent}}%",
+    "downloaded": "Aktualizacja v{{version}} pobrana — uruchom ponownie, aby zainstalować.",
+    "restartInstall": "Uruchom ponownie i zainstaluj",
+    "dismiss": "Odrzuć"
   }
 }

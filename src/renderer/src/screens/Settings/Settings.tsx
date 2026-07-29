@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
-import { Globe, Gamepad2, KeyRound, FolderOpen } from 'lucide-react'
+import { Globe, Gamepad2, KeyRound, FolderOpen, RefreshCw } from 'lucide-react'
 import type { LauncherType } from '@shared/types'
 import { SUPPORTED_LANGUAGES } from '../../i18n'
+import { useUpdaterStore } from '../../state/updaterStore'
 import './Settings.css'
 
 type SaveState =
@@ -19,6 +20,8 @@ function Settings(): React.JSX.Element {
   const [hasKey, setHasKey] = useState<boolean | null>(null)
   const [keyInput, setKeyInput] = useState('')
   const [saveState, setSaveState] = useState<SaveState>({ kind: 'idle' })
+  const updaterVersion = useUpdaterStore((s) => s.version)
+  const updaterStatus = useUpdaterStore((s) => s.status)
 
   const { data: launcherStatus } = useQuery({
     queryKey: ['launcherStatus'],
@@ -55,7 +58,10 @@ function Settings(): React.JSX.Element {
       if (result.ok) {
         setSaveState({ kind: 'valid' })
       } else {
-        setSaveState({ kind: 'invalid', message: t('settings.keyInvalid', { status: result.status }) })
+        setSaveState({
+          kind: 'invalid',
+          message: t('settings.keyInvalid', { status: result.status })
+        })
       }
     } catch (err) {
       setSaveState({ kind: 'error', message: err instanceof Error ? err.message : String(err) })
@@ -80,9 +86,59 @@ function Settings(): React.JSX.Element {
 
       <section className="settings-card">
         <h3 className="settings-card-title">
+          <RefreshCw size={16} /> {t('settings.updates.title')}
+        </h3>
+        {updaterVersion && (
+          <p className="hint">
+            {t('settings.updates.currentVersion', { version: updaterVersion })}
+          </p>
+        )}
+        <div className="key-form">
+          <button
+            className="btn btn-ghost"
+            onClick={() => window.api.updater.check()}
+            disabled={updaterStatus.state === 'checking' || updaterStatus.state === 'downloading'}
+          >
+            <RefreshCw size={15} /> {t('settings.updates.checkButton')}
+          </button>
+        </div>
+        {updaterStatus.state === 'checking' && (
+          <p className="status">{t('settings.updates.checking')}</p>
+        )}
+        {updaterStatus.state === 'not-available' && (
+          <p className="status ok">{t('settings.updates.upToDate')}</p>
+        )}
+        {updaterStatus.state === 'available' && (
+          <p className="status">
+            {t('settings.updates.available', { version: updaterStatus.version })}
+          </p>
+        )}
+        {updaterStatus.state === 'downloading' && (
+          <p className="status">
+            {t('settings.updates.downloading', { percent: updaterStatus.percent })}
+          </p>
+        )}
+        {updaterStatus.state === 'downloaded' && (
+          <p className="status ok">
+            {t('settings.updates.downloaded', { version: updaterStatus.version })}
+          </p>
+        )}
+        {updaterStatus.state === 'error' && (
+          <p className="status error">
+            {t('settings.updates.error', { message: updaterStatus.message })}
+          </p>
+        )}
+      </section>
+
+      <section className="settings-card">
+        <h3 className="settings-card-title">
           <Globe size={16} /> {t('settings.language')}
         </h3>
-        <select className="input" value={i18n.language} onChange={(e) => i18n.changeLanguage(e.target.value)}>
+        <select
+          className="input"
+          value={i18n.language}
+          onChange={(e) => i18n.changeLanguage(e.target.value)}
+        >
           {SUPPORTED_LANGUAGES.map((lang) => (
             <option key={lang.code} value={lang.code}>
               {lang.label}
@@ -98,13 +154,17 @@ function Settings(): React.JSX.Element {
         <p className="settings-field-label">{t('settings.launcher.which')}</p>
         <div className="launcher-grid">
           <button
-            className={launcherStatus?.type === 'official' ? 'launcher-option active' : 'launcher-option'}
+            className={
+              launcherStatus?.type === 'official' ? 'launcher-option active' : 'launcher-option'
+            }
             onClick={() => handleLauncherTypeChange('official')}
           >
             {t('settings.launcher.official')}
           </button>
           <button
-            className={launcherStatus?.type === 'tlauncher' ? 'launcher-option active' : 'launcher-option'}
+            className={
+              launcherStatus?.type === 'tlauncher' ? 'launcher-option active' : 'launcher-option'
+            }
             onClick={() => handleLauncherTypeChange('tlauncher')}
           >
             {t('settings.launcher.tlauncher')}
@@ -112,9 +172,13 @@ function Settings(): React.JSX.Element {
         </div>
 
         {launcherStatus?.path ? (
-          <div className="key-status ok">{t('settings.launcher.customPath', { path: launcherStatus.path })}</div>
+          <div className="key-status ok">
+            {t('settings.launcher.customPath', { path: launcherStatus.path })}
+          </div>
         ) : launcherStatus?.detectedPath ? (
-          <div className="key-status ok">{t('settings.launcher.detected', { path: launcherStatus.detectedPath })}</div>
+          <div className="key-status ok">
+            {t('settings.launcher.detected', { path: launcherStatus.detectedPath })}
+          </div>
         ) : (
           <div className="key-status missing">{t('settings.launcher.notDetected')}</div>
         )}
@@ -141,7 +205,9 @@ function Settings(): React.JSX.Element {
         </p>
 
         {hasKey === true && <div className="key-status ok">{t('settings.keyStatusOk')}</div>}
-        {hasKey === false && <div className="key-status missing">{t('settings.keyStatusMissing')}</div>}
+        {hasKey === false && (
+          <div className="key-status missing">{t('settings.keyStatusMissing')}</div>
+        )}
 
         <div className="key-form">
           <input
@@ -151,7 +217,11 @@ function Settings(): React.JSX.Element {
             value={keyInput}
             onChange={(e) => setKeyInput(e.target.value)}
           />
-          <button className="btn" onClick={handleSave} disabled={!keyInput.trim() || saveState.kind === 'saving'}>
+          <button
+            className="btn"
+            onClick={handleSave}
+            disabled={!keyInput.trim() || saveState.kind === 'saving'}
+          >
             {saveState.kind === 'saving' ? t('settings.checking') : t('settings.save')}
           </button>
           {hasKey === true && (
@@ -163,7 +233,9 @@ function Settings(): React.JSX.Element {
 
         {saveState.kind === 'valid' && <p className="status ok">{t('settings.keyValid')}</p>}
         {saveState.kind === 'invalid' && <p className="status error">{saveState.message}</p>}
-        {saveState.kind === 'error' && <p className="status error">{t('settings.keyError', { message: saveState.message })}</p>}
+        {saveState.kind === 'error' && (
+          <p className="status error">{t('settings.keyError', { message: saveState.message })}</p>
+        )}
       </section>
     </div>
   )

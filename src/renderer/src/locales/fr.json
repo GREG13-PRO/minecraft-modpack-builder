@@ -63,7 +63,16 @@
     "added": "Ajouté",
     "add": "Ajouter",
     "remove": "Retirer",
-    "empty": "Rien de sélectionné pour l'instant."
+    "empty": "Rien de sélectionné pour l'instant.",
+    "dependenciesNeeded": "Ces mods nécessitent les dépendances suivantes pour fonctionner :",
+    "dismiss": "Ignorer"
+  },
+  "modDetail": {
+    "versionsTitle": "Versions",
+    "loading": "Chargement des versions...",
+    "noVersions": "Aucune version compatible trouvée.",
+    "current": "Actuelle",
+    "useVersion": "Utiliser cette version"
   },
   "installedScan": {
     "noProject": "Crée d'abord un projet.",
@@ -104,6 +113,17 @@
     "keyValid": "Enregistrée et vérifiée — la clé est valide et fonctionne.",
     "keyInvalid": "⚠ Enregistrée, mais : CurseForge a rejeté la clé ({{status}}). Assure-toi d'avoir utilisé une clé Core API, pas un token d'accès personnel Studio.",
     "keyError": "Erreur : {{message}}",
+    "updates": {
+      "title": "Mises à jour",
+      "currentVersion": "Version actuelle : v{{version}}",
+      "checkButton": "Vérifier les mises à jour",
+      "checking": "Vérification des mises à jour...",
+      "upToDate": "Tu es à jour.",
+      "available": "Mise à jour v{{version}} disponible.",
+      "downloading": "Téléchargement... {{percent}}%",
+      "downloaded": "Mise à jour v{{version}} téléchargée — redémarre pour l'installer.",
+      "error": "Échec de la vérification des mises à jour : {{message}}"
+    },
     "launcher": {
       "title": "Launcher du jeu",
       "which": "Quel launcher utilises-tu ?",
@@ -147,6 +167,15 @@
       "distribution-disabled": "{{name}} : l'auteur a désactivé la distribution directe — installation manuelle nécessaire",
       "missing-hash": "{{name}} : hash sha1 manquant — ignoré",
       "download-failed": "{{name}} : {{detail}}"
-    }
+    },
+    "folderReplaceNotice": "Exporter ici supprimera le contenu précédent des dossiers mods/resourcepacks/shaderpacks avant d'écrire les nouveaux fichiers."
+  },
+  "updater": {
+    "updateAvailable": "La mise à jour v{{version}} est disponible.",
+    "download": "Télécharger",
+    "downloading": "Téléchargement... {{percent}}%",
+    "downloaded": "Mise à jour v{{version}} téléchargée — redémarre pour l'installer.",
+    "restartInstall": "Redémarrer et installer",
+    "dismiss": "Ignorer"
   }
 }

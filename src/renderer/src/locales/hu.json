@@ -63,7 +63,16 @@
     "added": "Hozzáadva",
     "add": "Hozzáadás",
     "remove": "Eltávolítás",
-    "empty": "Még nincs kiválasztva."
+    "empty": "Még nincs kiválasztva.",
+    "dependenciesNeeded": "Ezekhez a modokhoz az alábbi függőségek is szükségesek a működéshez:",
+    "dismiss": "Elvetés"
+  },
+  "modDetail": {
+    "versionsTitle": "Verziók",
+    "loading": "Verziók betöltése...",
+    "noVersions": "Nem található kompatibilis verzió.",
+    "current": "Jelenlegi",
+    "useVersion": "Ezt a verziót használom"
   },
   "installedScan": {
     "noProject": "Előbb hozz létre egy projektet.",
@@ -104,6 +113,17 @@
     "keyValid": "Elmentve és ellenőrizve — a kulcs érvényes és működik.",
     "keyInvalid": "⚠ Elmentve, de: a CurseForge elutasította a kulcsot ({{status}}). Ellenőrizd, hogy Core API kulcsot adtál-e meg, ne Studio personal access tokent.",
     "keyError": "Hiba történt: {{message}}",
+    "updates": {
+      "title": "Frissítések",
+      "currentVersion": "Jelenlegi verzió: v{{version}}",
+      "checkButton": "Frissítések keresése",
+      "checking": "Frissítések keresése...",
+      "upToDate": "A legfrissebb verziót használod.",
+      "available": "Elérhető a v{{version}} verzió.",
+      "downloading": "Letöltés... {{percent}}%",
+      "downloaded": "A v{{version}} verzió letöltve — indítsd újra a telepítéshez.",
+      "error": "A frissítésellenőrzés sikertelen: {{message}}"
+    },
     "launcher": {
       "title": "Játék launcher",
       "which": "Melyik launchert használod?",
@@ -147,6 +167,15 @@
       "distribution-disabled": "{{name}}: a szerző letiltotta a közvetlen letöltést — kézzel kell telepíteni",
       "missing-hash": "{{name}}: hiányzik a sha1 hash — kimarad",
       "download-failed": "{{name}}: {{detail}}"
-    }
+    },
+    "folderReplaceNotice": "Az ide exportálás törli a mods/resourcepacks/shaderpacks mappák korábbi tartalmát, mielőtt az újakat kiírná."
+  },
+  "updater": {
+    "updateAvailable": "Elérhető a v{{version}} verzió.",
+    "download": "Letöltés",
+    "downloading": "Letöltés... {{percent}}%",
+    "downloaded": "A v{{version}} verzió letöltve — indítsd újra a telepítéshez.",
+    "restartInstall": "Újraindítás és telepítés",
+    "dismiss": "Elvetés"
   }
 }

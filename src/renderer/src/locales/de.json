@@ -63,7 +63,16 @@
     "added": "Hinzugefügt",
     "add": "Hinzufügen",
     "remove": "Entfernen",
-    "empty": "Noch nichts ausgewählt."
+    "empty": "Noch nichts ausgewählt.",
+    "dependenciesNeeded": "Diese Mods benötigen die folgenden Abhängigkeiten, um zu funktionieren:",
+    "dismiss": "Verwerfen"
+  },
+  "modDetail": {
+    "versionsTitle": "Versionen",
+    "loading": "Versionen werden geladen...",
+    "noVersions": "Keine kompatible Version gefunden.",
+    "current": "Aktuell",
+    "useVersion": "Diese Version verwenden"
   },
   "installedScan": {
     "noProject": "Erstelle zuerst ein Projekt.",
@@ -104,6 +113,17 @@
     "keyValid": "Gespeichert und überprüft — der Schlüssel ist gültig und funktioniert.",
     "keyInvalid": "⚠ Gespeichert, aber: CurseForge hat den Schlüssel abgelehnt ({{status}}). Stelle sicher, dass du einen Core-API-Schlüssel verwendet hast, kein Studio-Personal-Access-Token.",
     "keyError": "Fehler: {{message}}",
+    "updates": {
+      "title": "Updates",
+      "currentVersion": "Aktuelle Version: v{{version}}",
+      "checkButton": "Nach Updates suchen",
+      "checking": "Suche nach Updates...",
+      "upToDate": "Du bist auf dem neuesten Stand.",
+      "available": "Update v{{version}} verfügbar.",
+      "downloading": "Wird heruntergeladen... {{percent}}%",
+      "downloaded": "Update v{{version}} heruntergeladen — starte neu, um es zu installieren.",
+      "error": "Update-Prüfung fehlgeschlagen: {{message}}"
+    },
     "launcher": {
       "title": "Spiel-Launcher",
       "which": "Welchen Launcher verwendest du?",
@@ -147,6 +167,15 @@
       "distribution-disabled": "{{name}}: der Autor hat die direkte Verteilung deaktiviert — manuell installieren",
       "missing-hash": "{{name}}: sha1-Hash fehlt — übersprungen",
       "download-failed": "{{name}}: {{detail}}"
-    }
+    },
+    "folderReplaceNotice": "Der Export hierher löscht zuerst den bisherigen Inhalt der Ordner mods/resourcepacks/shaderpacks, bevor die neuen Dateien geschrieben werden."
+  },
+  "updater": {
+    "updateAvailable": "Update v{{version}} ist verfügbar.",
+    "download": "Herunterladen",
+    "downloading": "Wird heruntergeladen... {{percent}}%",
+    "downloaded": "Update v{{version}} heruntergeladen — starte neu, um es zu installieren.",
+    "restartInstall": "Neu starten & installieren",
+    "dismiss": "Verwerfen"
   }
 }

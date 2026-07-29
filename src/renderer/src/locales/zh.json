@@ -63,7 +63,16 @@
     "added": "已添加",
     "add": "添加",
     "remove": "移除",
-    "empty": "尚未选择任何内容。"
+    "empty": "尚未选择任何内容。",
+    "dependenciesNeeded": "这些模组需要以下依赖项才能运行：",
+    "dismiss": "忽略"
+  },
+  "modDetail": {
+    "versionsTitle": "版本",
+    "loading": "正在加载版本...",
+    "noVersions": "未找到兼容的版本。",
+    "current": "当前版本",
+    "useVersion": "使用此版本"
   },
   "installedScan": {
     "noProject": "请先创建一个项目。",
@@ -104,6 +113,17 @@
     "keyValid": "已保存并验证 — 密钥有效且可正常使用。",
     "keyInvalid": "⚠ 已保存，但：CurseForge 拒绝了该密钥（{{status}}）。请确认使用的是 Core API 密钥，而不是 Studio 个人访问令牌。",
     "keyError": "错误：{{message}}",
+    "updates": {
+      "title": "更新",
+      "currentVersion": "当前版本：v{{version}}",
+      "checkButton": "检查更新",
+      "checking": "正在检查更新...",
+      "upToDate": "已是最新版本。",
+      "available": "有可用更新 v{{version}}。",
+      "downloading": "下载中... {{percent}}%",
+      "downloaded": "更新 v{{version}} 已下载。重启以安装。",
+      "error": "检查更新失败：{{message}}"
+    },
     "launcher": {
       "title": "游戏启动器",
       "which": "你使用哪个启动器？",
@@ -147,6 +167,15 @@
       "distribution-disabled": "{{name}}：作者已禁止直接分发 — 请手动安装",
       "missing-hash": "{{name}}：缺少 sha1 哈希值 — 已跳过",
       "download-failed": "{{name}}：{{detail}}"
-    }
+    },
+    "folderReplaceNotice": "导出到此处会先删除 mods/resourcepacks/shaderpacks 文件夹中的旧内容，然后再写入新文件。"
+  },
+  "updater": {
+    "updateAvailable": "有可用更新 v{{version}}。",
+    "download": "下载",
+    "downloading": "下载中... {{percent}}%",
+    "downloaded": "更新 v{{version}} 已下载。重启以安装。",
+    "restartInstall": "重启并安装",
+    "dismiss": "忽略"
   }
 }

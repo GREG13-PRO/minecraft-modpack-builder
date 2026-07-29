@@ -62,14 +62,19 @@ export interface ModpackProject {
   shaders: ModpackMod[]
   createdAt: string
   updatedAt: string
+  lastExportPaths?: Partial<Record<ExportFormat, string>>
+}
+
+// Identifies a mod project for a lookup call without needing a full ModRef
+// yet — used to resolve dependency projectIds returned by a version's
+// `dependencies` list back into displayable ModRefs.
+export interface DependencyLookup {
+  source: ModSource
+  projectId: string
 }
 
 export type ScanStatus =
-  | 'up-to-date'
-  | 'outdated'
-  | 'incompatible-loader'
-  | 'unrecognized'
-  | 'not-on-target-mc-version'
+  'up-to-date' | 'outdated' | 'incompatible-loader' | 'unrecognized' | 'not-on-target-mc-version'
 
 export interface InstalledModScanResult {
   filePath: string
@@ -154,3 +159,12 @@ export interface LauncherStatus {
   path?: string
   detectedPath?: string
 }
+
+export type UpdaterStatus =
+  | { state: 'idle' }
+  | { state: 'checking' }
+  | { state: 'available'; version: string }
+  | { state: 'not-available' }
+  | { state: 'downloading'; percent: number }
+  | { state: 'downloaded'; version: string }
+  | { state: 'error'; message: string }

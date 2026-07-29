@@ -63,7 +63,16 @@
     "added": "Adicionado",
     "add": "Adicionar",
     "remove": "Remover",
-    "empty": "Nada selecionado ainda."
+    "empty": "Nada selecionado ainda.",
+    "dependenciesNeeded": "Estes mods precisam das seguintes dependências para funcionar:",
+    "dismiss": "Dispensar"
+  },
+  "modDetail": {
+    "versionsTitle": "Versões",
+    "loading": "Carregando versões...",
+    "noVersions": "Nenhuma versão compatível encontrada.",
+    "current": "Atual",
+    "useVersion": "Usar esta versão"
   },
   "installedScan": {
     "noProject": "Crie um projeto primeiro.",
@@ -104,6 +113,17 @@
     "keyValid": "Salva e verificada — a chave é válida e está funcionando.",
     "keyInvalid": "⚠ Salva, mas: o CurseForge rejeitou a chave ({{status}}). Certifique-se de ter usado uma chave de Core API, não um token de acesso pessoal de Studio.",
     "keyError": "Erro: {{message}}",
+    "updates": {
+      "title": "Atualizações",
+      "currentVersion": "Versão atual: v{{version}}",
+      "checkButton": "Verificar atualizações",
+      "checking": "Verificando atualizações...",
+      "upToDate": "Você está atualizado.",
+      "available": "Atualização v{{version}} disponível.",
+      "downloading": "Baixando... {{percent}}%",
+      "downloaded": "Atualização v{{version}} baixada — reinicie para instalar.",
+      "error": "Falha ao verificar atualizações: {{message}}"
+    },
     "launcher": {
       "title": "Launcher do Jogo",
       "which": "Qual launcher você usa?",
@@ -147,6 +167,15 @@
       "distribution-disabled": "{{name}}: o autor desativou a distribuição direta — instale manualmente",
       "missing-hash": "{{name}}: hash sha1 ausente — ignorado",
       "download-failed": "{{name}}: {{detail}}"
-    }
+    },
+    "folderReplaceNotice": "Exportar aqui vai apagar o conteúdo anterior das pastas mods/resourcepacks/shaderpacks antes de gravar as novas."
+  },
+  "updater": {
+    "updateAvailable": "A atualização v{{version}} está disponível.",
+    "download": "Baixar",
+    "downloading": "Baixando... {{percent}}%",
+    "downloaded": "Atualização v{{version}} baixada — reinicie para instalar.",
+    "restartInstall": "Reiniciar e instalar",
+    "dismiss": "Dispensar"
   }
 }

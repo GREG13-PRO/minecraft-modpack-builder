@@ -63,7 +63,16 @@
     "added": "Добавлено",
     "add": "Добавить",
     "remove": "Удалить",
-    "empty": "Пока ничего не выбрано."
+    "empty": "Пока ничего не выбрано.",
+    "dependenciesNeeded": "Этим модам для работы требуются следующие зависимости:",
+    "dismiss": "Скрыть"
+  },
+  "modDetail": {
+    "versionsTitle": "Версии",
+    "loading": "Загрузка версий...",
+    "noVersions": "Совместимых версий не найдено.",
+    "current": "Текущая",
+    "useVersion": "Использовать эту версию"
   },
   "installedScan": {
     "noProject": "Сначала создайте проект.",
@@ -104,6 +113,17 @@
     "keyValid": "Сохранён и проверен — ключ действителен и работает.",
     "keyInvalid": "⚠ Сохранён, но: CurseForge отклонил ключ ({{status}}). Убедитесь, что вы использовали ключ Core API, а не личный токен доступа Studio.",
     "keyError": "Ошибка: {{message}}",
+    "updates": {
+      "title": "Обновления",
+      "currentVersion": "Текущая версия: v{{version}}",
+      "checkButton": "Проверить обновления",
+      "checking": "Проверка обновлений...",
+      "upToDate": "У вас установлена последняя версия.",
+      "available": "Доступно обновление v{{version}}.",
+      "downloading": "Загрузка... {{percent}}%",
+      "downloaded": "Обновление v{{version}} загружено — перезапустите, чтобы установить.",
+      "error": "Не удалось проверить обновления: {{message}}"
+    },
     "launcher": {
       "title": "Лаунчер игры",
       "which": "Каким лаунчером вы пользуетесь?",
@@ -147,6 +167,15 @@
       "distribution-disabled": "{{name}}: автор отключил прямое распространение — установите вручную",
       "missing-hash": "{{name}}: отсутствует хеш sha1 — пропущено",
       "download-failed": "{{name}}: {{detail}}"
-    }
+    },
+    "folderReplaceNotice": "Экспорт сюда удалит предыдущее содержимое папок mods/resourcepacks/shaderpacks перед записью новых файлов."
+  },
+  "updater": {
+    "updateAvailable": "Доступно обновление v{{version}}.",
+    "download": "Загрузить",
+    "downloading": "Загрузка... {{percent}}%",
+    "downloaded": "Обновление v{{version}} загружено — перезапустите, чтобы установить.",
+    "restartInstall": "Перезапустить и установить",
+    "dismiss": "Скрыть"
   }
 }

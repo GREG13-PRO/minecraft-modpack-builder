@@ -63,7 +63,16 @@
     "added": "Aggiunta",
     "add": "Aggiungi",
     "remove": "Rimuovi",
-    "empty": "Ancora nulla di selezionato."
+    "empty": "Ancora nulla di selezionato.",
+    "dependenciesNeeded": "Queste mod richiedono le seguenti dipendenze per funzionare:",
+    "dismiss": "Ignora"
+  },
+  "modDetail": {
+    "versionsTitle": "Versioni",
+    "loading": "Caricamento versioni...",
+    "noVersions": "Nessuna versione compatibile trovata.",
+    "current": "Attuale",
+    "useVersion": "Usa questa versione"
   },
   "installedScan": {
     "noProject": "Crea prima un progetto.",
@@ -104,6 +113,17 @@
     "keyValid": "Salvata e verificata — la chiave è valida e funzionante.",
     "keyInvalid": "⚠ Salvata, ma: CurseForge ha rifiutato la chiave ({{status}}). Assicurati di aver usato una chiave Core API, non un token di accesso personale Studio.",
     "keyError": "Errore: {{message}}",
+    "updates": {
+      "title": "Aggiornamenti",
+      "currentVersion": "Versione attuale: v{{version}}",
+      "checkButton": "Controlla aggiornamenti",
+      "checking": "Controllo aggiornamenti in corso...",
+      "upToDate": "Sei aggiornato all'ultima versione.",
+      "available": "Aggiornamento v{{version}} disponibile.",
+      "downloading": "Download in corso... {{percent}}%",
+      "downloaded": "Aggiornamento v{{version}} scaricato — riavvia per installarlo.",
+      "error": "Controllo aggiornamenti non riuscito: {{message}}"
+    },
     "launcher": {
       "title": "Launcher di gioco",
       "which": "Quale launcher usi?",
@@ -147,6 +167,15 @@
       "distribution-disabled": "{{name}}: l'autore ha disabilitato la distribuzione diretta — installa manualmente",
       "missing-hash": "{{name}}: hash sha1 mancante — saltato",
       "download-failed": "{{name}}: {{detail}}"
-    }
+    },
+    "folderReplaceNotice": "Esportare qui eliminerà il contenuto precedente delle cartelle mods/resourcepacks/shaderpacks prima di scrivere quello nuovo."
+  },
+  "updater": {
+    "updateAvailable": "È disponibile l'aggiornamento v{{version}}.",
+    "download": "Scarica",
+    "downloading": "Download in corso... {{percent}}%",
+    "downloaded": "Aggiornamento v{{version}} scaricato — riavvia per installarlo.",
+    "restartInstall": "Riavvia e installa",
+    "dismiss": "Ignora"
   }
 }

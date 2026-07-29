@@ -1,14 +1,24 @@
 import { useEffect, useState } from 'react'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
-import { Pickaxe, Search, FolderOpen, Upload, Settings as SettingsIcon, Play, Plus } from 'lucide-react'
+import {
+  Pickaxe,
+  Search,
+  FolderOpen,
+  Upload,
+  Settings as SettingsIcon,
+  Play,
+  Plus
+} from 'lucide-react'
 import { queryClient } from './api/queryClient'
 import { useProjectStore } from './state/projectStore'
+import { useUpdaterStore } from './state/updaterStore'
 import ProjectSetup from './screens/ProjectSetup/ProjectSetup'
 import ModBrowser from './screens/ModBrowser/ModBrowser'
 import InstalledScan from './screens/InstalledScan/InstalledScan'
 import Export from './screens/Export/Export'
 import Settings from './screens/Settings/Settings'
+import UpdateBanner from './components/UpdateBanner'
 import './App.css'
 
 type Tab = 'mods' | 'scan' | 'export' | 'settings'
@@ -56,13 +66,22 @@ function AppShell(): React.JSX.Element {
         </div>
 
         <nav className="sidebar-nav">
-          <button className={tab === 'mods' ? 'nav-item active' : 'nav-item'} onClick={() => setTab('mods')}>
+          <button
+            className={tab === 'mods' ? 'nav-item active' : 'nav-item'}
+            onClick={() => setTab('mods')}
+          >
             <Search className="nav-icon" size={16} /> {t('app.nav.modBrowser')}
           </button>
-          <button className={tab === 'scan' ? 'nav-item active' : 'nav-item'} onClick={() => setTab('scan')}>
+          <button
+            className={tab === 'scan' ? 'nav-item active' : 'nav-item'}
+            onClick={() => setTab('scan')}
+          >
             <FolderOpen className="nav-icon" size={16} /> {t('app.nav.installedScan')}
           </button>
-          <button className={tab === 'export' ? 'nav-item active' : 'nav-item'} onClick={() => setTab('export')}>
+          <button
+            className={tab === 'export' ? 'nav-item active' : 'nav-item'}
+            onClick={() => setTab('export')}
+          >
             <Upload className="nav-icon" size={16} /> {t('app.nav.export')}
           </button>
           <button
@@ -73,7 +92,11 @@ function AppShell(): React.JSX.Element {
           </button>
         </nav>
 
-        <button className="btn sidebar-launch" onClick={handleLaunch} disabled={launchState.kind === 'launching'}>
+        <button
+          className="btn sidebar-launch"
+          onClick={handleLaunch}
+          disabled={launchState.kind === 'launching'}
+        >
           <Play size={15} fill="currentColor" />
           {launchState.kind === 'launching' ? t('app.sidebar.launching') : t('app.sidebar.launch')}
         </button>
@@ -104,6 +127,7 @@ function AppShell(): React.JSX.Element {
       </aside>
 
       <main className="app-main">
+        <UpdateBanner />
         {tab === 'mods' && <ModBrowser />}
         {tab === 'scan' && <InstalledScan />}
         {tab === 'export' && <Export />}
@@ -114,6 +138,14 @@ function AppShell(): React.JSX.Element {
 }
 
 function App(): React.JSX.Element {
+  const setUpdaterStatus = useUpdaterStore((s) => s.setStatus)
+  const setUpdaterVersion = useUpdaterStore((s) => s.setVersion)
+
+  useEffect(() => {
+    window.api.updater.getVersion().then(setUpdaterVersion)
+    return window.api.updater.onStatus(setUpdaterStatus)
+  }, [setUpdaterStatus, setUpdaterVersion])
+
   return (
     <QueryClientProvider client={queryClient}>
       <AppShell />

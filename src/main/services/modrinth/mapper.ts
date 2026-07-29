@@ -44,7 +44,12 @@ export function toModVersionRef(version: ModrinthVersion): ModVersionRef {
       .map((d) => ({
         projectId: d.project_id as string,
         source: 'modrinth' as const,
-        relation: d.dependency_type === 'embedded' ? 'embedded' : d.dependency_type === 'optional' ? 'optional' : 'required'
+        relation:
+          d.dependency_type === 'embedded'
+            ? 'embedded'
+            : d.dependency_type === 'optional'
+              ? 'optional'
+              : 'required'
       })),
     releaseDate: version.date_published
   }
