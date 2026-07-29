@@ -13,7 +13,8 @@
       "counts": "{{mods}} mod · {{resourcePacks}} kaynak paketi · {{shaders}} shader",
       "launch": "Oyunu Başlat",
       "launching": "Başlatılıyor...",
-      "launchError": "Başlatılamadı: {{message}}"
+      "launchError": "Başlatılamadı: {{message}}",
+      "launchProfileNotConfigured": "Başlatıcı açıldı, ancak otomatik olarak seçilecek yüklü bir {{version}} ({{loader}}) sürümü bulunamadı — bir kez loader'ın kendi yükleyicisiyle kur, bu sefer elle seç."
     }
   },
   "projectSetup": {
@@ -92,6 +93,7 @@
       "outdated": "Eski",
       "incompatible-loader": "Uyumsuz",
       "unrecognized": "Tanınmadı",
+      "not-published": "Modrinth/CurseForge'da yok",
       "not-on-target-mc-version": "Doğrulanamıyor"
     },
     "update": "Güncelle ({{version}})",

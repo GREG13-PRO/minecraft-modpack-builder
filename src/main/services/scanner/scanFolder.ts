@@ -31,9 +31,17 @@ export async function scanFolder(
       return {
         filePath: jar.filePath,
         detectedIdentity: identity
-          ? { modId: identity.modId, name: identity.name, version: identity.version, source: 'unknown' }
+          ? {
+              modId: identity.modId,
+              name: identity.name,
+              version: identity.version,
+              source: 'unknown'
+            }
           : undefined,
-        status: 'unrecognized'
+        // Metadata read fine but there's no Modrinth/CurseForge hash match:
+        // it's a real, working mod that just isn't published on either —
+        // not the same as a jar we couldn't identify at all.
+        status: identity ? 'not-published' : 'unrecognized'
       }
     })
   )
@@ -48,7 +56,8 @@ async function classifyMatched(
   loader: ModLoader
 ): Promise<InstalledModScanResult> {
   const { ref, version } = hashMatch
-  const alreadyCompatible = version.gameVersions.includes(mcVersion) && version.loaders.includes(loader)
+  const alreadyCompatible =
+    version.gameVersions.includes(mcVersion) && version.loaders.includes(loader)
 
   if (alreadyCompatible) {
     return { filePath, matchedRef: ref, matchedVersion: version, status: 'up-to-date' }
@@ -69,6 +78,11 @@ async function classifyMatched(
       status: 'outdated'
     }
   } catch {
-    return { filePath, matchedRef: ref, matchedVersion: version, status: 'not-on-target-mc-version' }
+    return {
+      filePath,
+      matchedRef: ref,
+      matchedVersion: version,
+      status: 'not-on-target-mc-version'
+    }
   }
 }

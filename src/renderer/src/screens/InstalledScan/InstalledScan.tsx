@@ -53,7 +53,9 @@ function InstalledScan(): React.JSX.Element {
         total: results.length,
         upToDate: results.filter((r) => r.status === 'up-to-date').length,
         outdated: results.filter((r) => r.status === 'outdated').length,
-        problem: results.filter((r) => r.status === 'incompatible-loader' || r.status === 'unrecognized').length
+        problem: results.filter(
+          (r) => r.status === 'incompatible-loader' || r.status === 'unrecognized'
+        ).length
       }
     : null
 
@@ -69,7 +71,9 @@ function InstalledScan(): React.JSX.Element {
         </button>
       </div>
 
-      {error && <div className="notice danger">{t('installedScan.scanError', { message: error })}</div>}
+      {error && (
+        <div className="notice danger">{t('installedScan.scanError', { message: error })}</div>
+      )}
 
       {summary && (
         <div className="scan-summary">
@@ -91,10 +95,13 @@ function InstalledScan(): React.JSX.Element {
       {results && (
         <div className="scan-results">
           {results.map((r) => {
-            const name = r.matchedRef?.name ?? r.detectedIdentity?.name ?? r.detectedIdentity?.modId ?? '?'
+            const name =
+              r.matchedRef?.name ?? r.detectedIdentity?.name ?? r.detectedIdentity?.modId ?? '?'
             // Windows paths use '\', everywhere else uses '/' — split on both.
             const fileName = r.filePath.split(/[/\\]/).pop()
-            const added = r.matchedRef ? addedIds.has(`${r.matchedRef.source}:${r.matchedRef.projectId}`) : false
+            const added = r.matchedRef
+              ? addedIds.has(`${r.matchedRef.source}:${r.matchedRef.projectId}`)
+              : false
 
             return (
               <div className="scan-row" key={r.filePath}>
@@ -103,22 +110,34 @@ function InstalledScan(): React.JSX.Element {
                   <div>
                     <div className="scan-row-name">
                       {name}
-                      {r.matchedRef && <span className={`badge ${r.matchedRef.source}`}>{r.matchedRef.source}</span>}
+                      {r.matchedRef && (
+                        <span className={`badge ${r.matchedRef.source}`}>
+                          {r.matchedRef.source}
+                        </span>
+                      )}
                     </div>
                     <div className="scan-row-file">{fileName}</div>
                   </div>
                 </div>
-                <span className={`status-label ${r.status}`}>{t(`installedScan.status.${r.status}`)}</span>
+                <span className={`status-label ${r.status}`}>
+                  {t(`installedScan.status.${r.status}`)}
+                </span>
                 {r.status === 'outdated' && r.latestCompatibleVersion && (
                   <button className="btn" disabled={added} onClick={() => handleAdd(r, true)}>
                     {added ? <Check size={14} /> : <RefreshCw size={14} />}
                     {added
                       ? t('installedScan.added')
-                      : t('installedScan.update', { version: r.latestCompatibleVersion.displayName })}
+                      : t('installedScan.update', {
+                          version: r.latestCompatibleVersion.displayName
+                        })}
                   </button>
                 )}
                 {r.status === 'up-to-date' && (
-                  <button className="btn btn-ghost" disabled={added} onClick={() => handleAdd(r, false)}>
+                  <button
+                    className="btn btn-ghost"
+                    disabled={added}
+                    onClick={() => handleAdd(r, false)}
+                  >
                     {added ? <Check size={14} /> : <Plus size={14} />}
                     {added ? t('installedScan.added') : t('installedScan.addToProject')}
                   </button>

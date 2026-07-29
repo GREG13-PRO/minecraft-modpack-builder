@@ -23,7 +23,11 @@ import './App.css'
 
 type Tab = 'mods' | 'scan' | 'export' | 'settings'
 
-type LaunchState = { kind: 'idle' } | { kind: 'launching' } | { kind: 'error'; message: string }
+type LaunchState =
+  | { kind: 'idle' }
+  | { kind: 'launching' }
+  | { kind: 'warning'; message: string }
+  | { kind: 'error'; message: string }
 
 function AppShell(): React.JSX.Element {
   const { t } = useTranslation()
@@ -45,8 +49,24 @@ function AppShell(): React.JSX.Element {
   async function handleLaunch(): Promise<void> {
     setLaunchState({ kind: 'launching' })
     try {
-      await window.api.launcher.launch()
-      setLaunchState({ kind: 'idle' })
+      const result = await window.api.launcher.launch(
+        project!.id,
+        project!.name,
+        project!.mcVersion.id,
+        project!.loader,
+        project!.lastExportPaths?.folder
+      )
+      if (result.profileOutcome === 'configured') {
+        setLaunchState({ kind: 'idle' })
+      } else {
+        setLaunchState({
+          kind: 'warning',
+          message: t('app.sidebar.launchProfileNotConfigured', {
+            version: project!.mcVersion.id,
+            loader: project!.loader
+          })
+        })
+      }
     } catch (err) {
       setLaunchState({ kind: 'error', message: err instanceof Error ? err.message : String(err) })
     }
@@ -100,6 +120,9 @@ function AppShell(): React.JSX.Element {
           <Play size={15} fill="currentColor" />
           {launchState.kind === 'launching' ? t('app.sidebar.launching') : t('app.sidebar.launch')}
         </button>
+        {launchState.kind === 'warning' && (
+          <div className="notice warn sidebar-launch-error">{launchState.message}</div>
+        )}
         {launchState.kind === 'error' && (
           <div className="notice danger sidebar-launch-error">
             {t('app.sidebar.launchError', { message: launchState.message })}

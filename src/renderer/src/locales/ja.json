@@ -13,7 +13,8 @@
       "counts": "MOD {{mods}}個 · リソースパック {{resourcePacks}}個 · シェーダー {{shaders}}個",
       "launch": "ゲームを起動",
       "launching": "起動中...",
-      "launchError": "起動できませんでした: {{message}}"
+      "launchError": "起動できませんでした: {{message}}",
+      "launchProfileNotConfigured": "ランチャーは開きましたが、自動選択できる {{version}}（{{loader}}）のインストール済みバージョンが見つかりませんでした — 一度ローダー自体のインストーラーでインストールしてから、今回は手動で選択してください。"
     }
   },
   "projectSetup": {
@@ -92,6 +93,7 @@
       "outdated": "更新が必要",
       "incompatible-loader": "非対応",
       "unrecognized": "不明",
+      "not-published": "Modrinth/CurseForge に未掲載",
       "not-on-target-mc-version": "確認不可"
     },
     "update": "更新（{{version}}）",

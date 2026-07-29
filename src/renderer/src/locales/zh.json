@@ -13,7 +13,8 @@
       "counts": "{{mods}} 个模组 · {{resourcePacks}} 个资源包 · {{shaders}} 个光影",
       "launch": "启动游戏",
       "launching": "正在启动...",
-      "launchError": "无法启动：{{message}}"
+      "launchError": "无法启动：{{message}}",
+      "launchProfileNotConfigured": "启动器已打开，但未找到已安装的 {{version}}（{{loader}}）版本可自动选择 — 请先通过加载器自身的安装程序安装一次，这次请手动选择。"
     }
   },
   "projectSetup": {
@@ -92,6 +93,7 @@
       "outdated": "已过时",
       "incompatible-loader": "不兼容",
       "unrecognized": "无法识别",
+      "not-published": "未在 Modrinth/CurseForge 上架",
       "not-on-target-mc-version": "无法验证"
     },
     "update": "更新（{{version}}）",

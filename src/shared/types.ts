@@ -73,8 +73,18 @@ export interface DependencyLookup {
   projectId: string
 }
 
+// 'not-published' is distinct from 'unrecognized': the jar's own metadata
+// was read fine (name/version known), it just isn't on Modrinth or
+// CurseForge to check against — common for launcher-bundled utility mods
+// (e.g. TLauncher's own cape-rendering mod). Not a problem to flag, unlike
+// a truly unreadable jar.
 export type ScanStatus =
-  'up-to-date' | 'outdated' | 'incompatible-loader' | 'unrecognized' | 'not-on-target-mc-version'
+  | 'up-to-date'
+  | 'outdated'
+  | 'incompatible-loader'
+  | 'unrecognized'
+  | 'not-published'
+  | 'not-on-target-mc-version'
 
 export interface InstalledModScanResult {
   filePath: string
@@ -145,8 +155,10 @@ export interface ApiKeyTestResult {
 }
 
 // Which launcher the "Launch" button should open. Neither launcher exposes a
-// supported way to auto-select a profile or press Play from outside, so this
-// only locates and opens the executable itself.
+// CLI/API to auto-launch a specific profile, so we can't press Play for the
+// user — but both read the same launcher_profiles.json, so we can at least
+// write/select the right profile (version + loader + game dir) there before
+// opening the app, leaving only the Play click manual.
 export type LauncherType = 'official' | 'tlauncher'
 
 export interface LauncherSettings {
@@ -158,6 +170,18 @@ export interface LauncherStatus {
   type: LauncherType
   path?: string
   detectedPath?: string
+}
+
+// Whether we could point the launcher's profile at the right installed
+// version before opening it. We never install a mod loader ourselves, so
+// 'version-not-installed' just means the user hasn't run that loader's own
+// installer for this Minecraft version yet — not a bug.
+export type LaunchProfileOutcome =
+  'configured' | 'version-not-installed' | 'profiles-file-unavailable'
+
+export interface LaunchResult {
+  profileOutcome: LaunchProfileOutcome
+  versionId?: string
 }
 
 export type UpdaterStatus =

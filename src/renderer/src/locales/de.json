@@ -13,7 +13,8 @@
       "counts": "{{mods}} Mods · {{resourcePacks}} Resource Packs · {{shaders}} Shader",
       "launch": "Spiel starten",
       "launching": "Wird gestartet...",
-      "launchError": "Konnte nicht gestartet werden: {{message}}"
+      "launchError": "Konnte nicht gestartet werden: {{message}}",
+      "launchProfileNotConfigured": "Der Launcher wurde geöffnet, aber es konnte keine installierte Version {{version}} ({{loader}}) zur automatischen Auswahl gefunden werden — installiere sie einmal über den Installer des Loaders, dann wähle sie dieses Mal manuell aus."
     }
   },
   "projectSetup": {
@@ -92,6 +93,7 @@
       "outdated": "Veraltet",
       "incompatible-loader": "Inkompatibel",
       "unrecognized": "Unbekannt",
+      "not-published": "Nicht auf Modrinth/CurseForge",
       "not-on-target-mc-version": "Nicht überprüfbar"
     },
     "update": "Aktualisieren ({{version}})",

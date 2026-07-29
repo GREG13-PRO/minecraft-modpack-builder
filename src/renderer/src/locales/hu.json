@@ -13,7 +13,8 @@
       "counts": "{{mods}} mod · {{resourcePacks}} resource pack · {{shaders}} shader",
       "launch": "Játék indítása",
       "launching": "Indítás...",
-      "launchError": "Nem sikerült elindítani: {{message}}"
+      "launchError": "Nem sikerült elindítani: {{message}}",
+      "launchProfileNotConfigured": "A launcher megnyílt, de nem található telepített {{version}} ({{loader}}) verzió az automatikus kiválasztáshoz — telepítsd egyszer a loader saját telepítőjével, aztán most válaszd ki kézzel."
     }
   },
   "projectSetup": {
@@ -92,6 +93,7 @@
       "outdated": "Elavult",
       "incompatible-loader": "Nem kompatibilis",
       "unrecognized": "Ismeretlen",
+      "not-published": "Nincs fent Modrinth/CurseForge-on",
       "not-on-target-mc-version": "Nem ellenőrizhető"
     },
     "update": "Frissítés ({{version}})",

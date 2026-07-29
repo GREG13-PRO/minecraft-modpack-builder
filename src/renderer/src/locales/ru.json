@@ -13,7 +13,8 @@
       "counts": "{{mods}} модов · {{resourcePacks}} ресурспаков · {{shaders}} шейдеров",
       "launch": "Запустить игру",
       "launching": "Запуск...",
-      "launchError": "Не удалось запустить: {{message}}"
+      "launchError": "Не удалось запустить: {{message}}",
+      "launchProfileNotConfigured": "Лаунчер открыт, но не удалось найти установленную версию {{version}} ({{loader}}) для автоматического выбора — установите её один раз через инсталлятор лоадера, а в этот раз выберите вручную."
     }
   },
   "projectSetup": {
@@ -92,6 +93,7 @@
       "outdated": "Устарел",
       "incompatible-loader": "Несовместим",
       "unrecognized": "Не распознан",
+      "not-published": "Нет на Modrinth/CurseForge",
       "not-on-target-mc-version": "Невозможно проверить"
     },
     "update": "Обновить ({{version}})",

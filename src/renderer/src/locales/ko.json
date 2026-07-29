@@ -13,7 +13,8 @@
       "counts": "모드 {{mods}}개 · 리소스팩 {{resourcePacks}}개 · 셰이더 {{shaders}}개",
       "launch": "게임 실행",
       "launching": "실행 중...",
-      "launchError": "실행할 수 없습니다: {{message}}"
+      "launchError": "실행할 수 없습니다: {{message}}",
+      "launchProfileNotConfigured": "런처는 열렸지만 자동으로 선택할 수 있는 설치된 {{version}}({{loader}}) 버전을 찾지 못했습니다 — 로더 자체 설치 프로그램으로 한 번 설치한 후, 이번에는 직접 선택하세요."
     }
   },
   "projectSetup": {
@@ -92,6 +93,7 @@
       "outdated": "오래됨",
       "incompatible-loader": "호환 불가",
       "unrecognized": "인식되지 않음",
+      "not-published": "Modrinth/CurseForge에 없음",
       "not-on-target-mc-version": "확인 불가"
     },
     "update": "업데이트 ({{version}})",

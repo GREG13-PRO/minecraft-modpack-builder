@@ -7,6 +7,7 @@ import type {
   ExportFormat,
   ExportResult,
   InstalledModScanResult,
+  LaunchResult,
   LauncherStatus,
   LauncherType,
   ModLoader,
@@ -60,7 +61,21 @@ const api = {
     setType: (type: LauncherType) => ipcRenderer.invoke('launcher:setType', type) as Promise<void>,
     pickExecutable: () =>
       ipcRenderer.invoke('launcher:pickExecutable') as Promise<string | undefined>,
-    launch: () => ipcRenderer.invoke('launcher:launch') as Promise<void>
+    launch: (
+      projectId: string,
+      projectName: string,
+      mcVersion: string,
+      loader: ModLoader,
+      gameDir: string | undefined
+    ) =>
+      ipcRenderer.invoke(
+        'launcher:launch',
+        projectId,
+        projectName,
+        mcVersion,
+        loader,
+        gameDir
+      ) as Promise<LaunchResult>
   },
   updater: {
     check: () => ipcRenderer.invoke('updater:check') as Promise<void>,

@@ -13,7 +13,8 @@
       "counts": "{{mods}} mods · {{resourcePacks}} resourcepacks · {{shaders}} shaders",
       "launch": "Spel starten",
       "launching": "Starten...",
-      "launchError": "Kon niet starten: {{message}}"
+      "launchError": "Kon niet starten: {{message}}",
+      "launchProfileNotConfigured": "De launcher is geopend, maar er is geen geïnstalleerde {{version}} ({{loader}})-versie gevonden om automatisch te selecteren — installeer deze eenmalig via de installer van de loader en selecteer hem deze keer handmatig."
     }
   },
   "projectSetup": {
@@ -92,6 +93,7 @@
       "outdated": "Verouderd",
       "incompatible-loader": "Niet compatibel",
       "unrecognized": "Niet herkend",
+      "not-published": "Niet op Modrinth/CurseForge",
       "not-on-target-mc-version": "Niet te verifiëren"
     },
     "update": "Bijwerken ({{version}})",
